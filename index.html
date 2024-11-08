@@ -7,107 +7,304 @@
     <meta name="author" content="mouad_hallaffou">
     <meta name="keywords" content="CV en ligne, création de CV, formulaire de CV, modèles de CV, Tailwind CSS, JavaScript">
     <title>Application CV en Ligne</title>
-
+    <link rel="shortcut icon" href="images/logo.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./src/input.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
 </head>
 <body>
-    
 
-    <form>
-        <div class="px-10 py-6">
-         
-          <div class="border-b">
-            <h2 class="text-base/7 font-semibold text-gray-900">Information Personel</h2>
+  <!--Start Background Animation Body-->
+    <div class="area">
+        <ul class="circles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+    </div>
+   <!--End Background Animation Body-->
 
-            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              <div class="sm:col-span-3">
-                <label for="first-name" class="block text-sm/6 font-medium text-gray-900">First name</label>
-                <div class="mt-2">
-                  <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">
-                </div>
-              </div>
-      
-              <div class="sm:col-span-3">
-                <label for="last-name" class="block text-sm/6 font-medium text-gray-900">Last name</label>
-                <div class="mt-2">
-                  <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">
-                </div>
+<section id="heroSection" style="width: 100vw; height: 100vh; ">
+    <div class="flex px-10 py-4 justify-between items-center flex-wrap">
+      <div class="flex items-center">
+          <a href="#"><img src="images/logo.svg" class="w-20 h-12"></a>
+          <a href="#" class="font-bold text-3xl text-blue-900"> CV Builder</a>
+      </div>
+      <div class="relative flex items-center hidden md:inline-flex">
+           <marquee behavior="title" direction="left"> <blockquote class="text-4xl text-blue-900 font-bold">Bienvenue Dans Mon Espace</blockquote></marquee>
+      </div>
+      <div class="flex items-center gap-4">
+          <button class="border px-2 py-2 rounded-md border-white bg-blue-800 text-white font-semibold hover:bg-purple-800">Sign Up</button>
+          <button class="border px-2 py-2 rounded-md border-white bg-blue-800 text-white font-semibold hover:bg-purple-800">Login</button>
+      </div>
+  </div>
+
+  <div class="items-center w-10/12 grid-cols-2 mx-auto overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-0 " data-aos="fade-right" data-aos-duration="800">
+    <div class="pr-2 md:mb-14 py-14 md:py-0">
+      <h1 class="text-3xl font-semibold text-blue-900 xl:text-5xl lg:text-3xl"><span class="block w-full">Créez un CV professionnel pour</span> booster votre carrière !</h1>
+      <p class="py-4 text-lg text-white 2xl:py-8 md:py-6 2xl:pr-5">
+        Concevez facilement un CV moderne et personnalisé grâce à notre outil intuitif. Suivez des étapes simples pour ajouter vos informations, choisissez parmi plusieurs modèles élégants, et sauvegardez votre CV en ligne. Idéal pour mettre en avant vos compétences et votre expérience professionnelle, prêt pour l'impression ou le téléchargement...
+      </p>
+      <div class="mt-4">
+        <a id="startedBtn" href="#" class="px-5 py-5 text-2xl font-semibold tracking-wider text-white bg-blue-800 rounded-lg md:px-8 hover:bg-blue-700 group"><span>Get Started</span> </a>
+      </div>
+    </div>
+
+    <div class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0">
+      <img id="heroImg1" class="transition-all duration-300 ease-in-out hover:scale-105 lg:w-full sm:mx-auto sm:w-4/6 sm:pb-12 lg:pb-0" src="images/homePage.svg" style="height: 650px;" alt="Awesome hero page image" width="500" height="488"/>
+    </div>
+  </div>
+  
+</section>
+
+  <div class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="container mx-auto p-4">
+      <div class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-2xl mx-auto">
+        <h1 class="text-3xl font-bold text-center mb-8">Genere votre cv</h1>
+  
+        <!-- Progress Bar -->
+        <div class="mb-8">
+          <div class="flex justify-between mb-2">
+            <span class="text-xs text-center text-center font-semibold inline-block py-1 px-2 uppercase rounded-full text-black bg-blue-200" id="step1">
+                          informations personnelles
+                      </span>
+            <span class="text-xs text-center font-semibold inline-block py-1 px-2 uppercase rounded-full text-black bg-blue-200 opacity-50" id="step2">
+                          details competances 
+                      </span>
+            <span class="text-xs text-center font-semibold inline-block py-1 px-2 uppercase rounded-full text-black bg-blue-200 opacity-50" id="step3">
+                          Education et diplomes
+                      </span>
+                      <span class="text-xs text-center font-semibold inline-block py-1 px-2 uppercase rounded-full text-black bg-blue-200 opacity-50" id="step3">
+                        Certifications
+                    </span>
+            <span class="text-xs text-center font-semibold inline-block py-1 px-2 uppercase rounded-full text-black bg-blue-200 opacity-50" id="step4">
+                        langues et Loisirs
+                    </span>
+          </div>
+          <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+            <div id="progress-bar"
+              class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-800 w-1/5 transition-all duration-500 ease-in-out">
+            </div>
+          </div>
+        </div>
+  
+        <!-- Form Steps -->
+        <form action="action.javascript" id="multi-step-form" onsubmit="validate()">
+          <!-- Step 1: Information Personnel -->
+          <div id="step-1" class="step">
+           <!-- Nom Complet -->
+              <div class="mb-6">
+                <label for="fullName" class="block mb-2 text-sm font-medium text-gray-900">Nom Complete</label>
+                <input type="text" id="fullName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" required>
               </div>
 
-              <div class="sm:col-span-3">
-                <label for="last-name" class="block text-sm/6 font-medium text-gray-900">Last name</label>
-                <div class="mt-2">
-                  <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">
-                </div>
-              </div>
-      
-
-              <div class="sm:col-span-4">
-                <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
-                <div class="mt-2">
-                  <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">
-                </div>
+              <!--Date de naissance -->
+              <div class="mb-6">
+                <label for="dob" class="block mb-2 text-sm font-medium text-gray-900">Date de naissance</label>
+                <input type="date" id="dob" name="dob" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" required>
               </div>
 
+              <!-- Profil Professionnel -->
+              <div class="mb-6">
+                <label for="jobLocation" class="block mb-2 text-sm font-medium text-gray-900">Profile</label>
+                <input type="text" id="jobLocation" name="jobLocation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" placeholder="Exemple: full stack developer,technicien spaecialise ..." required>
+              </div>
 
-              <div class="col-span-full">
-                <label for="about" class="block text-sm/6 font-medium text-gray-900">About</label>
-                <div class="mt-2">
-                  <textarea id="about" name="about" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"></textarea>
-                </div>
-                <p class="mt-3 text-sm/6 text-gray-600">Write a few sentences about yourself.</p>
+              <!-- À propos de toi -->
+              <div class="mb-6">
+                <label for="aboutMe" class="block mb-2 text-sm font-medium text-gray-900">À propos de toi</label>
+                <textarea id="aboutMe" name="aboutMe" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" placeholder="Décrivez votre expérience, vos compétences et votre spécialité dans votre domaine" required></textarea>
               </div>
-      
-              <div class="col-span-full">
-                <label for="street-address" class="block text-sm/6 font-medium text-gray-900">Street address</label>
-                <div class="mt-2">
-                  <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">
-                </div>
+
+              <!-- Adresse -->
+              <div class="mb-6">
+                <label for="adresse" class="block mb-2 text-sm font-medium text-gray-900">Adresse</label>
+                <input type="text" id="adresse" name="adresse" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" required>
               </div>
-      
-              <div class="sm:col-span-2 sm:col-start-1">
-                <label for="city" class="block text-sm/6 font-medium text-gray-900">City</label>
-                <div class="mt-2">
-                  <input type="text" name="city" id="city" autocomplete="address-level2" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">
-                </div>
+
+              <!-- Email -->
+              <div class="mb-6">
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+                <input pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+.[a-zA-Z.]{2,15}" type="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" required>
               </div>
-      
-              <div class="sm:col-span-2">
-                <label for="postal-code" class="block text-sm/6 font-medium text-gray-900">ZIP / Postal code</label>
-                <div class="mt-2">
-                  <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">
-                </div>
+
+              <!-- Téléphone -->
+              <div class="mb-6">
+                <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Téléphone</label>
+                <input type="tel" id="phone" name="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" required>
               </div>
+
+              <!-- LinkedIn -->
+              <div class="mb-6">
+                <label for="linkedin" class="block mb-2 text-sm font-medium text-gray-900">LinkedIn</label>
+                <input type="url" id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" required>
+              </div>
+
+              <!-- GitHub -->
+              <div class="mb-6">
+                <label for="github" class="block mb-2 text-sm font-medium text-gray-900">GitHub</label>
+                <input type="url" id="github" name="github" placeholder="https://github.com/username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" required>
+              </div>
+
+              <!-- Portfolio -->
+              <div class="mb-6">
+                <label for="portfolio" class="block mb-2 text-sm font-medium text-gray-900">Portfolio</label>
+                <input type="url" id="portfolio" name="portfolio" placeholder="https://www.username.com" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5" required>
+              </div>
+
+              <!-- Image de Profil -->
+              <div class="mb-6">
+                <label for="profileImage" class="block mb-2 text-sm font-medium text-gray-900">Ajoute votre image</label>
+                <input type="file" id="profileImage" name="profileImage" accept="image/*" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 p-2" required>
+              </div>
+
+          </div>
+  
+          <!-- Step 2: Account Details -->
+          <!-- class="step hidden" -->
+          <div id="step-2">
+            <div class="space-y-6">
+              <!-- Compétence 1 -->
+              <div class="mb-6">
+                <label for="competence_name" class="block mb-2 text-sm font-medium text-gray-900">Nom de la Compétence</label>
+                <input type="text" id="competence_name" name="competence_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+              </div>
+            
+              <!-- Type ou Domaine -->
+              <div class="mb-6">
+                <label for="competence_type" class="block mb-2 text-sm font-medium text-gray-900">Type ou Domaine</label>
+                <input type="text" id="competence_type" name="competence_type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+              </div>
+            
+              <!-- Date de Début -->
+              <div class="mb-6">
+                <label for="competence_start_date" class="block mb-2 text-sm font-medium text-gray-900">Date de Début</label>
+                <input type="date" id="competence_start_date" name="competence_start_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+              </div>
+            
+              <!-- Date de Fin -->
+              <div class="mb-6">
+                <label for="competence_end_date" class="block mb-2 text-sm font-medium text-gray-900">Date de Fin</label>
+                <input type="date" id="competence_end_date" name="competence_end_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+              </div>
+            
+              <!-- Lieu -->
+              <div class="mb-6">
+                <label for="competence_location" class="block mb-2 text-sm font-medium text-gray-900">Lieu</label>
+                <input type="text" id="competence_location" name="competence_location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+              </div>
+            
+              <!-- Description -->
+              <div class="mb-6">
+                <label for="competence_description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+                <textarea id="competence_description" name="competence_description" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required></textarea>
+              </div>
+              
+              <!-- Bouton de Soumission -->
+              <button type="submit" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                Ajouter Compétence
+              </button>
+            </div>
+          </div>
+  
+          <!-- Step 3: Diplome -->
+          <!-- class="step hidden" -->
+          <div id="step-3" class="step hidden">
+            <div class="space-y-6">
+              <!-- Nom du Diplôme -->
+              <div class="mb-6">
+                <label for="diploma_name" class="block mb-2 text-sm font-medium text-gray-900">Nom du Diplôme</label>
+                <input type="text" id="diploma_name" name="diploma_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+              </div>
+            
+              <!-- École ou Université -->
+              <div class="mb-6">
+                <label for="school_name" class="block mb-2 text-sm font-medium text-gray-900">École ou Université</label>
+                <input type="text" id="school_name" name="school_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+              </div>
+            
+              <!-- Date de Début -->
+              <div class="mb-6">
+                <label for="education_start_date" class="block mb-2 text-sm font-medium text-gray-900">Date de Début</label>
+                <input type="date" id="education_start_date" name="education_start_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+              </div>
+            
+              <!-- Date de Fin -->
+              <div class="mb-6">
+                <label for="education_end_date" class="block mb-2 text-sm font-medium text-gray-900">Date de Fin</label>
+                <input type="date" id="education_end_date" name="education_end_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+              </div>
+            
+              <!-- Spécialité -->
+              <div class="mb-6">
+                <label for="speciality" class="block mb-2 text-sm font-medium text-gray-900">Spécialité</label>
+                <input type="text" id="speciality" name="speciality" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+              </div>
+            
+              <!-- Description -->
+              <div class="mb-6">
+                <label for="education_description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
+                <textarea id="education_description" name="education_description" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required></textarea>
+              </div>
+              
+              <!-- Bouton de Soumission -->
+              <button type="submit" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                Ajouter Diplôme
+              </button>
             </div>
           </div>
 
-          <div class="border-b border-gray-900/10 pb-12">
-            <div class="col-span-full">
-                <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                  <div class="text-center">
-                    <svg class="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
-                    </svg>
-                    <div class="mt-4 flex text-sm/6 text-gray-600">
-                      <label for="file-upload" class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
-                        <span>Upload a file</span>
-                        <input id="file-upload" name="file-upload" type="file" class="sr-only">
-                      </label>
-                      <p class="pl-1">or drag and drop</p>
-                    </div>
-                    <p class="text-xs/5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
-                  </div>
-                </div>
+           <!-- Step 4: langues et loisir -->
+          <!-- class="step hidden" -->
+          <div id="step-4" class="step hidden">
+            <div class="space-y-6">
+              <!-- Langue et niveau -->
+              <div class="mb-6">
+                <label for="diploma_name" class="block mb-2 text-sm font-medium text-gray-900">Langue 1:</label>
+                <input type="text" id="diploma_name" name="diploma_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
               </div>
+              <div class="mb-6">
+                <label for="diploma_name" class="block mb-2 text-sm font-medium text-gray-900">Details Niveau:</label>
+                <input type="text" id="diploma_name" name="diploma_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+              </div>
+              <button type="submit" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                Ajouter langue
+              </button>
             </div>
+            
+            <div class="space-y-6">
+              <!-- Loisir -->
+              <div class="mb-0">
+                <label for="diploma_name" class="block mb-2 text-sm font-medium text-gray-900">Loisir 1:</label>
+                <input type="text" id="diploma_name" name="diploma_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+              </div>
+              <button type="submit" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                Autre Loisir
+              </button>
+            </div>
+            
+
           </div>
-        </div> 
+
+          <!-- Navigation Buttons -->
+          <div class="flex justify-between mt-8">
+            <button type="button" id="prevBtn" class="px-4 py-2 bg-gray-500 text-gray-800 rounded-lg hover:bg-gray-400 focus:outline-none focus:shadow-outline hidden">Previous</button>
+            <button type="button" id="nextBtn" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:shadow-outline">Next</button>
+            <button type="submit" id="submitBtn" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:shadow-outline hidden">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
 
-      </form>
 
-
-
+   <script src="main.js"></script>
 </body>
 </html>

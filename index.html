@@ -1,611 +1,473 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Application de création de CV en ligne offrant un formulaire interactif à étapes avec validation, des modèles personnalisables, une barre de progression, et des options de sauvegarde. Créez facilement votre CV pour le télécharger ou l'imprimer en quelques clics.">
-    <meta name="author" content="mouad_hallaffou">
-    <meta name="keywords" content="CV en ligne, création de CV, formulaire de CV, modèles de CV, Tailwind CSS, JavaScript">
-    <title>Application CV en Ligne</title>
-    <link rel="shortcut icon" href="images/logo.svg" type="image/x-icon">
-    <link rel="stylesheet" href="./src/input.css">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Application de création de CV en ligne offrant un formulaire interactif à étapes avec validation, des modèles personnalisables, une barre de progression, et des options de sauvegarde. Créez facilement votre CV pour le télécharger ou l'imprimer en quelques clics.">
+  <meta name="author" content="mouad_hallaffou">
+  <meta name="keywords"
+    content="CV en ligne, création de CV, formulaire de CV, modèles de CV, Tailwind CSS, JavaScript">
+  <title>Application CV en Ligne</title>
+  <link rel="shortcut icon" href="images/logo.svg" type="image/x-icon">
+  <link rel="stylesheet" href="./src/input.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
 
-  <!--Start Background Animation Body-->
-    <div class="area">
-        <ul class="circles">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-    </div>
-   <!--End Background Animation Body-->
+  <!-----Start Background Animation Body------->
+  <div class="area">
+    <ul class="circles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <!------End Background Animation Body-------->
 
-<section id="heroSection" style="width: 100vw; height: 100vh; ">
+  <!----------start Page pricipale-------------->
+  <section id="heroSection" style="width: 100vw; height: 100vh;">
     <div class="flex px-10 py-4 justify-between items-center flex-wrap">
       <div class="flex items-center">
-          <a href="#"><img src="images/logo.svg" class="w-20 h-12"></a>
-          <a href="#" class="font-bold text-3xl text-blue-900"> CV Builder</a>
+        <a href="#"><img src="images/logo.svg" class="w-20 h-12"></a>
+        <a href="#" class="font-bold text-3xl text-blue-900"> CV Builder</a>
       </div>
       <div class="relative flex items-center hidden md:inline-flex">
-           <marquee behavior="title" direction="left"> <blockquote class="text-4xl text-blue-900 font-bold">Bienvenue Dans Mon Espace</blockquote></marquee>
+        <marquee behavior="title" direction="left">
+          <blockquote class="text-4xl text-blue-900 font-bold">Bienvenue Dans Mon Espace</blockquote>
+        </marquee>
       </div>
       <div class="flex items-center gap-4">
-          <button class="border px-2 py-2 rounded-md border-white bg-blue-800 text-white font-semibold hover:bg-purple-800">S'inscrire</button>
-          <button class="border px-2 py-2 rounded-md border-white bg-blue-800 text-white font-semibold hover:bg-purple-800">Connexion</button>
-      </div>
-  </div>
-
-  <div class="items-center w-10/12 grid-cols-2 mx-auto overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-0 " data-aos="fade-right" data-aos-duration="800">
-    <div class="pr-2 md:mb-14 py-14 md:py-0">
-      <h1 class="text-3xl font-semibold text-blue-900 xl:text-5xl lg:text-3xl"><span class="block w-full">Créez un CV professionnel pour</span> booster votre carrière !</h1>
-      <p class="py-4 text-lg text-white 2xl:py-8 md:py-6 2xl:pr-5">
-        Concevez facilement un CV moderne et personnalisé grâce à notre outil intuitif. Suivez des étapes simples pour ajouter vos informations, choisissez parmi plusieurs modèles élégants, et sauvegardez votre CV en ligne. Idéal pour mettre en avant vos compétences et votre expérience professionnelle, prêt pour l'impression ou le téléchargement...
-      </p>
-      <div class="mt-4">
-        <a id="startedBtn" href="#" class="px-5 py-5 text-2xl font-semibold tracking-wider text-white bg-blue-800 rounded-lg md:px-8 hover:bg-blue-700 group"><span>Commencer</span> </a>
+        <button
+          class="border px-2 py-2 rounded-md border-white bg-blue-800 text-white font-semibold hover:bg-purple-800">S'inscrire</button>
+        <button
+          class="border px-2 py-2 rounded-md border-white bg-blue-800 text-white font-semibold hover:bg-purple-800">Connexion</button>
       </div>
     </div>
 
-    <div class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0">
-      <img id="heroImg1" class="transition-all duration-300 ease-in-out hover:scale-105 lg:w-full sm:mx-auto sm:w-4/6 sm:pb-12 lg:pb-0" src="images/homePage.svg" style="height: 650px;" alt="Awesome hero page image" width="500" height="488"/>
+    <div
+      class="items-center w-10/12 grid-cols-2 mx-auto overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-0 "
+      data-aos="fade-right" data-aos-duration="800">
+      <div class="pr-2 md:mb-14 py-14 md:py-0">
+        <h1 class="text-3xl font-semibold text-blue-900 xl:text-5xl lg:text-3xl"><span class="block w-full">Créez un CV
+            professionnel pour</span> booster votre carrière !</h1>
+        <p class="py-4 text-lg text-white 2xl:py-8 md:py-6 2xl:pr-5">
+          Concevez facilement un CV moderne et personnalisé grâce à notre outil intuitif. Suivez des étapes simples pour
+          ajouter vos informations, choisissez parmi plusieurs modèles élégants, et sauvegardez votre CV en ligne. Idéal
+          pour mettre en avant vos compétences et votre expérience professionnelle, prêt pour l'impression ou le
+          téléchargement...
+        </p>
+        <div class="mt-4">
+          <a id="startedBtn" href="#"
+            class="px-5 py-5 text-2xl font-semibold tracking-wider text-white bg-blue-800 rounded-lg md:px-8 hover:bg-blue-700 group"><span>Commencer</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0">
+        <img id="heroImg1"
+          class="transition-all duration-300 ease-in-out hover:scale-105 lg:w-full sm:mx-auto sm:w-4/6 sm:pb-12 lg:pb-0"
+          src="images/homePage.svg" style="height: 650px;" alt="Awesome hero page image" width="500" height="488" />
+      </div>
     </div>
-  </div>
+
+  </section>
+  <!------------ end Page pricipale ------------>
   
-</section>
-
-<!-- le formulaire -->
-<div class="bg-gray-100 min-h-screen flex items-center justify-center">
-  <div class="container mx-auto p-4">
+  <!-- le formulaire -->
+  <div class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="container mx-auto p-4">
       <div class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto">
-          <h1 class="text-4xl font-bold text-center text-gray-800 mb-10">Générez votre CV</h1>
-
-          <!-- Barre de progression -->
-          <div class="mb-10">
-              <!-- Étapes avec icônes et effets -->
-              <div class="flex justify-between items-center mb-4">
-                  <div class="flex flex-col items-center">
-                      <span class="flex items-center justify-center w-10 h-10 bg-blue-500 text-white font-bold rounded-full transition-all duration-500 ease-in-out" id="step1">
-                          <i class="fas fa-user"></i>
-                      </span>
-                      <span class="text-sm font-medium text-gray-600 mt-2">Infos personnelles</span>
-                  </div>
-                  <div class="flex-1 h-1 bg-blue-200 mx-2"></div>
-                  <div class="flex flex-col items-center">
-                      <span class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out" id="step2">
-                          <i class="fas fa-briefcase"></i>
-                      </span>
-                      <span class="text-sm font-medium text-gray-600 mt-2">Experience</span>
-                  </div>
-                  <div class="flex-1 h-1 bg-blue-200 mx-2"></div>
-                  <div class="flex flex-col items-center">
-                      <span class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out" id="step3">
-                          <i class="fas fa-graduation-cap"></i>
-                      </span>
-                      <span class="text-sm font-medium text-gray-600 mt-2">Éducation</span>
-                  </div>
-                  <div class="flex-1 h-1 bg-blue-200 mx-2"></div>
-                  <div class="flex flex-col items-center">
-                      <span class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out" id="step4">
-                          <i class="fas fa-certificate"></i>
-                      </span>
-                      <span class="text-sm font-medium text-gray-600 mt-2">Certifications</span>
-                  </div>
-                  <div class="flex-1 h-1 bg-blue-200 mx-2"></div>
-                  <div class="flex flex-col items-center">
-                      <span class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out" id="step5">
-                          <i class="fas fa-language"></i>
-                      </span>
-                      <span class="text-sm font-medium text-gray-600 mt-2">Langues & Loisirs</span>
-                  </div>
-              </div>
-
-              <!-- Barre de progression visuelle -->
-              <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
-                  <div id="progress-bar" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500 w-1/5 transition-all duration-500 ease-in-out"></div>
-              </div>
+        <h1 class="text-4xl font-bold text-center text-gray-800 mb-10">Générez votre CV</h1>
+        <!-- Barre de progression -->
+        <div class="mb-10">
+          <!-- Étapes avec icônes et effets -->
+          <div class="flex justify-between items-center mb-4">
+            <div class="flex flex-col items-center">
+              <span
+                class="flex items-center justify-center w-10 h-10 bg-blue-500 text-white font-bold rounded-full transition-all duration-500 ease-in-out"
+                id="step1">
+                <i class="fas fa-user"></i>
+              </span>
+              <span class="text-sm font-medium text-gray-600 mt-2">Infos personnelles</span>
+            </div>
+            <div class="flex-1 h-1 bg-blue-200 mx-2"></div>
+            <div class="flex flex-col items-center">
+              <span
+                class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out"
+                id="step2">
+                <i class="fas fa-briefcase"></i>
+              </span>
+              <span class="text-sm font-medium text-gray-600 mt-2">Experience</span>
+            </div>
+            <div class="flex-1 h-1 bg-blue-200 mx-2"></div>
+            <div class="flex flex-col items-center">
+              <span
+                class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out"
+                id="step3">
+                <i class="fas fa-graduation-cap"></i>
+              </span>
+              <span class="text-sm font-medium text-gray-600 mt-2">Éducation</span>
+            </div>
+            <div class="flex-1 h-1 bg-blue-200 mx-2"></div>
+            <div class="flex flex-col items-center">
+              <span
+                class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out"
+                id="step4">
+                <i class="fas fa-certificate"></i>
+              </span>
+              <span class="text-sm font-medium text-gray-600 mt-2">Certifications</span>
+            </div>
+            <div class="flex-1 h-1 bg-blue-200 mx-2"></div>
+            <div class="flex flex-col items-center">
+              <span
+                class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out"
+                id="step5">
+                <i class="fas fa-language"></i>
+              </span>
+              <span class="text-sm font-medium text-gray-600 mt-2">Langues & Loisirs</span>
+            </div>
           </div>
-
-          <!-- Contenu du formulaire -->
-
-          <form action="action.php" id="multi-step-form" class="space-y-8 p-6 bg-white shadow-md rounded-lg max-w-3xl mx-auto">
-            <!-- Step 1: Information Personnel -->
-            <div id="step-1" class="step">
-              <div class="flex space-x-4 mb-6">
-                <!-- Nom complet -->
-                <div class="flex-1">
-                  <label for="fullName" class="block mb-2 text-sm font-medium text-gray-700">Nom Complet</label>
-                  <input type="text" id="fullName" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3" required>
-                </div>
-              
-                <!-- Date de naissance -->
-                <div class="flex-1">
-                  <label for="dob" class="block mb-2 text-sm font-medium text-gray-700">Date de naissance</label>
-                  <input type="date" id="dob" name="dob" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3" required>
-                </div>
+          <!-- Barre de progression visuelle -->
+          <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+            <div id="progress-bar"
+              class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500 w-1/5 transition-all duration-500 ease-in-out">
+            </div>
+          </div>
+        </div>
+        <!-- Contenu du formulaire -->
+        <form action="action.php" id="multi-step-form"
+          class="space-y-8 bg-white shadow-md rounded-lg max-w-3xl mx-auto">
+          <!-- Step 1: Information Personnel -->
+          <div id="step-1" class="bg-gray-200 p-4 rounded-lg shadow-lg">
+            <div class="flex space-x-4 mb-6">
+              <!-- Nom complet -->
+              <div class="flex-1">
+                <label for="fullName" class="block mb-2 text-sm font-medium text-gray-700">Nom Complet</label>
+                <input type="text" id="fullName"
+                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                  required>
               </div>
-          
-              <!-- Email et Téléphone -->
-              <div class="flex space-x-4 mb-6">
-                <!-- Email -->
-                <div class="flex-1">
-                  <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email</label>
-                  <input type="email" id="email" name="email" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3" required>
-                </div>
-                
-                <!-- Téléphone -->
-                <div class="flex-1">
-                  <label for="phone" class="block mb-2 text-sm font-medium text-gray-700">Téléphone</label>
-                  <input type="tel" id="phone" name="phone" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3" required>
-                </div>
-              </div>
-          
-              <!-- Adresse -->
-              <div class="mb-6">
-                <label for="adresse" class="block mb-2 text-sm font-medium text-gray-700">Adresse</label>
-                <input type="text" id="adresse" name="adresse" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3" required>
-              </div>
-              
-              <!-- LinkedIn et GitHub -->
-              <div class="flex space-x-4 mb-6">
-                <!-- LinkedIn -->
-                <div class="flex-1">
-                  <label for="linkedin" class="block mb-2 text-sm font-medium text-gray-700">LinkedIn</label>
-                  <input type="url" id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/username" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3" required>
-                </div>
-                
-                <!-- GitHub -->
-                <div class="flex-1">
-                  <label for="github" class="block mb-2 text-sm font-medium text-gray-700">GitHub</label>
-                  <input type="url" id="github" name="github" placeholder="https://github.com/username" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3" required>
-                </div>
-              </div>
-          
-              <!-- Profil Professionnel -->
-              <div class="mb-6">
-                <label for="jobLocation" class="block mb-2 text-sm font-medium text-gray-700">Profile</label>
-                <input type="text" id="jobLocation" name="jobLocation" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3" placeholder="Exemple: full stack developer, technicien spécialisé..." required>
-              </div>
-          
-              <!-- À propos de toi -->
-              <div class="mb-6">
-                <label for="aboutMe" class="block mb-2 text-sm font-medium text-gray-700">À propos de toi</label>
-                <textarea id="aboutMe" name="aboutMe" rows="4" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3" placeholder="Décrivez votre expérience, vos compétences et votre spécialité dans votre domaine" required></textarea>
-              </div>
-              
-              <!-- Image de Profil -->
-              <div class="mb-6">
-                <label for="profileImage" class="block mb-2 text-sm font-medium text-gray-700">Ajoutez votre image</label>
-                <input type="file" id="profileImage" name="profileImage" accept="image/*" class="block w-full text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300 cursor-pointer focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg p-3" required>
-              </div>
-          
-              <!-- Bouton Suivant -->
-              <div class="flex justify-end">
-                <button type="button" class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-6 py-2.5 text-center">
-                  Suivant
-                </button>
+              <!-- Date de naissance -->
+              <div class="flex-1">
+                <label for="dob" class="block mb-2 text-sm font-medium text-gray-700">Date de naissance</label>
+                <input type="date" id="dob" name="dob"
+                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                  required>
               </div>
             </div>
-           <!-- Section des Expériences -->
-
- <div id="experience-wrapper" class="bg-gray-200 p-6 rounded-lg shadow-lg">
-            <!-- Bouton pour afficher/masquer le formulaire -->
-            <div class="flex justify-end mb-4">
-                <button id="toggle-experience-form" class="text-blue-600 hover:text-blue-800 text-lg font-semibold">
-                    <i class="fas fa-plus-circle"></i> Ajouter une Expérience
-                </button>
+            <!-- Email et Téléphone -->
+            <div class="flex space-x-4 mb-6">
+              <!-- Email -->
+              <div class="flex-1">
+                <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" name="email"
+                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                  required>
+              </div>
+              <!-- Téléphone -->
+              <div class="flex-1">
+                <label for="phone" class="block mb-2 text-sm font-medium text-gray-700">Téléphone</label>
+                <input type="tel" id="phone" name="phone"
+                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                  required>
+              </div>
             </div>
-
-  <!-- Formulaire Expérience (Caché par défaut, à afficher avec JavaScript) -->
-  <form id="experience-form" class="hidden space-y-6">
-
-      <!-- Première ligne: Mission et Secteur -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div>
-              <label for="experience-mission" class="block mb-2 text-sm font-medium text-gray-800">Mission</label>
-              <input type="text" id="experience-mission" name="experience_mission" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-          </div>
-          <div>
-              <label for="experience-sector" class="block mb-2 text-sm font-medium text-gray-800">Secteur</label>
-              <input type="text" id="experience-sector" name="experience_sector" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-          </div>
-      </div>
-
-      <!-- Deuxième ligne: Date de Début et Date de Fin -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div>
-              <label for="experience-start-date" class="block mb-2 text-sm font-medium text-gray-800">Date de Début</label>
-              <input type="date" id="experience-start-date" name="experience_start_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-          </div>
-          <div>
-              <label for="experience-end-date" class="block mb-2 text-sm font-medium text-gray-800">Date de Fin</label>
-              <input type="date" id="experience-end-date" name="experience_end_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-          </div>
-      </div>
-
-      <!-- Troisième ligne: Nom de l'Entreprise et Lieu -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div>
-              <label for="experience-company" class="block mb-2 text-sm font-medium text-gray-800">Nom de l'Entreprise</label>
-              <input type="text" id="experience-company" name="experience_company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-          </div>
-          <div>
-              <label for="experience-location" class="block mb-2 text-sm font-medium text-gray-800">Lieu</label>
-              <input type="text" id="experience-location" name="experience_location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-          </div>
-      </div>
-
-      <!-- Quatrième ligne: Description -->
-      <div class="mb-6">
-          <label for="experience-description" class="block mb-2 text-sm font-medium text-gray-800">Description</label>
-          <textarea id="experience-description" name="experience_description" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required></textarea>
-      </div>
-  </form>
-  </div>
-
-  <div id="experience-wrapper" class="bg-gray-200 p-6 rounded-lg shadow-lg">
-    <!-- Bouton pour afficher/masquer le formulaire -->
-    <div class="flex justify-end mb-4">
-        <button id="toggle-experience-form" class="text-blue-600 hover:text-blue-800 text-lg font-semibold">
-            <i class="fas fa-plus-circle"></i> Ajouter une Expérience
-        </button>
-    </div>
-
-<!-- Formulaire Expérience (Caché par défaut, à afficher avec JavaScript) -->
-<form id="experience-form" class="hidden space-y-6">
-
-<!-- Première ligne: Mission et Secteur -->
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-  <div>
-      <label for="experience-mission" class="block mb-2 text-sm font-medium text-gray-800">Mission</label>
-      <input type="text" id="experience-mission" name="experience_mission" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-  </div>
-  <div>
-      <label for="experience-sector" class="block mb-2 text-sm font-medium text-gray-800">Secteur</label>
-      <input type="text" id="experience-sector" name="experience_sector" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-  </div>
-</div>
-
-<!-- Deuxième ligne: Date de Début et Date de Fin -->
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-  <div>
-      <label for="experience-start-date" class="block mb-2 text-sm font-medium text-gray-800">Date de Début</label>
-      <input type="date" id="experience-start-date" name="experience_start_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-  </div>
-  <div>
-      <label for="experience-end-date" class="block mb-2 text-sm font-medium text-gray-800">Date de Fin</label>
-      <input type="date" id="experience-end-date" name="experience_end_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-  </div>
-</div>
-
-<!-- Troisième ligne: Nom de l'Entreprise et Lieu -->
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-  <div>
-      <label for="experience-company" class="block mb-2 text-sm font-medium text-gray-800">Nom de l'Entreprise</label>
-      <input type="text" id="experience-company" name="experience_company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-  </div>
-  <div>
-      <label for="experience-location" class="block mb-2 text-sm font-medium text-gray-800">Lieu</label>
-      <input type="text" id="experience-location" name="experience_location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-  </div>
-</div>
-
-<!-- Quatrième ligne: Description -->
-<div class="mb-6">
-  <label for="experience-description" class="block mb-2 text-sm font-medium text-gray-800">Description</label>
-  <textarea id="experience-description" name="experience_description" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required></textarea>
-</div>
-</form>
-</div>
-
-<!-- fin experience-->
-
-<!-- Step 3: Diplome -->
-<div id="step-3">
-  <!-- Titre principal pour le formulaire -->
-  <h2 class="text-2xl font-bold flex justify-center text-gray-900 mb-4">Diplômes</h2>
-
-  <!-- Formulaire Diplôme -->
-  <div id="diploma-form" class="space-y-6">
-    <!-- Ligne 1: Nom du Diplôme et Spécialité -->
-    <div class="mb-6 flex space-x-4">
-      <!-- Nom du Diplôme -->
-      <div class="w-1/2">
-        <label for="diploma_name" class="block mb-2 text-sm font-medium text-gray-900">Nom du Diplôme</label>
-        <input type="text" id="diploma_name" name="diploma_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-      </div>
-
-      <!-- Spécialité -->
-      <div class="w-1/2">
-        <label for="speciality" class="block mb-2 text-sm font-medium text-gray-900">Spécialité</label>
-        <input type="text" id="speciality" name="speciality" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-      </div>
-    </div>
-
-    <!-- Ligne 2: École ou Université et Veille -->
-    <div class="mb-6 flex space-x-4">
-      <!-- École ou Université -->
-      <div class="w-1/2">
-        <label for="school_name" class="block mb-2 text-sm font-medium text-gray-900">École ou Université</label>
-        <input type="text" id="school_name" name="school_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-      </div>
-
-      <!-- Veille -->
-      <div class="w-1/2">
-        <label for="veille" class="block mb-2 text-sm font-medium text-gray-900">Veille</label>
-        <input type="text" id="veille" name="veille" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-      </div>
-    </div>
-
-    <!-- Ligne 3: Date de Début et Date de Fin -->
-    <div class="mb-6 flex space-x-4">
-      <!-- Date de Début -->
-      <div class="w-1/2">
-        <label for="education_start_date" class="block mb-2 text-sm font-medium text-gray-900">Date de Début</label>
-        <input type="date" id="education_start_date" name="education_start_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-      </div>
-
-      <!-- Date de Fin -->
-      <div class="w-1/2">
-        <label for="education_end_date" class="block mb-2 text-sm font-medium text-gray-900">Date de Fin</label>
-        <input type="date" id="education_end_date" name="education_end_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-      </div>
-    </div>
-
-    <!-- Description -->
-    <div class="mb-6">
-      <label for="education_description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
-      <textarea id="education_description" name="education_description" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required></textarea>
-    </div>
-
-    <!-- Bouton de Soumission -->
-    <button type="submit" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
-      Ajouter Diplôme
-    </button>
-  </div>
-</div>
- <!-- fin diplome -->
-
- <!-- Step 4: Certificat -->
-<div id="step-4">
-  <!-- Titre principal pour le formulaire -->
-  <h2 class="text-2xl font-bold text-gray-900 mb-4">Certificats</h2>
-
-  <!-- Formulaire Certificat -->
-  <div id="certificate-form" class="space-y-6">
-    <!-- Ligne 1: Spécialité et Organisme Délivrant -->
-    <div class="mb-6 flex space-x-4">
-      <!-- Spécialité -->
-      <div class="w-1/2">
-        <label for="speciality" class="block mb-2 text-sm font-medium text-gray-900">Spécialité</label>
-        <input type="text" id="speciality" name="speciality" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-      </div>
-
-      <!-- Organisme Délivrant -->
-      <div class="w-1/2">
-        <label for="certificate_issuer" class="block mb-2 text-sm font-medium text-gray-900">Organisme Délivrant</label>
-        <input type="text" id="certificate_issuer" name="certificate_issuer" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-      </div>
-    </div>
-
-    <!-- Ligne 2: Type d'Apprentissage et Dates -->
-    <div class="mb-6 flex space-x-4">
-      <!-- Type d'Apprentissage -->
-      <div class="w-1/2">
-        <label for="learning_type" class="block mb-2 text-sm font-medium text-gray-900">Type d'Apprentissage</label>
-        <select id="learning_type" name="learning_type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-          <option value="online">En ligne</option>
-          <option value="in-person">Présentiel</option>
-        </select>
-      </div>
-
-      <!-- Date de Début -->
-      <div class="w-1/2">
-        <label for="start_date" class="block mb-2 text-sm font-medium text-gray-900">Date de Début</label>
-        <input type="date" id="start_date" name="start_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-      </div>
-    </div>
-
-    <!-- Ligne 3: Date de Fin -->
-    <div class="mb-6 flex space-x-4">
-      <!-- Date de Fin -->
-      <div class="w-1/2">
-        <label for="end_date" class="block mb-2 text-sm font-medium text-gray-900">Date de Fin</label>
-        <input type="date" id="end_date" name="end_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-      </div>
-
-      <!-- Description -->
-      <div class="w-1/2">
-        <label for="certificate_description" class="block mb-2 text-sm font-medium text-gray-900">Description</label>
-        <textarea id="certificate_description" name="certificate_description" rows="4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required></textarea>
-      </div>
-    </div>
-
-    <!-- Bouton de Soumission -->
-    <button type="submit" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
-      Ajouter Certificat
-    </button>
-  </div>
-</div>
-<!-- fin certifications -->
-
-
-
-<!-- Step 5: Langues et Loisirs -->
-<div id="step-5">
-  <div class="space-y-6">
-    <!-- Langues et Niveau -->
-    <h3 class="text-xl font-bold text-gray-900 mb-4">Langues</h3>
-
-    <!-- Langue 1 -->
-    <div class="mb-6">
-      <label for="language_1" class="block mb-2 text-sm font-medium text-gray-900">Langue 1</label>
-      <input type="text" id="language_1" name="language_1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
-    </div>
-
-    <!-- Niveau Langue 1 -->
-    <div class="mb-6">
-      <label for="language_1_level" class="block mb-2 text-sm font-medium text-gray-900">Niveau de Langue 1</label>
-      <select id="language_1_level" name="language_1_level" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-        <option value="beginner">Débutant</option>
-        <option value="intermediate">Intermédiaire</option>
-        <option value="advanced">Avancé</option>
-        <option value="native">Natif</option>
-      </select>
-    </div>
-
-    <!-- Langue 2 -->
-    <div class="mb-6">
-      <label for="language_2" class="block mb-2 text-sm font-medium text-gray-900">Langue 2</label>
-      <input type="text" id="language_2" name="language_2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-    </div>
-
-    <!-- Niveau Langue 2 -->
-    <div class="mb-6">
-      <label for="language_2_level" class="block mb-2 text-sm font-medium text-gray-900">Niveau de Langue 2</label>
-      <select id="language_2_level" name="language_2_level" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-        <option value="beginner">Débutant</option>
-        <option value="intermediate">Intermédiaire</option>
-        <option value="advanced">Avancé</option>
-        <option value="native">Natif</option>
-      </select>
-    </div>
-
-    <!-- Langue 3 -->
-    <div class="mb-6">
-      <label for="language_3" class="block mb-2 text-sm font-medium text-gray-900">Langue 3</label>
-      <input type="text" id="language_3" name="language_3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-    </div>
-
-    <!-- Niveau Langue 3 -->
-    <div class="mb-6">
-      <label for="language_3_level" class="block mb-2 text-sm font-medium text-gray-900">Niveau de Langue 3</label>
-      <select id="language_3_level" name="language_3_level" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-        <option value="beginner">Débutant</option>
-        <option value="intermediate">Intermédiaire</option>
-        <option value="advanced">Avancé</option>
-        <option value="native">Natif</option>
-      </select>
-    </div>
-
-    <!-- Langue 4 -->
-    <div class="mb-6">
-      <label for="language_4" class="block mb-2 text-sm font-medium text-gray-900">Langue 4</label>
-      <input type="text" id="language_4" name="language_4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-    </div>
-
-    <!-- Niveau Langue 4 -->
-    <div class="mb-6">
-      <label for="language_4_level" class="block mb-2 text-sm font-medium text-gray-900">Niveau de Langue 4</label>
-      <select id="language_4_level" name="language_4_level" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-        <option value="beginner">Débutant</option>
-        <option value="intermediate">Intermédiaire</option>
-        <option value="advanced">Avancé</option>
-        <option value="native">Natif</option>
-      </select>
-    </div>
-
-    <!-- Langue 5 -->
-    <div class="mb-6">
-      <label for="language_5" class="block mb-2 text-sm font-medium text-gray-900">Langue 5</label>
-      <input type="text" id="language_5" name="language_5" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-    </div>
-
-    <!-- Niveau Langue 5 -->
-    <div class="mb-6">
-      <label for="language_5_level" class="block mb-2 text-sm font-medium text-gray-900">Niveau de Langue 5</label>
-      <select id="language_5_level" name="language_5_level" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-        <option value="beginner">Débutant</option>
-        <option value="intermediate">Intermédiaire</option>
-        <option value="advanced">Avancé</option>
-        <option value="native">Natif</option>
-      </select>
-    </div>
-
-    <!-- Ajouter Langue -->
-    <button type="submit" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
-      Ajouter Langue
-    </button>
-  </div>
-
-  <div class="space-y-6 mt-8">
-    <!-- Loisirs -->
-    <h3 class="text-xl font-bold text-gray-900 mb-4">Loisirs</h3>
-
-    <!-- Loisir 1 -->
-    <div class="mb-6">
-      <label for="hobby_1" class="block mb-2 text-sm font-medium text-gray-900">Loisir 1</label>
-      <input type="text" id="hobby_1" name="hobby_1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-    </div>
-
-    <!-- Loisir 2 -->
-    <div class="mb-6">
-      <label for="hobby_2" class="block mb-2 text-sm font-medium text-gray-900">Loisir 2</label>
-      <input type="text" id="hobby_2" name="hobby_2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-    </div>
-
-    <!-- Loisir 3 -->
-    <div class="mb-6">
-      <label for="hobby_3" class="block mb-2 text-sm font-medium text-gray-900">Loisir 3</label>
-      <input type="text" id="hobby_3" name="hobby_3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-    </div>
-
-    <!-- Loisir 4 -->
-    <div class="mb-6">
-      <label for="hobby_4" class="block mb-2 text-sm font-medium text-gray-900">Loisir 4</label>
-      <input type="text" id="hobby_4" name="hobby_4" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-    </div>
-
-    <!-- Loisir 5 -->
-    <div class="mb-6">
-      <label for="hobby_5" class="block mb-2 text-sm font-medium text-gray-900">Loisir 5</label>
-      <input type="text" id="hobby_5" name="hobby_5" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-    </div>
-
-    <!-- Ajouter Loisir -->
-    <button type="submit" class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
-      Ajouter Loisir
-    </button>
-  </div>
-</div>
-
-
-           
-
-        <!-- Navigation Buttons -->
-            <div class="flex justify-between items-center mt-8 space-x-4">
-              <button type="button" id="prevBtn" name="prev" class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline ">
-                Précédent
-              </button>
-              
-              <button type="button" id="nextBtn" name="next" class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
+            <!-- Adresse -->
+            <div class="mb-6">
+              <label for="adresse" class="block mb-2 text-sm font-medium text-gray-700">Adresse</label>
+              <input type="text" id="adresse" name="adresse"
+                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                required>
+            </div>
+            <!-- LinkedIn et GitHub -->
+            <div class="flex space-x-4 mb-6">
+              <!-- LinkedIn -->
+              <div class="flex-1">
+                <label for="linkedin" class="block mb-2 text-sm font-medium text-gray-700">LinkedIn</label>
+                <input type="url" id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/username"
+                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                  required>
+              </div>
+              <!-- GitHub -->
+              <div class="flex-1">
+                <label for="github" class="block mb-2 text-sm font-medium text-gray-700">GitHub</label>
+                <input type="url" id="github" name="github" placeholder="https://github.com/username"
+                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                  required>
+              </div>
+            </div>
+            <!-- Profil Professionnel -->
+            <div class="mb-6">
+              <label for="jobLocation" class="block mb-2 text-sm font-medium text-gray-700">Profile</label>
+              <input type="text" id="jobLocation" name="jobLocation"
+                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                placeholder="Exemple: full stack developer, technicien spécialisé..." required>
+            </div>
+            <!-- À propos de toi -->
+            <div class="mb-6">
+              <label for="aboutMe" class="block mb-2 text-sm font-medium text-gray-700">À propos de toi</label>
+              <textarea id="aboutMe" name="aboutMe" rows="4"
+                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                placeholder="Décrivez votre expérience, vos compétences et votre spécialité dans votre domaine"
+                required></textarea>
+            </div>
+            <!-- Image de Profil -->
+            <div class="mb-6">
+              <label for="profileImage" class="block mb-2 text-sm font-medium text-gray-700">Ajoutez votre image</label>
+              <input type="file" id="profileImage" name="profileImage" accept="image/*"
+                class="block w-full text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300 cursor-pointer focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg p-3"
+                required>
+            </div>
+            <!-- Bouton Suivant -->
+            <div class="flex justify-end">
+              <button type="button"
+                class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-6 py-2.5 text-center">
                 Suivant
               </button>
-              
-              <button type="submit" id="submitBtn" name="submit" class="flex items-center px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:shadow-outline  transition-all duration-300 ease-in-out">
-                Soumettre
+            </div>
+          </div>
+          <!------------------------ Step: 2 ---------------------------->
+          <!------------------- Section des Expériences ----------------->
+          <div id="step-2" class="bg-gray-200 p-4 rounded-lg shadow-lg">
+            <div class="text-center mb-6">
+              <h2 class="text-2xl font-semibold text-gray-800">Ajouter une expérience professionnelle</h2>
+            </div>
+            <!-- Section pour afficher les expériences ajoutées -->
+            <div id="experience-list" class="space-y-6"></div>
+            <!-- Formulaire Expérience -->
+            <form id="experience-form" class="space-y-6">
+              <!-- Première ligne: Mission et Secteur -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label for="experience-mission" class="block mb-2 text-sm font-medium text-gray-800">Mission</label>
+                  <input type="text" id="experience-mission" name="experience_mission"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                </div>
+                <div>
+                  <label for="experience-sector" class="block mb-2 text-sm font-medium text-gray-800">Secteur</label>
+                  <input type="text" id="experience-sector" name="experience_sector"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                </div>
+              </div>
+              <!-- Deuxième ligne: Date de Début et Date de Fin -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label for="experience-start-date" class="block mb-2 text-sm font-medium text-gray-800">Date de Début</label>
+                  <input type="date" id="experience-start-date" name="experience_start_date"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                </div>
+                <div>
+                  <label for="experience-end-date" class="block mb-2 text-sm font-medium text-gray-800">Date de Fin</label>
+                  <input type="date" id="experience-end-date" name="experience_end_date"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                </div>
+              </div>
+              <!-- Troisième ligne: Nom de l'Entreprise et Lieu -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label for="experience-company" class="block mb-2 text-sm font-medium text-gray-800">Nom de l'Entreprise</label>
+                  <input type="text" id="experience-company" name="experience_company"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                </div>
+                <div>
+                  <label for="experience-location" class="block mb-2 text-sm font-medium text-gray-800">Lieu</label>
+                  <input type="text" id="experience-location" name="experience_location"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                </div>
+              </div>
+              <!-- Quatrième ligne: Description -->
+              <div class="mb-6">
+                <label for="experience-description" class="block mb-2 text-sm font-medium text-gray-800">Description</label>
+                <textarea id="experience-description" name="experience_description" rows="4"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required></textarea>
+              </div>
+              <!-- Bouton pour ajouter l'expérience -->
+              <div class="flex justify-end">
+                <button type="button" id="add-experience"
+                  class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2.5 text-center">
+                  Ajouter Expérience
+                </button>
+              </div>
+            </form>
+          
+            <!-- Navigation entre les étapes -->
+            <div class="flex justify-between items-center mt-8 space-x-4">
+              <button type="button" id="prevBtn" name="prev"
+                class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline">
+                Précédent
+              </button>
+          
+              <button type="button" id="nextBtn" name="next"
+                class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
+                Suivant
+              </button>
+            </div>
+          </div>          
+          <!----------------------- fin experience----------------------->
+          <!------------------------------------------------------------->
+
+          <!-------------------------------------------------------------->
+          <!----------------------- Step 3: Diplome ---------------------->
+        
+          <div id="step-3" class="bg-gray-200 p-6 rounded-lg shadow-lg">
+            <!-- Titre principal pour le formulaire -->
+            <div class="text-center mb-6">
+              <h2 class="text-2xl font-semibold text-gray-800">Diplômes</h2>
+            </div>
+
+            <!-- Formulaire Diplôme -->
+            <div id="diploma-form-container" class="space-y-6">
+              <!-- Section dynamique des diplômes -->
+            </div>
+
+            <!-- Bouton pour ajouter un diplôme -->
+            <div class="flex justify-end mb-4">
+              <button id="add-diploma-button" class="text-blue-600 hover:text-blue-800 text-lg font-semibold">
+                <i class="fas fa-plus-circle"></i> Ajouter un Diplôme
               </button>
             </div>
 
-          </form>
-        
-          <!-- fin formulaire -->
-           
+            <!-- Bouton de soumission (pour ajouter un diplôme) -->
+            <div class="flex justify-end">
+              <button id="submit-diplomas" type="button"
+                class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                Soumettre Diplômes
+              </button>
+            </div>
+
+            <!-- Navigation entre les étapes -->
+            <div class="flex justify-between items-center mt-8 space-x-4">
+              <button type="button" id="prevBtn" name="prev"
+                class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline">
+                Précédent
+              </button>
+
+              <button type="button" id="nextBtn" name="next"
+                class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
+                Suivant
+              </button>
+            </div>
+          </div>
+          <!-------------------------- fin diplome ----------------------->
+          <!-------------------------------------------------------------->
+
+          <!--------------------------------------------------------------->
+          <!---------------------- Step 4: Certificat --------------------->
+          <div id="step-4" class="bg-gray-200 p-4 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">Certificats</h2>
+            <!-- Formulaire Certificat -->
+            <div id="certificate-form-container" class="space-y-6">
+              <!-- Section dynamique des certificats -->
+            </div>
+            <!-- Bouton pour ajouter un certificat -->
+            <div class="flex justify-end mb-4">
+              <button id="add-certificate-button" class="text-blue-600 hover:text-blue-800 text-lg font-semibold">
+                <i class="fas fa-plus-circle"></i> Ajouter un Certificat
+              </button>
+            </div>
+
+            <!-- Navigation entre les étapes -->
+            <div class="flex justify-between items-center mt-8 px-6 space-x-4">
+              <button type="button" id="prevBtn" name="prev"
+                class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline">
+                Précédent
+              </button>
+
+              <button type="button" id="nextBtn" name="next"
+                class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
+                Suivant
+              </button>
+            </div>
+          </div>
+          <!------------------------ fin certifications ------------------->
+          <!---------------------------------------------------------------->
+
+          <!---------------------------------------------------------------->
+          <!-------------------- Step 5: Langues et Loisirs ---------------->
+          <div id="step-5" class="bg-gray-200 p-4 rounded-lg shadow-lg">
+            <div class="space-y-6">
+              <!-- Langues et Niveau -->
+              <div class="w-full p-4 bg-white rounded-lg shadow-lg">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">Compétences Linguistiques et Loisirs</h2>
+                <form id="dynamicForm" class="space-y-6">
+                  <!-- Section dynamique des champs de langue -->
+                  <div>
+                    <h3 class="text-lg font-medium text-gray-700">Langues</h3>
+                    <div id="languageInputs" class="space-y-2">
+                      <div class="flex items-center space-x-2">
+                        <input type="text" name="languages[]" placeholder="Langue" class="w-full p-2 border rounded-md"
+                          required>
+                        <select name="levels[]" class="p-2 border rounded-md" required>
+                          <option value="">Niveau</option>
+                          <option value="Débutant">Débutant</option>
+                          <option value="Intermédiaire">Intermédiaire</option>
+                          <option value="Avancé">Avancé</option>
+                          <option value="Courant">Courant</option>
+                        </select>
+                        <button type="button" onclick="addLanguageInput()"
+                          class="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600">
+                          Ajouter
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Section dynamique des loisirs -->
+                  <div>
+                    <h3 class="text-lg font-medium text-gray-700">Loisirs</h3>
+                    <div id="hobbyInputs" class="space-y-2">
+                      <div class="flex items-center space-x-2">
+                        <input type="text" name="hobbies[]" placeholder="Loisir" class="w-full p-2 border rounded-md"
+                          required>
+                        <button type="button" onclick="addHobbyInput()"
+                          class="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600">
+                          Ajouter
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Bouton de soumission des langues et loisires -->
+                  <button type="submit"
+                    class="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-600">Soumettre</button>
+                </form>
+              </div>
+
+              <!-- Navigation Buttons -->
+              <div class="flex justify-between items-center mt-8 px-6 space-x-4">
+                <button type="button" id="prevBtn" name="prev"
+                  class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline">
+                  Précédent
+                </button>
+
+                <!-- Bouton soumission pour derniere forme-->
+                <button type="submit" id="submitBtn" name="submit"
+                  class="flex items-center px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
+                  Soumettre
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-----------------------fin langues et loisirs------------------->
+          <!---------------------------------------------------------------->
+
       </div>
+    </div>
   </div>
-</div>
 
+  <script src="main.js"></script>
 
-   <script src="main.js"></script>
 </body>
 </html>

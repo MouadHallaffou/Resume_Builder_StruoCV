@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
 </head>
 
 <body>
@@ -38,13 +39,13 @@
   <!------End Background Animation Body-------->
 
   <!----------start Page pricipale-------------->
-  <section id="heroSection" style="width: 100vw; height: 100vh;">
+  <section id="heroSection" style="width: 100%; height: 100vh;">
     <div class="flex px-10 py-4 justify-between items-center flex-wrap">
       <div class="flex items-center">
         <a href="#"><img src="images/logo.svg" class="w-20 h-12"></a>
         <a href="#" class="font-bold text-3xl text-blue-900"> CV Builder</a>
       </div>
-      <div class="relative flex items-center hidden md:inline-flex">
+      <div class="relative flex items-center md:inline-flex">
         <marquee behavior="title" direction="left">
           <blockquote class="text-4xl text-blue-900 font-bold">Bienvenue Dans Mon Espace</blockquote>
         </marquee>
@@ -143,7 +144,7 @@
           <!-- Barre de progression visuelle -->
           <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
             <div id="progress-bar"
-              class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500 w-1/5 transition-all duration-500 ease-in-out">
+              class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500 w-0/5 transition-all duration-500 ease-in-out">
             </div>
           </div>
         </div>
@@ -233,15 +234,15 @@
             </div>
             <!-- Bouton Suivant -->
             <div class="flex justify-end">
-              <button type="button"
-                class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-6 py-2.5 text-center">
+              <button type="button" id="nextBtnInfo" name="next"
+                class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
                 Suivant
               </button>
             </div>
           </div>
           <!------------------------ Step: 2 ---------------------------->
           <!------------------- Section des Expériences ----------------->
-          <div id="step-2" class="bg-gray-200 p-4 rounded-lg shadow-lg">
+          <div id="step-2" class="bg-gray-200 p-4 rounded-lg shadow-lg hidden">
             <div class="text-center mb-6">
               <h2 class="text-2xl font-semibold text-gray-800">Ajouter une expérience professionnelle</h2>
             </div>
@@ -305,12 +306,12 @@
           
             <!-- Navigation entre les étapes -->
             <div class="flex justify-between items-center mt-8 space-x-4">
-              <button type="button" id="prevBtn" name="prev"
+              <button type="button" id="prevBtnExp" name="prev"
                 class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline">
                 Précédent
               </button>
           
-              <button type="button" id="nextBtn" name="next"
+              <button type="button" id="nextBtnExp" name="next"
                 class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
                 Suivant
               </button>
@@ -322,7 +323,7 @@
           <!-------------------------------------------------------------->
           <!----------------------- Step 3: Diplome ---------------------->
         
-          <div id="step-3" class="bg-gray-200 p-6 rounded-lg shadow-lg">
+          <div id="step-3" class="bg-gray-200 p-6 rounded-lg shadow-lg hidden">
             <!-- Titre principal pour le formulaire -->
             <div class="text-center mb-6">
               <h2 class="text-2xl font-semibold text-gray-800">Diplômes</h2>
@@ -350,12 +351,12 @@
 
             <!-- Navigation entre les étapes -->
             <div class="flex justify-between items-center mt-8 space-x-4">
-              <button type="button" id="prevBtn" name="prev"
+              <button type="button" id="prevBtnDiplomes" name="prev"
                 class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline">
                 Précédent
               </button>
 
-              <button type="button" id="nextBtn" name="next"
+              <button type="button" id="nextBtnDiplomes" name="next"
                 class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
                 Suivant
               </button>
@@ -366,7 +367,7 @@
 
           <!--------------------------------------------------------------->
           <!---------------------- Step 4: Certificat --------------------->
-          <div id="step-4" class="bg-gray-200 p-4 rounded-lg shadow-lg">
+          <div id="step-4" class="bg-gray-200 p-4 rounded-lg shadow-lg hidden">
             <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">Certificats</h2>
             <!-- Formulaire Certificat -->
             <div id="certificate-form-container" class="space-y-6">
@@ -381,12 +382,12 @@
 
             <!-- Navigation entre les étapes -->
             <div class="flex justify-between items-center mt-8 px-6 space-x-4">
-              <button type="button" id="prevBtn" name="prev"
+              <button type="button" id="prevBtnCertificats" name="prev"
                 class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline">
                 Précédent
               </button>
 
-              <button type="button" id="nextBtn" name="next"
+              <button type="button" id="nextBtnCertificats" name="next"
                 class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
                 Suivant
               </button>
@@ -397,7 +398,7 @@
 
           <!---------------------------------------------------------------->
           <!-------------------- Step 5: Langues et Loisirs ---------------->
-          <div id="step-5" class="bg-gray-200 p-4 rounded-lg shadow-lg">
+          <div id="step-5" class="bg-gray-200 p-4 rounded-lg shadow-lg hidden">
             <div class="space-y-6">
               <!-- Langues et Niveau -->
               <div class="w-full p-4 bg-white rounded-lg shadow-lg">
@@ -447,7 +448,7 @@
 
               <!-- Navigation Buttons -->
               <div class="flex justify-between items-center mt-8 px-6 space-x-4">
-                <button type="button" id="prevBtn" name="prev"
+                <button type="button" id="prevBtnLangues" name="prev"
                   class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline">
                   Précédent
                 </button>

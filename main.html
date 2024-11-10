@@ -52,7 +52,7 @@
 
           <!-- 2ème Section : À propos de moi -->
           <div class="section-item">
-            <h3 class="section-title mx-6">À propos de moi</h3>
+            <h3 class="section-title mx-6">About Me</h3>
             <p class="section-content">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi
               natus consequatur corporis voluptatem aliquid aut, alias doloribus
@@ -83,7 +83,7 @@
           <!-- 4ème Section : Langues et Niveau -->
           <div class="section-item">
             <h3 class="section-title mx-6">Langues</h3>
-            <ul class="list-disc list-inside">
+            <ul class="list-none list-inside">
               <li>Arab - courant</li>
               <li>Français - natif</li>
               <li>Anglais - avancé</li>
@@ -94,7 +94,7 @@
           <!-- 5ème Section : Loisirs -->
           <div class="section-item">
             <h3 class="section-title mx-6">Loisirs</h3>
-            <ul class="list-disc list-inside">
+            <ul class="list-none list-inside">
               <li>Voyage</li>
               <li>Photographie</li>
               <li>Sport</li>
@@ -212,38 +212,35 @@
         </div>
       </div>
     </section>
+
     <button onclick="generatePDF()" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded">Télécharger le CV</button>
+  
+    <script>
+      async function generatePDF() {
+          const { jsPDF } = window.jspdf;
+          const cvContainer = document.querySelector(".a4-container");
+  
+          if (!cvContainer) {
+              console.error("Élément contenant le CV non trouvé.");
+              return;
+          }
+  
+          // Créer un PDF avec le format A4
+          const pdf = new jsPDF("p", "mm", "a4");
+  
+          // Capturer l'élément CV avec html2canvas
+          const canvas = await html2canvas(cvContainer, {
+              scale: 3,  // Augmente la résolution
+              useCORS: true // Permet de charger des images externes si nécessaire
+          });
+          const imgData = canvas.toDataURL("images/homePage.svg");
 
-<script>
-    async function generatePDF() {
-        const { jsPDF } = window.jspdf;
-        const cvContainer = document.querySelector("#cv-container");
+          // Ajouter l'image dans le PDF, avec les dimensions pour A4
+          pdf.addImage(imgData, "PNG", 0, 0, 210, 297); // A4 en mm (210x297)
+          pdf.save("CV.pdf");
+      }
 
-        const pdf = new jsPDF("p", "mm", "a4");
-        const options = { scale: 2 }; // Pour une meilleure résolution
+  </script>
 
-        await html2canvas(cvContainer, options).then((canvas) => {
-            const imgData = canvas.toDataURL("image/png");
-            const imgWidth = 190; // Largeur en mm pour A4
-            const pageHeight = pdf.internal.pageSize.height;
-            const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-            let heightLeft = imgHeight;
-            let position = 0;
-
-            pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-
-            // Ajoute d'autres pages si le contenu dépasse une page
-            while (heightLeft >= 0) {
-                position = heightLeft - imgHeight;
-                pdf.addPage();
-                pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
-            }
-            pdf.save("CV.pdf");
-        });
-    }
-</script>
   </body>
 </html>

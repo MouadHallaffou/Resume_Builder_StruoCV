@@ -39,7 +39,7 @@
   <!------End Background Animation Body-------->
 
   <!----------start Page pricipale-------------->
-  <section id="heroSection" style="width: 100%; height: 100vh;">
+  <section id="heroSection" style="width: 100%; height: 100vh; display: none;">
     <div class="flex px-10 py-4 justify-between items-center flex-wrap">
       <div class="flex items-center">
         <a href="#"><img src="images/logo.svg" class="w-20 h-12"></a>
@@ -161,13 +161,13 @@
                   class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                   required>
               </div>
-              <!-- Date de naissance -->
-              <div class="flex-1">
-                <label for="dob" class="block mb-2 text-sm font-medium text-gray-700">Date de naissance</label>
-                <input type="date" id="dob" name="dob"
-                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
-                  required>
-              </div>
+               <!-- Profil Professionnel -->
+            <div class="flex-1">
+              <label for="jobLocation" class="block mb-2 text-sm font-medium text-gray-700">Profil</label>
+              <input type="text" id="jobLocation" name="jobLocation"
+                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                placeholder="full stack developer, technicien spécialisé..." required>
+            </div>
             </div>
             <!-- Email et Téléphone -->
             <div class="flex space-x-4 mb-6">
@@ -209,13 +209,6 @@
                   class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                   required>
               </div>
-            </div>
-            <!-- Profil Professionnel -->
-            <div class="mb-6">
-              <label for="jobLocation" class="block mb-2 text-sm font-medium text-gray-700">Profile</label>
-              <input type="text" id="jobLocation" name="jobLocation"
-                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
-                placeholder="Exemple: full stack developer, technicien spécialisé..." required>
             </div>
             <!-- À propos de toi -->
             <div class="mb-6">

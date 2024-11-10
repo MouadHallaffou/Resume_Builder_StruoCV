@@ -14,10 +14,236 @@
     />
     <title>Application CV en Ligne</title>
     <link rel="shortcut icon" href="images/logo.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="styele.css" />
+    <link rel="stylesheet" href="./src/input.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
   </head>
   <body>
+    <section class="bg-gray-100">
+      <div class="a4-container border border-gray-300 shadow-lg rounded-lg">
+        <!-- Partie gauche (30%) -->
+        <div class="left-section">
+          <!-- 1ère Section : Image, Nom et Statut -->
+          <div class="section-item">
+            <div class="flex items-center flex-wrap justify-center">
+              <img
+                src="images/homePage.svg"
+                alt="Photo de profil"
+                class="w-auto h-auto rounded-full mr-4"
+              />
+              <div>
+                <h2 class="text-lg font-bold">Critiano Ronaldo</h2>
+                <p class="text-gray-600">Full stack developer</p>
+              </div>
+            </div>
+          </div>
 
-    
+          <!-- 2ème Section : À propos de moi -->
+          <div class="section-item">
+            <h3 class="section-title mx-6">À propos de moi</h3>
+            <p class="section-content">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi
+              natus consequatur corporis voluptatem aliquid aut, alias doloribus
+              accusantium. Error, voluptas facilis est animi, tempora
+              accusantium nisi iste optio blanditiis adipisci dolore praesentium
+              cupiditate quis.tempora accusantium nisi iste optio blanditiis.
+            </p>
+          </div>
+
+          <!-- 3ème Section : Contacts -->
+          <div class="section-item">
+            <h3 class="section-title mx-6">Contacts</h3>
+            <p class="section-content">
+              <i class="fas fa-envelope"></i> exemple@mail.com
+            </p>
+            <p class="section-content">
+              <i class="fas fa-phone"></i> 123-456-7890
+            </p>
+            <p class="section-content">
+              <i class="fas fa-location"></i> 123 Rue mohamed casa
+            </p>
+            <div class="flex space-x-2 mt-2 flex-wrap mx-4">
+              <a href="#" class="">GitHub</a>
+              <a href="#" class="">LinkedIn</a>
+            </div>
+          </div>
+
+          <!-- 4ème Section : Langues et Niveau -->
+          <div class="section-item">
+            <h3 class="section-title mx-6">Langues</h3>
+            <ul class="list-disc list-inside">
+              <li>Arab - courant</li>
+              <li>Français - natif</li>
+              <li>Anglais - avancé</li>
+              <li>Espagnol - faible</li>
+            </ul>
+          </div>
+
+          <!-- 5ème Section : Loisirs -->
+          <div class="section-item">
+            <h3 class="section-title mx-6">Loisirs</h3>
+            <ul class="list-disc list-inside">
+              <li>Voyage</li>
+              <li>Photographie</li>
+              <li>Sport</li>
+              <li>Lecture</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Partie droite (70%) -->
+        <div class="right-section">
+          <!-- 1ère Section : Expériences professionnelles -->
+          <div class="section-item" style="height: 40%">
+            <h3 class="section-title">Expériences professionnelles</h3>
+
+            <!-- Expérience 1 -->
+            <div class="experience mb-4">
+              <p>Tech Solutions || 20 Janvier 2020 - 20 Décembre 2022</p>
+              <p>Développeur Frontend || Technologie || Paris, France</p>
+              <p>
+                Développement d'applications web responsives en utilisant React
+                et Vue.js. Optimisation de la performance du site et gestion des
+                API RESTful.
+              </p>
+            </div>
+
+            <!-- Expérience 2 -->
+            <div class="experience mb-4">
+              <p>Tech Solutions || 20 Janvier 2020 - 20 Décembre 2022</p>
+              <p>Développeur Frontend || Technologie || Paris, France</p>
+              <p>
+                Développement d'applications web responsives en utilisant React
+                et Vue.js. Optimisation de la performance du site et gestion des
+                API RESTful.
+              </p>
+            </div>
+
+            <!-- Expérience 3 -->
+            <div class="experience mb-4">
+              <p>Tech Solutions || 20 Janvier 2020 - 20 Décembre 2022</p>
+              <p>Développeur Frontend || Technologie || Paris, France</p>
+              <p>
+                Développement d'applications web responsives en utilisant React
+                et Vue.js. Optimisation de la performance du site et gestion des
+                API RESTful.
+              </p>
+            </div>
+          </div>
+
+          <!-- 2ème Section : Diplômes -->
+          <div class="section-item" style="height: 30%">
+            <h3 class="section-title">Diplômes</h3>
+
+            <!-- Diplôme 1 -->
+            <div class="degree mb-4">
+              <h6>Bachelor en Informatique</h6>
+              <p>
+                Développement web || <strong>Université :</strong> Université de
+                Paris || Paris
+              </p>
+              <p>20 Janvier 2020 - 20 Décembre 2022</p>
+              <p>
+                Formation axée sur le développement web full-stack, comprenant
+                des projets sur la création d'applications web et la gestion de
+                bases de données.
+              </p>
+            </div>
+
+            <!-- Diplôme 2 -->
+            <div class="degree">
+              <h6>Master en Marketing Digital</h6>
+              <p>
+                Marketing numérique || <strong>Université :</strong> HEC Paris
+                || Paris
+              </p>
+              <p>
+                Formation avancée en stratégie de marketing numérique, gestion
+                des campagnes publicitaires, SEO, SEM et analyse de données
+                marketing.
+              </p>
+            </div>
+          </div>
+
+          <!-- 3ème Section : Certifications -->
+          <div class="section-item" style="height: 30%">
+            <h3 class="section-title">Certifications</h3>
+
+            <!-- Certification 1 -->
+            <div class="certificate mb-4">
+              <p>
+                <strong>Spécialité :</strong> Développement React ||
+                <strong>Organisme :</strong> Coursera
+              </p>
+              <p><strong>Dates :</strong> Janvier 2022 - Février 2022</p>
+              <p><strong>Type d'apprentissage :</strong> En ligne</p>
+              <p>
+                Certification sur le framework React, incluant la création
+                d'applications interactives et la gestion d'états avec Redux.
+              </p>
+            </div>
+
+            <!-- Certification 2 -->
+            <div class="certificate">
+              <p>
+                <strong>Spécialité :</strong> Google Ads ||
+                <strong>Organisme :</strong> Google
+              </p>
+              <p><strong>Dates :</strong> Juin 2021 - Juillet 2021</p>
+              <p><strong>Type d'apprentissage :</strong> En ligne</p>
+              <p>
+                Certification sur l'utilisation de Google Ads pour optimiser les
+                campagnes publicitaires et maximiser les conversions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <button onclick="generatePDF()" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded">Télécharger le CV</button>
+
+<script>
+    async function generatePDF() {
+        const { jsPDF } = window.jspdf;
+        const cvContainer = document.querySelector("#cv-container");
+
+        const pdf = new jsPDF("p", "mm", "a4");
+        const options = { scale: 2 }; // Pour une meilleure résolution
+
+        await html2canvas(cvContainer, options).then((canvas) => {
+            const imgData = canvas.toDataURL("image/png");
+            const imgWidth = 190; // Largeur en mm pour A4
+            const pageHeight = pdf.internal.pageSize.height;
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+            let heightLeft = imgHeight;
+            let position = 0;
+
+            pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+
+            // Ajoute d'autres pages si le contenu dépasse une page
+            while (heightLeft >= 0) {
+                position = heightLeft - imgHeight;
+                pdf.addPage();
+                pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+            }
+            pdf.save("CV.pdf");
+        });
+    }
+</script>
   </body>
 </html>

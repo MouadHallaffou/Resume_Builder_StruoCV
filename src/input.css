@@ -168,3 +168,43 @@
 /*
 -- End BackGround Animation 
 */
+
+/* Dimensions pour la taille A4 */
+@media print {
+    .a4-container {
+        width: 794px;
+        height: 1123px;
+    }
+}
+.a4-container {
+    width: 794px;
+    height: 1123px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.left-section, .right-section {
+    padding: 16px;
+}
+.left-section {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+.right-section {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+.section-item {
+    margin-bottom: 20px;
+}
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.section-content {
+    font-size: 1rem;
+    color: #4b5563;
+}

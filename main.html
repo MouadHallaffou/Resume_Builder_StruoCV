@@ -66,7 +66,7 @@
           <div class="section-item">
             <h3 class="section-title mx-6">Contacts</h3>
             <p class="section-content">
-              <i class="fas fa-envelope"></i> exemple@mail.com
+              <i class="fas fa-envelope"></i> mouad@gmail.com
             </p>
             <p class="section-content">
               <i class="fas fa-phone"></i> 123-456-7890
@@ -224,19 +224,16 @@
               console.error("Élément contenant le CV non trouvé.");
               return;
           }
-  
-          // Créer un PDF avec le format A4
+            
           const pdf = new jsPDF("p", "mm", "a4");
-  
-          // Capturer l'élément CV avec html2canvas
+           
           const canvas = await html2canvas(cvContainer, {
-              scale: 3,  // Augmente la résolution
-              useCORS: true // Permet de charger des images externes si nécessaire
+              scale: 3, 
+              useCORS: true 
           });
-          const imgData = canvas.toDataURL("images/homePage.svg");
-
-          // Ajouter l'image dans le PDF, avec les dimensions pour A4
-          pdf.addImage(imgData, "PNG", 0, 0, 210, 297); // A4 en mm (210x297)
+          const imgData = canvas.toDataURL("./images/homePage.svg");
+          
+          pdf.addImage(imgData, "PNG", 0, 0, 210, 297);
           pdf.save("CV.pdf");
       }
 

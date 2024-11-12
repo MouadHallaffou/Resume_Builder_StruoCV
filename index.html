@@ -244,7 +244,7 @@
           </div>
           <!------------------------ Step: 2 ---------------------------->
           <!------------------- Section des Expériences ----------------->
-          <div id="step-2" class="bg-gray-200 p-4 rounded-lg shadow-lg hidden" style="width: 600px;">
+          <div id="step-2" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
             <div class="text-center mb-6">
               <h2 class="text-2xl font-semibold text-gray-800">Ajouter une expérience professionnelle</h2>
             </div>
@@ -360,7 +360,7 @@
 
           <!------------------------------------------------------------->
           <!---------------------- Step 4: Certificat ------------------->
-          <div id="step-4" class="bg-gray-200 p-4 rounded-lg shadow-lg hidden" style="width: 600px;">
+          <div id="step-4" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
             <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">Certificats</h2>
             <!-- Formulaire Certificat -->
             <div id="certificate-form-container" class="space-y-6">
@@ -391,7 +391,7 @@
 
           <!------------------------ Competances ------------------------>
           <!------------------------------------------------------------->
-          <div id="step-5" class="bg-gray-200 p-4 rounded-lg shadow-lg hidden" style="width: 600px;">
+          <div id="step-5" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
             <div class="space-y-6">
               <!-- Compétences -->
               <div class="w-full p-4 bg-white rounded-lg shadow-lg">
@@ -408,7 +408,7 @@
                           Ajouter
                         </button>
                       </div>
-                      <ul id="softSkillsList" class="mt-4"></ul> <!-- Liste pour afficher les soft skills -->
+                      <ul id="softSkillsList" class="mt-4"></ul>
                     </div>
                   </div>
           
@@ -422,7 +422,7 @@
                           Ajouter
                         </button>
                       </div>
-                      <ul id="hardSkillsList" class="mt-4"></ul> <!-- Liste pour afficher les hard skills -->
+                      <ul id="hardSkillsList" class="mt-4"></ul>
                     </div>
                   </div>
           
@@ -447,7 +447,7 @@
 
           <!---------------------------------------------------------------->
           <!-------------------- Step 5: Langues et Loisirs ---------------->
-          <div id="step-6" class="bg-gray-200 p-4 rounded-lg shadow-lg hidden" style="width: 600px;">
+          <div id="step-6" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
             <div class="space-y-6">
               <!-- Langues et Niveau -->
               <div class="w-full p-4 bg-white rounded-lg shadow-lg">
@@ -458,20 +458,21 @@
                     <h3 class="text-lg font-medium text-gray-700">Langues</h3>
                     <div id="languageInputs" class="space-y-2">
                       <div class="flex items-center space-x-2">
-                        <input type="text" name="languages[]" placeholder="Langue" class="w-full p-2 border rounded-md"
+                        <input type="text" name="languages" id="languages" placeholder="Langue" class="w-full p-2 border rounded-md"
                           required>
-                        <select name="levels[]" class="p-2 border rounded-md" required>
+                        <select name="niveau" id="niveau" class="p-2 border rounded-md" required>
                           <option value="">Niveau</option>
                           <option value="Débutant">Débutant</option>
                           <option value="Intermédiaire">Intermédiaire</option>
                           <option value="Avancé">Avancé</option>
                           <option value="Courant">Courant</option>
                         </select>
-                        <button type="button" onclick="addLanguageInput()"
+                        <button type="button" id="addLanguageInput"
                           class="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600">
                           Ajouter
                         </button>
                       </div>
+                      <ul id="languesNiveauList" class="mt-4"></ul>
                     </div>
                   </div>
                   <!-- Section dynamique des loisirs -->
@@ -479,13 +480,14 @@
                     <h3 class="text-lg font-medium text-gray-700">Loisirs</h3>
                     <div id="hobbyInputs" class="space-y-2">
                       <div class="flex items-center space-x-2">
-                        <input type="text" name="hobbies[]" placeholder="Loisir" class="w-full p-2 border rounded-md"
+                        <input type="text" name="hobbies[]" id="hibbies" placeholder="Loisir" class="w-full p-2 border rounded-md"
                           required>
-                        <button type="button" onclick="addHobbyInput()"
+                        <button type="button" id="addHobbyInput"
                           class="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600">
                           Ajouter
                         </button>
                       </div>
+                      <ul id="LoisirLists" class="mt-4"></ul>
                     </div>
                   </div>
                 </form>

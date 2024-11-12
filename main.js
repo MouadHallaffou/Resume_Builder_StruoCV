@@ -6,88 +6,88 @@ const formulaire = document.getElementById("formulaire");
       formulaire.style.display="block";
     })
 
-// Sélection des éléments du formulaire et de la barre de progression
-const progressBar = document.getElementById("progress-bar");
+// // Sélection des éléments du formulaire et de la barre de progression
+// const progressBar = document.getElementById("progress-bar");
 
-// Sélection des étapes du formulaire dans un tableau
-const forms = [
-  document.getElementById("step-1"),
-  document.getElementById("step-2"),
-  document.getElementById("step-3"),
-  document.getElementById("step-4"),
-  document.getElementById("step-5"),
-  document.getElementById("step-6")
-];
+// // Sélection des étapes du formulaire dans un tableau
+// const forms = [
+//   document.getElementById("step-1"),
+//   document.getElementById("step-2"),
+//   document.getElementById("step-3"),
+//   document.getElementById("step-4"),
+//   document.getElementById("step-5"),
+//   document.getElementById("step-6")
+// ];
 
-// Sélection des indicateurs de progression affichés dans l'interface
-const steppers = [
-  document.getElementById("step1"),
-  document.getElementById("step2"),
-  document.getElementById("step3"),
-  document.getElementById("step4"),
-  document.getElementById("step5"),
-  document.getElementById("step6")
-];
+// // Sélection des indicateurs de progression affichés dans l'interface
+// const steppers = [
+//   document.getElementById("step1"),
+//   document.getElementById("step2"),
+//   document.getElementById("step3"),
+//   document.getElementById("step4"),
+//   document.getElementById("step5"),
+//   document.getElementById("step6")
+// ];
 
-// Définition des styles pour les étapes actives et no active
-const activeStepStyle = "flex items-center justify-center w-10 h-10 bg-blue-500 text-white font-bold rounded-full transition-all duration-500 ease-in-out";
-const inactiveStepStyle = "flex items-center justify-center w-10 h-10 bg-blue-200 text-white font-bold rounded-full transition-all duration-500 ease-in-out";
+// // Définition des styles pour les étapes actives et no active
+// const activeStepStyle = "flex items-center justify-center w-10 h-10 bg-blue-500 text-white font-bold rounded-full transition-all duration-500 ease-in-out";
+// const inactiveStepStyle = "flex items-center justify-center w-10 h-10 bg-blue-200 text-white font-bold rounded-full transition-all duration-500 ease-in-out";
 
-// Initialisation du compteur d'étape
-let currentStep = 0;
+// // Initialisation du compteur d'étape
+// let currentStep = 0;
 
-// Fonction pour mettre à jour la barre de progression et les étapes visuelles
-const updateProgressBar = () => {
-  const progressPercentage = ((currentStep + 1) / forms.length) * 100;
-  progressBar.style.width = `${progressPercentage}%`;
+// // Fonction pour mettre à jour la barre de progression et les étapes visuelles
+// const updateProgressBar = () => {
+//   const progressPercentage = ((currentStep + 1) / forms.length) * 100;
+//   progressBar.style.width = `${progressPercentage}%`;
 
-  // Mettre à jour les styles des steppers
-  steppers.forEach((step, index) => {
-    step.className = index <= currentStep ? activeStepStyle : inactiveStepStyle;
-  });
-};
+//   // Mettre à jour les styles des steppers
+//   steppers.forEach((step, index) => {
+//     step.className = index <= currentStep ? activeStepStyle : inactiveStepStyle;
+//   });
+// };
 
-// Fonction pour afficher une étape spécifique
-const showStep = (index) => {
-  forms.forEach((form, idx) => {
-    form.style.display = idx === index ? "block" : "none";
-  });
-};
+// // Fonction pour afficher une étape spécifique
+// const showStep = (index) => {
+//   forms.forEach((form, idx) => {
+//     form.style.display = idx === index ? "block" : "none";
+//   });
+// };
 
-// Fonction pour passer à l'étape suivante
-const Suivantstep = () => {
-  if (currentStep < forms.length - 1) {
-    currentStep++;
-    showStep(currentStep);
-    updateProgressBar();
-  }
-};
+// // Fonction pour passer à l'étape suivante
+// const Suivantstep = () => {
+//   if (currentStep < forms.length - 1) {
+//     currentStep++;
+//     showStep(currentStep);
+//     updateProgressBar();
+//   }
+// };
 
-// Fonction pour revenir à l'étape précédente
-const precedentStep = () => {
-  if (currentStep > 0) {
-    currentStep--;
-    showStep(currentStep);
-    updateProgressBar();
-  }
-};
+// // Fonction pour revenir à l'étape précédente
+// const precedentStep = () => {
+//   if (currentStep > 0) {
+//     currentStep--;
+//     showStep(currentStep);
+//     updateProgressBar();
+//   }
+// };
 
-// Ajout des écouteurs d'événements pour les boutons "Suivant" et "Précédent"
-document.getElementById("nextBtnInfo").addEventListener("click", Suivantstep);
-document.getElementById("nextBtnExp").addEventListener("click", Suivantstep);
-document.getElementById("nextBtnDiplomes").addEventListener("click", Suivantstep);
-document.getElementById("nextBtnCertificats").addEventListener("click", Suivantstep);
-document.getElementById("nextBtnCompetences").addEventListener("click", Suivantstep);
+// // Ajout des écouteurs d'événements pour les boutons "Suivant" et "Précédent"
+// document.getElementById("nextBtnInfo").addEventListener("click", Suivantstep);
+// document.getElementById("nextBtnExp").addEventListener("click", Suivantstep);
+// document.getElementById("nextBtnDiplomes").addEventListener("click", Suivantstep);
+// document.getElementById("nextBtnCertificats").addEventListener("click", Suivantstep);
+// document.getElementById("nextBtnCompetences").addEventListener("click", Suivantstep);
 
-document.getElementById("prevBtnExp").addEventListener("click", precedentStep);
-document.getElementById("prevBtnDiplomes").addEventListener("click", precedentStep);
-document.getElementById("prevBtnCertificats").addEventListener("click", precedentStep);
-document.getElementById("prevBtnCompetances").addEventListener("click", precedentStep);
-document.getElementById("prevBtnLangues").addEventListener("click", precedentStep);
+// document.getElementById("prevBtnExp").addEventListener("click", precedentStep);
+// document.getElementById("prevBtnDiplomes").addEventListener("click", precedentStep);
+// document.getElementById("prevBtnCertificats").addEventListener("click", precedentStep);
+// document.getElementById("prevBtnCompetances").addEventListener("click", precedentStep);
+// document.getElementById("prevBtnLangues").addEventListener("click", precedentStep);
 
-// Initialisation : afficher la première étape et mettre à jour la barre de progression
-showStep(currentStep);
-updateProgressBar();
+// // Initialisation : afficher la première étape et mettre à jour la barre de progression
+// showStep(currentStep);
+// updateProgressBar();
 
 
 // Variables pour les éléments
@@ -108,7 +108,7 @@ addExperienceButton.addEventListener("click", () => {
 
     // Créer une nouvelle section d'expérience
     const experienceItem = document.createElement("div");
-    experienceItem.classList.add("bg-white", "p-4", "rounded-lg", "shadow");
+    experienceItem.classList.add("bg-white", "p-4", "rounded-lg", "shadow","experience-item");
 
     // Ajouter le contenu de l'expérience
     experienceItem.innerHTML = `
@@ -125,7 +125,6 @@ addExperienceButton.addEventListener("click", () => {
     removeButton.addEventListener("click", () => {
         experienceList.removeChild(experienceItem); 
     });
-
     experienceForm.reset();
 });
 
@@ -258,10 +257,10 @@ btnAadSoftSkills.addEventListener('click', () => {
 
     softSkillInputsValue.value = '';
     const softItem = document.createElement('li');
-    softItem.classList.add('flex', 'items-center', 'text-lg', 'font-medium', 'text-gray-700');
+    softItem.classList.add('flex', 'items-center', 'text-lg', 'gap-4', 'font-medium', 'text-gray-700');
     softItem.innerHTML = `
       <span>${softSkill}</span>
-      <button class="ml-4 text-red-500" onclick="deleteItem(this, 'softSkillsList', arraySoftSkills)">Supprimer</button>
+      <button class="ml-4 text-red-500" onclick="deleteItem(this, 'softSkillsList', arraySoftSkills)"><em class="fas fa-remove text-red-600"></em></button>
     `;
 
     document.getElementById('softSkillsList').appendChild(softItem);
@@ -274,10 +273,10 @@ btnAadHardSkills.addEventListener('click', () => {
     arrayHardSkills.push(hardSkill);
     hardSkillInputsValue.value = '';
     const hardItem = document.createElement('li');
-    hardItem.classList.add('flex', 'items-center', 'text-lg', 'font-medium', 'text-gray-700');
+    hardItem.classList.add('flex', 'items-center', 'text-lg', 'gap-4', 'font-medium', 'text-gray-700');
     hardItem.innerHTML = `
       <span>${hardSkill}</span>
-      <button class="ml-4 text-red-500" onclick="deleteItem(this, 'hardSkillsList', arrayHardSkills)">Supprimer</button>
+      <button class="ml-4 text-red-500" onclick="deleteItem(this, 'hardSkillsList', arrayHardSkills)"><em class="fas fa-remove text-red-600"></em></button>
     `;
     document.getElementById('hardSkillsList').appendChild(hardItem);
   }
@@ -295,3 +294,52 @@ function deleteItem(button, listId, array) {
   }
 }
 
+const arrayLangues = [];
+
+const langues = document.getElementById("languages");
+const languesNiveauList = document.getElementById("languesNiveauList");
+const niveauLangue = document.getElementById("niveau");
+const addLanguageInput = document.getElementById("addLanguageInput").addEventListener("click",()=>{
+  const languesValue = langues.value.trim();
+  const niveauLanguevalue = niveauLangue.value;
+  if(languesValue && niveauLanguevalue)
+    arrayLangues.push(languesValue);
+  langues.value =''
+  const langItem = document.createElement('li');
+  langItem.classList.add('flex', 'items-center', 'text-lg', 'gap-4', 'font-medium', 'text-gray-700')
+  langItem.innerHTML=`
+    <h1>${languesValue} - ${niveauLanguevalue}</h1>
+     <button class="ml-4 text-red-500" onclick="deleteItem(this, 'languesNiveauList', arrayLangues)"><em class="fas fa-remove"></em></button>
+  `;
+  languesNiveauList.appendChild(langItem)
+  languesNiveauList.appendChild(langItem)
+  console.log(niveauLanguevalue);
+  
+});
+function deleteItem(button, listId, array) {
+  const item = button.parentElement;
+  const itemText = item.querySelector('h1').textContent;
+
+  document.getElementById(listId).removeChild(item);
+
+  const index = array.indexOf(itemText);
+  if (index > -1) {
+    array.splice(index, 1);
+  }
+}
+
+const arrayLoisirs = [];
+const LoisirLists = document.getElementById("LoisirLists");
+const addHobbyInput = document.getElementById("addHobbyInput");
+const inputLoisir = document.getElementById("hibbies") ;
+
+addHobbyInput.addEventListener("click", ()=>{
+  const valueInputLoisir = inputLoisir.value.trim();
+  arrayLoisirs.push(valueInputLoisir);
+  const loisirItem = document.createElement('li');
+  LoisirLists.classList.add('flex', 'item-center','text-lg', 'gap-4', 'font-medium', 'text-gray-700')
+  LoisirLists.innerHTML=`
+    <p>${valueInputLoisir}</p>
+  `
+  LoisirLists.appendChild(loisirItem)
+})

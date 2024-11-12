@@ -178,7 +178,7 @@
           </div>
 
           <!-- 3ème Section : Certifications -->
-          <div class="section-item" style="height: 30%">
+          <div class="section-item" style="height: 20%">
             <h3 class="section-title">Certifications</h3>
 
             <!-- Certification 1 -->
@@ -188,11 +188,6 @@
                 <strong>Organisme :</strong> Coursera
               </p>
               <p><strong>Dates :</strong> Janvier 2022 - Février 2022</p>
-              <p><strong>Type d'apprentissage :</strong> En ligne</p>
-              <p>
-                Certification sur le framework React, incluant la création
-                d'applications interactives et la gestion d'états avec Redux.
-              </p>
             </div>
 
             <!-- Certification 2 -->
@@ -202,11 +197,25 @@
                 <strong>Organisme :</strong> Google
               </p>
               <p><strong>Dates :</strong> Juin 2021 - Juillet 2021</p>
-              <p><strong>Type d'apprentissage :</strong> En ligne</p>
-              <p>
-                Certification sur l'utilisation de Google Ads pour optimiser les
-                campagnes publicitaires et maximiser les conversions.
-              </p>
+            </div>
+          </div>
+          <div class="section-item" style="height: 10%">
+            <h3 class="section-title">Certifications</h3>
+
+            <!-- Certification 1 -->
+            <div class="certificate mb-4">
+              <ul class="flex flex-wrap">
+                <li class="mx-4">html&css</li>
+                <li class="mx-4">html&css</li>
+                <li class="mx-4">html&css</li>
+                <li class="mx-4">html&css</li>
+                <li class="mx-4">html&css</li>
+                <li class="mx-4">html&css</li>
+                <li class="mx-4">html&css</li>
+                <li class="mx-4">html&css</li>
+                <li class="mx-4">html&css</li>
+                <li class="mx-4">html&css</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -219,11 +228,6 @@
       async function generatePDF() {
           const { jsPDF } = window.jspdf;
           const cvContainer = document.querySelector(".a4-container");
-  
-          if (!cvContainer) {
-              console.error("Élément contenant le CV non trouvé.");
-              return;
-          }
             
           const pdf = new jsPDF("p", "mm", "a4");
            
@@ -236,7 +240,6 @@
           pdf.addImage(imgData, "PNG", 0, 0, 210, 297);
           pdf.save("CV.pdf");
       }
-
   </script>
 
   </body>

@@ -223,3 +223,7 @@
     color: #4b5563;
 }
 
+.experience-item p {
+  max-width: 100%;
+  word-wrap: break-word;
+}

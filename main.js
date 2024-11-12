@@ -6,88 +6,88 @@ const formulaire = document.getElementById("formulaire");
       formulaire.style.display="block";
     })
 
-// // Sélection des éléments du formulaire et de la barre de progression
-// const progressBar = document.getElementById("progress-bar");
+// Sélection des éléments du formulaire et de la barre de progression
+const progressBar = document.getElementById("progress-bar");
 
-// // Sélection des étapes du formulaire dans un tableau
-// const forms = [
-//   document.getElementById("step-1"),
-//   document.getElementById("step-2"),
-//   document.getElementById("step-3"),
-//   document.getElementById("step-4"),
-//   document.getElementById("step-5"),
-//   document.getElementById("step-6")
-// ];
+// Sélection des étapes du formulaire dans un tableau
+const forms = [
+  document.getElementById("step-1"),
+  document.getElementById("step-2"),
+  document.getElementById("step-3"),
+  document.getElementById("step-4"),
+  document.getElementById("step-5"),
+  document.getElementById("step-6")
+];
 
-// // Sélection des indicateurs de progression affichés dans l'interface
-// const steppers = [
-//   document.getElementById("step1"),
-//   document.getElementById("step2"),
-//   document.getElementById("step3"),
-//   document.getElementById("step4"),
-//   document.getElementById("step5"),
-//   document.getElementById("step6")
-// ];
+// Sélection des indicateurs de progression affichés dans l'interface
+const steppers = [
+  document.getElementById("step1"),
+  document.getElementById("step2"),
+  document.getElementById("step3"),
+  document.getElementById("step4"),
+  document.getElementById("step5"),
+  document.getElementById("step6")
+];
 
-// // Définition des styles pour les étapes actives et no active
-// const activeStepStyle = "flex items-center justify-center w-10 h-10 bg-blue-500 text-white font-bold rounded-full transition-all duration-500 ease-in-out";
-// const inactiveStepStyle = "flex items-center justify-center w-10 h-10 bg-blue-200 text-white font-bold rounded-full transition-all duration-500 ease-in-out";
+// Définition des styles pour les étapes actives et no active
+const activeStepStyle = "flex items-center justify-center w-10 h-10 bg-blue-500 text-white font-bold rounded-full transition-all duration-500 ease-in-out";
+const inactiveStepStyle = "flex items-center justify-center w-10 h-10 bg-blue-200 text-white font-bold rounded-full transition-all duration-500 ease-in-out";
 
-// // Initialisation du compteur d'étape
-// let currentStep = 0;
+// Initialisation du compteur d'étape
+let currentStep = 0;
 
-// // Fonction pour mettre à jour la barre de progression et les étapes visuelles
-// const updateProgressBar = () => {
-//   const progressPercentage = ((currentStep + 1) / forms.length) * 100;
-//   progressBar.style.width = `${progressPercentage}%`;
+// Fonction pour mettre à jour la barre de progression et les étapes visuelles
+const updateProgressBar = () => {
+  const progressPercentage = ((currentStep + 1) / forms.length) * 100;
+  progressBar.style.width = `${progressPercentage}%`;
 
-//   // Mettre à jour les styles des steppers
-//   steppers.forEach((step, index) => {
-//     step.className = index <= currentStep ? activeStepStyle : inactiveStepStyle;
-//   });
-// };
+  // Mettre à jour les styles des steppers
+  steppers.forEach((step, index) => {
+    step.className = index <= currentStep ? activeStepStyle : inactiveStepStyle;
+  });
+};
 
-// // Fonction pour afficher une étape spécifique
-// const showStep = (index) => {
-//   forms.forEach((form, idx) => {
-//     form.style.display = idx === index ? "block" : "none";
-//   });
-// };
+// Fonction pour afficher une étape spécifique
+const showStep = (index) => {
+  forms.forEach((form, idx) => {
+    form.style.display = idx === index ? "block" : "none";
+  });
+};
 
-// // Fonction pour passer à l'étape suivante
-// const Suivantstep = () => {
-//   if (currentStep < forms.length - 1) {
-//     currentStep++;
-//     showStep(currentStep);
-//     updateProgressBar();
-//   }
-// };
+// Fonction pour passer à l'étape suivante
+const Suivantstep = () => {
+  if (currentStep < forms.length - 1) {
+    currentStep++;
+    showStep(currentStep);
+    updateProgressBar();
+  }
+};
 
-// // Fonction pour revenir à l'étape précédente
-// const precedentStep = () => {
-//   if (currentStep > 0) {
-//     currentStep--;
-//     showStep(currentStep);
-//     updateProgressBar();
-//   }
-// };
+// Fonction pour revenir à l'étape précédente
+const precedentStep = () => {
+  if (currentStep > 0) {
+    currentStep--;
+    showStep(currentStep);
+    updateProgressBar();
+  }
+};
 
-// // Ajout des écouteurs d'événements pour les boutons "Suivant" et "Précédent"
-// document.getElementById("nextBtnInfo").addEventListener("click", Suivantstep);
-// document.getElementById("nextBtnExp").addEventListener("click", Suivantstep);
-// document.getElementById("nextBtnDiplomes").addEventListener("click", Suivantstep);
-// document.getElementById("nextBtnCertificats").addEventListener("click", Suivantstep);
-// document.getElementById("nextBtnCompetences").addEventListener("click", Suivantstep);
+// Ajout des écouteurs d'événements pour les boutons "Suivant" et "Précédent"
+document.getElementById("nextBtnInfo").addEventListener("click", Suivantstep);
+document.getElementById("nextBtnExp").addEventListener("click", Suivantstep);
+document.getElementById("nextBtnDiplomes").addEventListener("click", Suivantstep);
+document.getElementById("nextBtnCertificats").addEventListener("click", Suivantstep);
+document.getElementById("nextBtnCompetences").addEventListener("click", Suivantstep);
 
-// document.getElementById("prevBtnExp").addEventListener("click", precedentStep);
-// document.getElementById("prevBtnDiplomes").addEventListener("click", precedentStep);
-// document.getElementById("prevBtnCertificats").addEventListener("click", precedentStep);
-// document.getElementById("prevBtnCompetances").addEventListener("click", precedentStep);
-// document.getElementById("prevBtnLangues").addEventListener("click", precedentStep);
+document.getElementById("prevBtnExp").addEventListener("click", precedentStep);
+document.getElementById("prevBtnDiplomes").addEventListener("click", precedentStep);
+document.getElementById("prevBtnCertificats").addEventListener("click", precedentStep);
+document.getElementById("prevBtnCompetances").addEventListener("click", precedentStep);
+document.getElementById("prevBtnLangues").addEventListener("click", precedentStep);
 
-// // Initialisation : afficher la première étape et mettre à jour la barre de progression
-// showStep(currentStep);
-// updateProgressBar();
+// Initialisation : afficher la première étape et mettre à jour la barre de progression
+showStep(currentStep);
+updateProgressBar();
 
 
 // Variables pour les éléments
@@ -112,7 +112,7 @@ addExperienceButton.addEventListener("click", () => {
 
     // Ajouter le contenu de l'expérience
     experienceItem.innerHTML = `
-        <h3 class="text-lg font-semibold">${mission} - ${company}</h3>
+        <h6 class="text-lg font-semibold">${mission} - ${company}</h6>
         <p class="text-sm text-gray-600">${sector} | ${location}</p>
         <p class="text-sm text-gray-600">${startDate} - ${endDate}</p>
         <p class="mt-2 text-gray-800">${description}</p>
@@ -343,3 +343,17 @@ addHobbyInput.addEventListener("click", ()=>{
   `
   LoisirLists.appendChild(loisirItem)
 })
+
+
+const submitBtn = document.getElementById("submitBtn");
+const step6Section = document.getElementById("step-6");
+const typeSelectionSection = document.querySelector(".type-selection-section");
+function showTypeSelection() {
+  step6Section.style.display = "none";
+  typeSelectionSection.classList.remove("hidden");
+  typeSelectionSection.classList.add("flex");
+}
+submitBtn.addEventListener("click", (event) => {
+  event.preventDefault();
+  showTypeSelection(); 
+});

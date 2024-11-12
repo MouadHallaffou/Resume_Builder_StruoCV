@@ -158,7 +158,7 @@
           </div>
         </div>
         <!-- Contenu du formulaire -->
-        <form action="action.php" id="multi-step-form"
+          <form action="action.php" id="multi-step-form"
           class="space-y-8 bg-white shadow-md rounded-lg max-w-3xl mx-auto">
           <!-- Step 1: Information Personnel -->
           <div id="step-1" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
@@ -241,7 +241,8 @@
                 Suivant
               </button>
             </div>
-          </div>
+           </div>
+          </form>
           <!------------------------ Step: 2 ---------------------------->
           <!------------------- Section des Expériences ----------------->
           <div id="step-2" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
@@ -510,10 +511,46 @@
           </div>
           <!-----------------------fin langues et loisirs------------------->
           <!---------------------------------------------------------------->
+          <!-- Section de sélection de type avec images -->
+          <div class="type-selection-section hidden mt-6 w-full p-8 bg-white rounded-lg shadow-lg flex flex-col items-center space-y-6">
+            <!-- Titre principal -->
+            <h2 class="text-3xl font-bold text-gray-800">Choisissez Votre Type Préféré</h2>
+            
+            <!-- Sous-titre avec description -->
+            <p class="text-md text-gray-600 text-center mb-6">
+              Sélectionnez l'un des types ci-dessous en fonction de vos préférences.
+            </p>
+            
+            <!-- Container des options de type avec images et radios -->
+            <div class="flex justify-around items-center space-x-8 w-full">
+              <!-- Option 1 -->
+              <label for="version-1" class="flex flex-col items-center cursor-pointer">
+                <input type="radio" name="typeSelection" id="version-1" value="Type 1" class="">
+                <!-- Image du type avec style amélioré et taille fixe -->
+                <img src="images/version-1.png" alt="Image Type 1" class="w-48 h-48 object-cover rounded-lg border-4 border-transparent hover:border-blue-500 transition duration-300">
+                <span class="mt-3 text-lg font-medium text-gray-700">Version 1</span>
+              </label>
+              
+              <!-- Option 2 -->
+              <label for="version-2" class="flex flex-col items-center cursor-pointer">
+                <input type="radio" name="typeSelection" id="version-2" value="Type 2" class="">
+                <!-- Image du type avec style amélioré et taille fixe -->
+                <img src="images/version-2.png" alt="Image Type 2" class="w-48 h-48 object-cover rounded-lg border-4 border-transparent hover:border-blue-500 transition duration-300">
+                <span class="mt-3 text-lg font-medium text-gray-700">Version 2</span>
+              </label>
+            </div>
+            
+            <!-- Bouton pour soumettre la sélection -->
+            <button type="button" id="confirmSelectionBtn" class="mt-8 px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition duration-300">
+              Afficher votre CV
+            </button>
+          </div>          
 
       </div>
     </div>
   </div>
+
+  <section id="mouadhallaffou"></section>
 
   <script src="main.js"></script>
 

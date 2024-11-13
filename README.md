@@ -1,104 +1,64 @@
-# Générateur de CV en Ligne
+# StruoCV Resume Builder
 
-Ce projet est une application web permettant de créer, personnaliser et sauvegarder un CV à l'aide d'un formulaire à étapes avec une barre de progression et plusieurs modèles de CV. Les utilisateurs peuvent ajouter dynamiquement des informations personnelles et professionnelles, prévisualiser leurs choix et télécharger leur CV au format PDF.
+StruoCV est une plateforme en ligne conçue pour permettre aux utilisateurs de créer, personnaliser et télécharger facilement un CV professionnel en quelques étapes simples. Avec une interface dynamique et fluide, StruoCV offre une expérience utilisateur optimale pour créer un CV adapté à vos besoins professionnels.
 
-## Contexte du Projet
+## Vue d'ensemble
 
-Développé dans le cadre d'un exercice individuel à YouCode, ce projet met en œuvre des pratiques d'interface utilisateur modernes, l’optimisation des performances et la validation des formulaires côté client. Les fonctionnalités offrent une expérience utilisateur guidée, intuitive et interactive pour la création de CV.
+StruoCV propose un générateur de CV qui divise le processus en étapes distinctes, avec des formulaires dynamiques et des validations pour assurer la précision des informations saisies. Le processus est divisé en différentes sections, comme les informations personnelles, professionnelles, les compétences, les langues, et plus encore. Vous pouvez personnaliser le design de votre CV parmi plusieurs modèles et le télécharger au format PDF ou l'imprimer directement.
 
-## Fonctionnalités Clés
+## Fonctionnalités principales
 
-### 1. Formulaire à Étapes (Stepper Form) avec Validation
-   - **Informations personnelles** : Nom, photo de profil, email, téléphone, adresse, LinkedIn, GitHub, portfolio, etc.
-   - **Détails professionnels** : Titre du poste et résumé de profil.
-   - **Compétences** : Sections pour les compétences techniques et interpersonnelles, avec la possibilité d'ajouter dynamiquement des compétences.
-   - **Langues** : Liste des langues maîtrisées avec le niveau, avec la possibilité d’ajouter des langues supplémentaires.
-   - **Loisirs et intérêts** : Liste des loisirs avec ajout dynamique.
-   - **Cursus universitaire** : Formulaires dynamiques permettant d’ajouter plusieurs parcours académiques.
-   - **Expériences professionnelles** : Détails des emplois précédents, avec ajout dynamique de plusieurs expériences.
-   - **Certifications** : Liste des certifications avec noms et liens associés, ajout dynamique de nouvelles certifications.
+### 1. Formulaire à étapes (Stepper form)
+- **Informations personnelles** : Nom complet, photo de profil, email, téléphone, adresse, LinkedIn, GitHub, portfolio, etc.
+- **Détails professionnels** : Titre du poste et résumé de profil.
+- **Compétences techniques et soft skills** : Deux sections distinctes pour renseigner les compétences techniques (hard skills) et les compétences interpersonnelles (soft skills), avec la possibilité d'ajouter dynamiquement de nouvelles compétences.
+- **Langues** : Liste des langues maîtrisées avec le niveau, possibilité d'ajouter des langues supplémentaires.
+- **Loisirs et intérêts** : Liste des loisirs, avec possibilité d'ajouter des entrées supplémentaires.
+- **Cursus universitaire** : Formulaires dynamiques permettant d'ajouter plusieurs formations.
+- **Expériences professionnelles** : Ajouter plusieurs expériences professionnelles avec des champs dynamiques.
+- **Certifications** : Liste des certifications avec noms et liens, possibilité d'ajouter plusieurs certifications.
 
-### 2. Suivi de l’Avancement
-   - Une barre de progression dynamique affiche l'avancement de l'utilisateur dans la création de son CV.
+### 2. Suivi de l’avancement
+- **Barre de progression** : Suivi visuel de l'avancée de l'utilisateur à chaque étape du formulaire.
 
-### 3. Modèles de CV Personnalisables
-   - Offrir deux modèles de CV que l’utilisateur peut choisir et prévisualiser en temps réel.
+### 3. Modèles de CV personnalisables
+- Choisissez parmi deux modèles de CV.
+- Personnalisation du design et prévisualisation en temps réel.
 
-### 4. Options de Sauvegarde
-   - Enregistrement des CV créés dans l'application pour une utilisation future ou des modifications.
+### 4. Options de sauvegarde
+- Sauvegarde des CV créés pour une utilisation future ou des modifications.
 
-### 5. Validation des Champs
-   - Validation selon le type de champ (email, téléphone, URL) pour garantir la précision des informations.
+### 5. Validation des champs
+- Validation des champs (email, téléphone, URL, etc.) pour garantir des informations précises.
 
-## Technologies Utilisées
+## Technologies utilisées
 
-- **HTML5**
-- **Tailwind CSS**
-- **JavaScript (DOM natif)**
+- **HTML5** : Structure du contenu.
+- **TailwindCSS** : Design et mise en forme réactive.
+- **JavaScript (DOM natif)** : Gestion des formulaires, validation des données, et logique des étapes du formulaire.
+- **Git** : Gestion de version pour la collaboration.
 
-## User Stories
+## Prérequis
 
-### 1. Création du CV
-   - En tant qu'utilisateur, je souhaite créer un CV en remplissant un formulaire à étapes.
-   - **Critères d'acceptation** :
-     - Le formulaire est structuré en étapes claires.
-     - La navigation entre les étapes conserve les données saisies.
+- Un navigateur web moderne (Chrome, Firefox, Safari).
+- Une connexion Internet pour accéder à la plateforme en ligne.
 
-### 2. Formulaire à Étapes
-   - En tant qu'utilisateur, je souhaite suivre un formulaire divisé en étapes pour une saisie guidée.
-   - **Critères d'acceptation** :
-     - Chaque étape est clairement définie, avec navigation fluide et barre de progression.
+## Utilisation
 
-### 3. Formulaires Dynamiques pour Entrées Multiples
-   - En tant qu'utilisateur, je souhaite ajouter dynamiquement des compétences, langues, expériences, etc.
-   - **Critères d'acceptation** :
-     - Boutons "Ajouter" pour chaque section pertinente.
-     - Champs supplémentaires apparaissent instantanément.
+1. **Visitez la page d'accueil** : Explorez la page d'accueil où se trouve le formulaire pour créer votre CV.
+2. **Remplissez le formulaire** : Complétez chaque étape avec vos informations personnelles, vos compétences, vos expériences professionnelles, etc.
+3. **Personnalisez votre CV** : Choisissez un modèle et ajustez la mise en page à vos préférences.
+4. **Téléchargez ou imprimez** : Une fois que vous êtes satisfait, téléchargez votre CV au format PDF ou imprimez-le directement.
 
-### 4. Validation des Champs
-   - En tant qu'utilisateur, je souhaite des messages d'erreur pour les champs invalides.
-   - **Critères d'acceptation** :
-     - Chaque champ est validé selon son type avec message d'erreur clair.
-     - Impossible de passer à l'étape suivante si les champs sont invalides.
+## Contribution
 
-### 5. Suivi de l’Avancement
-   - En tant qu'utilisateur, je souhaite une barre de progression qui montre mon avancement.
-   - **Critères d'acceptation** :
-     - Barre dynamique se met à jour avec l’avancée.
+Nous accueillons les contributions de la communauté. Si vous souhaitez aider :
 
-### 6. Choix du Modèle de CV
-   - En tant qu'utilisateur, je souhaite choisir parmi deux modèles de CV.
-   - **Critères d'acceptation** :
-     - Prévisualisation des modèles avec possibilité de changer.
+1. Forkez le dépôt sur GitHub.
+2. Créez une branche pour votre fonctionnalité ou correction.
+3. Apportez vos modifications et validez-les avec une description claire.
+4. Soumettez une demande de pull pour faire examiner et intégrer vos modifications.
 
-### 7. Téléchargement et Impression du CV
-   - En tant qu'utilisateur, je souhaite télécharger ou imprimer mon CV.
-   - **Critères d'acceptation** :
-     - Boutons pour téléchargement en PDF et impression directe.
-     - Mise en page respectée dans le fichier PDF.
-
-## Modalités Pédagogiques
-
-- **Travail** : Individuel.
-- **Durée** : 6 jours.
-- **Dates** : Lancement - 07/11/2024, Date limite de soumission - 15/11/2024 avant 12h30.
-
-## Modalités d'Évaluation
-
-- Présentation du travail en 20 minutes :
-  - 5 minutes : Démonstration de l’application.
-  - 15 minutes : Explication du code.
-- Challenge de classe et QCM (1h15).
-
-## Livrables
-
-1. **Premier livrable** (avant le 07/11/2024 à 17h30) :
-   - Lien vers la planification des tâches (Trello/Jira).
-   - Lien vers le repository GitHub contenant le `README`.
-
-2. **Deuxième livrable** (avant 15/11/2024 à 12h30) :
-   - Lien vers le repository GitHub avec le code source complet.
-   - Lien vers le site web hébergé sur GitHub Pages.
 
 ## Critères de Performance
 
@@ -106,6 +66,15 @@ Développé dans le cadre d'un exercice individuel à YouCode, ce projet met en 
 - **Responsive Design** : Affichage fluide sur tous types d'écrans.
 - **Accessibilité** : Score minimum de 90/100 sur Lighthouse pour les mobiles et tablettes.
 - **Qualité du Code** : Code JavaScript optimisé, absence de fuites de mémoire et dépendances réduites.
+
+## Remerciements
+
+Nous tenons à remercier les outils et ressources suivants pour avoir contribué à la création de StruoCV :
+
+- **TailwindCSS** pour son framework CSS utilitaire.
+- **Font Awesome** pour ses superbes icônes.
+- **Google Fonts** pour sa typographie web.
+- **JavaScript** pour la logique interactive et la validation dynamique.
 
 ## Installation
 

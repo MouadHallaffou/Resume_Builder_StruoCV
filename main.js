@@ -574,8 +574,79 @@ document.addEventListener("DOMContentLoaded", function () {
                         </ul>
                     </div>
                 </div>
+                <!-- Partie droite (70%) -->
+                <div class="right-section">
+                    <!-- Section : Expériences professionnelles -->
+                    <div class="section-item mt-2">
+                        <h3 class="section-title text-sm">Expériences professionnelles</h3>
+                        ${experiences
+                          .map(
+                            (exp) => `
+                            <div class="experience mb-2 text-xs">
+                                <p><strong>${exp.mission}</strong> - ${exp.company}</p>
+                                <p>${exp.sector} | ${exp.location}</p>
+                                <p>${exp.startDate} - ${exp.endDate}</p>
+                                <p>${exp.description}</p>
+                            </div>
+                        `
+                          )
+                          .join("")}
+                    </div>
 
-                
+                    <!-- Section : Diplômes -->
+                    <div class="section-item mt-2">
+                        <h3 class="section-title text-sm">Diplômes</h3>
+                        ${diplomesData
+                          .map(
+                            (diplome) => `
+                            <div class="degree mb-2 text-xs">
+                                <h6>${diplome.name} - ${diplome.specialty}</h6>
+                                <p>${diplome.university} | ${diplome.city}</p>
+                                <p>${diplome.startDate} - ${diplome.endDate}</p>
+                                <p>${diplome.description}</p>
+                            </div>
+                        `
+                          )
+                          .join("")}
+                    </div>
+
+                    <!-- Section : Certifications -->
+                    <div class="section-item mt-2">
+                        <h3 class="section-title text-sm">Certifications</h3>
+                        ${certificatesData
+                          .map(
+                            (cert) => `
+                            <div class="certificate mb-2 text-xs">
+                                <p>Spécialité : ${cert.name} || Organisme : ${cert.organism}</p>
+                                <p>Dates : ${cert.startDate} - ${cert.endDate}</p>
+                            </div>
+                        `
+                          )
+                          .join("")}
+                    </div>
+                  <!-- Section : Compétences -->
+                  <div class="section-item mt-2">
+                    <h3 class="section-title text-sm">Compétences</h3>
+                    <div class="certificate mb-4">
+                      <h4 class="text-xs">Soft Skills :</h4>
+                      <ul class="list-none list-inside text-xs">
+                        ${arraySoftSkills
+                          .map((skill) => `<li>${skill}</li>`)
+                          .join("")}
+                      </ul>
+                    </div>
+                    <div class="certificate mb-4">
+                      <h4 class="text-xs">Hard Skills :</h4>
+                      <ul class="list-none list-inside text-xs">
+                        ${arrayHardSkills
+                          .map((skill) => `<li>${skill}</li>`)
+                          .join("")}
+                      </ul>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+            </div>      
         </section>
         `;
       } else if (selectedType.value === "Type 2") {

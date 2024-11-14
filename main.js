@@ -427,12 +427,11 @@ const arrayLangues = [];
 const langues = document.getElementById("languages");
 const languesNiveauList = document.getElementById("languesNiveauList");
 const niveauLangue = document.getElementById("niveau");
-const addLanguageInput = document
-  .getElementById("addLanguageInput")
-  .addEventListener("click", () => {
-    const languesValue = langues.value.trim();
-    const niveauLanguevalue = niveauLangue.value;
-    if (languesValue && niveauLanguevalue) arrayLangues.push(languesValue);
+document.getElementById("addLanguageInput").addEventListener("click", () => {
+  const languesValue = langues.value.trim();
+  const niveauLangueValue = niveauLangue.value;
+  if (languesValue && niveauLangueValue) {
+    arrayLangues.push({ langue: languesValue, niveau: niveauLangueValue });
     langues.value = "";
     const langItem = document.createElement("li");
     langItem.classList.add(
@@ -444,19 +443,20 @@ const addLanguageInput = document
       "text-gray-700"
     );
     langItem.innerHTML = `
-    <h1>${languesValue} - ${niveauLanguevalue}</h1>
-     <button class="ml-4 text-red-500" onclick="deleteItem(this, 'languesNiveauList', arrayLangues)"><em class="fas fa-remove"></em></button>
-  `;
+      <h1>${languesValue} - ${niveauLangueValue}</h1>
+      <button class="ml-4 text-red-500" onclick="deleteItem(this, 'languesNiveauList', arrayLangues)">
+        <em class="fas fa-remove"></em>
+      </button>
+    `;
     languesNiveauList.appendChild(langItem);
-    languesNiveauList.appendChild(langItem);
-    console.log(niveauLanguevalue);
-  });
+    console.log(arrayLangues);
+  }
+});
+
 function deleteItem(button, listId, array) {
   const item = button.parentElement;
   const itemText = item.querySelector("h1").textContent;
-
   document.getElementById(listId).removeChild(item);
-
   const index = array.indexOf(itemText);
   if (index > -1) {
     array.splice(index, 1);
@@ -465,12 +465,12 @@ function deleteItem(button, listId, array) {
 
 const arrayLoisirs = [];
 const LoisirLists = document.getElementById("LoisirLists");
-const addHobbyInput = document.getElementById("addHobbyInput");
-const inputLoisir = document.getElementById("hibbies");
-
-addHobbyInput.addEventListener("click", () => {
+const addInteretInput = document.getElementById("addInteretInput");
+const inputLoisir = document.getElementById("loisirs");
+addInteretInput.addEventListener("click", () => {
   const valueInputLoisir = inputLoisir.value.trim();
   arrayLoisirs.push(valueInputLoisir);
+  inputLoisir.value = "";
   const loisirItem = document.createElement("li");
   LoisirLists.classList.add(
     "flex",
@@ -481,7 +481,7 @@ addHobbyInput.addEventListener("click", () => {
     "text-gray-700"
   );
   LoisirLists.innerHTML = `
-    <p>${valueInputLoisir}</p>
+    <p>${arrayLoisirs}</p>
   `;
   LoisirLists.appendChild(loisirItem);
 });
@@ -504,12 +504,15 @@ document.addEventListener("DOMContentLoaded", function () {
   confirmSelectionBtn.addEventListener("click", function () {
     const nomComplet = document.getElementById("fullName").value;
     const profile = document.getElementById("jobLocation").value;
-    const email = document.querySelector(".email").value;
-    const telephone = document.querySelector(".phone").value;
+    const email = document.querySelector("#email").value;
+    const telephone = document.querySelector("#phone").value;
     const adresse = document.getElementById("adresse").value;
     const linkdIn = document.getElementById("linkedin").value;
     const github = document.getElementById("github").value;
     const aboutMe = document.getElementById("aboutMe").value;
+    let inputPhotosUrl = document.querySelector("#profileImage").files[0];
+    inputPhoto = URL.createObjectURL(inputPhotosUrl);
+
     const selectedType = document.querySelector(
       'input[name="typeSelection"]:checked'
     );
@@ -522,136 +525,149 @@ document.addEventListener("DOMContentLoaded", function () {
       cvTemplate.classList.add("cv-template");
       if (selectedType.value === "Type 1") {
         cvTemplate.innerHTML = `
-           <section class="bg-gray-100">
-            <div class="a4-container border border-gray-300 shadow-lg rounded-lg">
-                <!-- Partie gauche (30%) -->
-                <div class="left-section">
-                    <!-- Section : Image, Nom et Statut -->
-                    <div class="section-item mt-2">
-                        <div class="flex items-center flex-wrap justify-center">
-                            <img src="images/homePage.svg" alt="Photo de profil" class="w-auto h-20 rounded-full mr-2" />
-                            <div>
-                                <h2 class="text-sm font-semibold">${nomComplet}</h2>
-                                <p class="text-xs text-gray-600">${profile}</p>
-                            </div>
-                        </div>
-                    </div>
+              <section class="bg-gray-100">
+              <div class="a4-container border border-gray-300 shadow-lg rounded-lg p-4">
+                  <!-- Partie gauche (30%) -->
+                  <div class="left-section w-1/3">
+                      <!-- Section : Image, Nom et Statut -->
+                      <div class="section-item mt-2 flex flex-col items-center">
+                          <img src="${inputPhoto}" alt="Photo de profil" />
+                          <h2 class="text-sm font-semibold text-center">${nomComplet}</h2>
+                          <p class="text-xs text-gray-600 text-center">${profile}</p>
+                      </div>
 
-                    <!-- Section : À propos de moi -->
-                    <div class="section-item mt-2">
-                        <h3 class="section-title text-sm mx-4">About Me</h3>
-                        <p class="section-content text-xs whitespace-normal">${aboutMe}</p>
-                    </div>
+                      <!-- Section : À propos de moi -->
+                      <div class="section-item mt-2">
+                          <h3 class="section-title text-sm mx-4 text-center">About Me</h3>
+                          <p class="section-content text-xs whitespace-normal text-left mx-4">${aboutMe}</p>
+                      </div>
 
-                    <!-- Section : Contacts -->
-                    <div class="section-item mt-2">
-                        <h3 class="section-title text-sm mx-4">Contacts</h3>
-                        <p class="section-content text-xs"><i class="fas fa-envelope"></i> ${email}</p>
-                        <p class="section-content text-xs"><i class="fas fa-phone"></i> ${telephone}</p>
-                        <p class="section-content text-xs"><i class="fas fa-location"></i> ${adresse}</p>
-                        <div class="flex space-x-2 mt-1 flex-wrap mx-4">
-                            <a href="${github}" class="text-xs">GitHub</a>
-                            <a href="${linkdIn}" class="text-xs">LinkedIn</a>
-                        </div>
-                    </div>
+                      <!-- Section : Contacts -->
+                      <div class="section-item mt-2">
+                          <h3 class="section-title text-sm mx-4 text-center">Contacts</h3>
+                          <p class="section-content text-xs flex items-start space-x-2 mx-4">
+                              <i class="fas fa-envelope"></i>
+                              <span>${email}</span>
+                          </p>
+                          <p class="section-content text-xs flex items-start space-x-2 mx-4">
+                              <i class="fas fa-phone"></i>
+                              <span>${telephone}</span>
+                          </p>
+                          <p class="section-content text-xs flex items-start space-x-2 mx-4">
+                              <i class="fas fa-location"></i>
+                              <span>${adresse}</span>
+                          </p>
+                          <div class="flex space-x-2 mt-1 flex-wrap justify-center">
+                          <i class="fa-brands fa-github"></i><a href="${github}" class="text-xs"> GitHub</a>
+                          <i class="fa-brands fa-linkedin"></i><a href="${linkdIn}" class="text-xs"> LinkedIn</a>
+                          </div>
 
-                    <!-- Section : Langues -->
-                    <div class="section-item mt-2">
-                        <h3 class="section-title text-sm mx-4">Langues</h3>
-                        <ul class="list-none list-inside text-xs">
-                            <li>Français</li>
-                            <li>Anglais</li>
-                        </ul>
-                    </div>
+                      </div>
 
-                    <!-- Section : Loisirs -->
-                    <div class="section-item mt-2">
-                        <h3 class="section-title text-sm mx-4">Loisirs</h3>
-                        <ul class="list-none list-inside text-xs">
-                            <li>Voyage</li>
-                            <li>Photographie</li>
-                            <li>Sport</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Partie droite (70%) -->
-                <div class="right-section">
-                    <!-- Section : Expériences professionnelles -->
-                    <div class="section-item mt-2">
-                        <h3 class="section-title text-sm">Expériences professionnelles</h3>
-                        ${experiences
-                          .map(
-                            (exp) => `
-                            <div class="experience mb-2 text-xs">
-                                <p><strong>${exp.mission}</strong> - ${exp.company}</p>
-                                <p>${exp.sector} | ${exp.location}</p>
-                                <p>${exp.startDate} - ${exp.endDate}</p>
-                                <p>${exp.description}</p>
-                            </div>
-                        `
-                          )
-                          .join("")}
-                    </div>
+                      <!-- Section : Langues -->
+                      <div class="section-item mt-2">
+                          <h3 class="section-title text-sm text-center mx-4">Langues</h3>
+                          <ul class="list-none list-inside text-xs text-left mx-4">
+                              ${arrayLangues
+                                .map(
+                                  (langue) =>
+                                    `<li>${langue.langue} : ${langue.niveau}</li>`
+                                )
+                                .join("")}
+                          </ul>
+                      </div>
 
-                    <!-- Section : Diplômes -->
-                    <div class="section-item mt-2">
-                        <h3 class="section-title text-sm">Diplômes</h3>
-                        ${diplomesData
-                          .map(
-                            (diplome) => `
-                            <div class="degree mb-2 text-xs">
-                                <h6>${diplome.name} - ${diplome.specialty}</h6>
-                                <p>${diplome.university} | ${diplome.city}</p>
-                                <p>${diplome.startDate} - ${diplome.endDate}</p>
-                                <p>${diplome.description}</p>
-                            </div>
-                        `
-                          )
-                          .join("")}
-                    </div>
-
-                    <!-- Section : Certifications -->
-                    <div class="section-item mt-2">
-                        <h3 class="section-title text-sm">Certifications</h3>
-                        ${certificatesData
-                          .map(
-                            (cert) => `
-                            <div class="certificate mb-2 text-xs">
-                                <p>Spécialité : ${cert.name} || Organisme : ${cert.organism}</p>
-                                <p>Dates : ${cert.startDate} - ${cert.endDate}</p>
-                            </div>
-                        `
-                          )
-                          .join("")}
-                    </div>
-                  <!-- Section : Compétences -->
-                  <div class="section-item mt-2">
-                    <h3 class="section-title text-sm">Compétences</h3>
-                    <div class="certificate mb-4">
-                      <h4 class="text-xs">Soft Skills :</h4>
-                      <ul class="list-none list-inside text-xs">
-                        ${arraySoftSkills
-                          .map((skill) => `<li>${skill}</li>`)
-                          .join("")}
-                      </ul>
-                    </div>
-                    <div class="certificate mb-4">
-                      <h4 class="text-xs">Hard Skills :</h4>
-                      <ul class="list-none list-inside text-xs">
-                        ${arrayHardSkills
-                          .map((skill) => `<li>${skill}</li>`)
-                          .join("")}
-                      </ul>
-                    </div>
+                      <!-- Section : Loisirs -->
+                      <div class="section-item mt-2">
+                          <h3 class="section-title text-sm text-center mx-4">Loisirs</h3>
+                          <ul class="list-none list-inside text-xs text-left mx-4">
+                              ${arrayLoisirs
+                                .map((loisir) => `<li>${loisir}</li>`)
+                                .join("")}
+                          </ul>
+                      </div>
                   </div>
+
+                  <!-- Partie droite (70%) -->
+                  <div class="right-section w-2/3">
+                      <!-- Section : Expériences professionnelles -->
+                      <div class="section-item mt-2">
+                          <h3 class="section-title text-lg">Expériences professionnelles</h3>
+                          ${experiences
+                            .map(
+                              (exp) => `
+                              <div class="experience mb-2 text-xs">
+                                  <p><strong>${exp.mission}</strong> - ${exp.company}</p>
+                                  <p>${exp.sector} || ${exp.location}</p>
+                                  <p>${exp.startDate} || ${exp.endDate}</p>
+                                  <p>${exp.description}</p>
+                              </div>
+                          `
+                            )
+                            .join("")}
+                      </div>
+
+                      <!-- Section : Diplômes -->
+                      <div class="section-item mt-2">
+                          <h3 class="section-title text-lg">Diplômes</h3>
+                          ${diplomesData
+                            .map(
+                              (diplome) => `
+                              <div class="degree mb-2 text-xs">
+                                  <h6>${diplome.name} - ${diplome.specialty}</h6>
+                                  <p>${diplome.university} | ${diplome.city}</p>
+                                  <p>${diplome.startDate} - ${diplome.endDate}</p>
+                                  <p>${diplome.description}</p>
+                              </div>
+                          `
+                            )
+                            .join("")}
+                      </div>
+
+                      <!-- Section : Certifications -->
+                      <div class="section-item mt-2">
+                          <h3 class="section-title text-lg">Certifications</h3>
+                          ${certificatesData
+                            .map(
+                              (cert) => `
+                              <div class="certificate mb-2 text-xs">
+                                  <p>Spécialité : ${cert.name} || Organisme : ${cert.organism}</p>
+                                  <p>Dates : ${cert.startDate} - ${cert.endDate}</p>
+                              </div>
+                          `
+                            )
+                            .join("")}
+                      </div>
+
+                      <!-- Section : Compétences -->
+                      <div class="section-item mt-2">
+                          <h3 class="section-title text-lg">Compétences</h3>
+                          <div class="skills">
+                              <div class="certificate mb-4">
+                                  <h4 class="text-xs font-semibold">Soft Skills :</h4>
+                                  <ul class="list-none list-inside text-xs text-left">
+                                      ${arraySoftSkills
+                                        .map((skill) => `<li>${skill}</li>`)
+                                        .join("")}
+                                  </ul>
+                              </div>
+                              <div class="certificate mb-4">
+                                  <h4 class="text-xs font-semibold">Hard Skills :</h4>
+                                  <ul class="list-none list-inside text-xs text-left">
+                                      ${arrayHardSkills
+                                        .map((skill) => `<li>${skill}</li>`)
+                                        .join("")}
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
                   </div>
-                </div>
-            </div>      
-        </section>
+              </div>
+          </section>
         `;
       } else if (selectedType.value === "Type 2") {
         cvTemplate.innerHTML = `
-          <section>Version 2 du CV</section>
+        <section>not found!</section>
         `;
       }
       document.body.appendChild(cvTemplate);

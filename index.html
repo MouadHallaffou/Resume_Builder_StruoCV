@@ -160,91 +160,115 @@
           </div>
         </div>
         <!-- Contenu du formulaire -->
-          <form action="action.php" id="multi-step-form"
-          class="space-y-8 bg-white shadow-md rounded-lg max-w-3xl mx-auto">
+        <form class="space-y-8 bg-white shadow-md rounded-lg max-w-3xl mx-auto">
           <!-- Step 1: Information Personnel -->
           <div id="step-1" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
+            
+            <!-- Nom complet et Profil Professionnel -->
             <div class="flex space-x-4 mb-6">
+              
               <!-- Nom complet -->
               <div class="flex-1">
                 <label for="fullName" class="block mb-2 text-sm font-medium text-gray-700">Nom Complet</label>
-                <input type="text" id="fullName"
+                <input type="text" id="fullName" aria-label="Nom Complet" placeholder="Ex: Mouad Hallaffou"
                   class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                   required>
+                <span class="error-message text-red-500 text-sm mt-1"></span> 
               </div>
-               <!-- Profil Professionnel -->
-            <div class="flex-1">
-              <label for="jobLocation" class="block mb-2 text-sm font-medium text-gray-700">Profil</label>
-              <input type="text" id="jobLocation" name="jobLocation"
-                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
-                placeholder="full stack developer, technicien spécialisé..." required>
+              
+              <!-- Profil Professionnel -->
+              <div class="flex-1">
+                <label for="jobLocation" class="block mb-2 text-sm font-medium text-gray-700">Profil</label>
+                <input type="text" id="jobLocation" name="jobLocation" aria-label="Profil professionnel"
+                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                  placeholder="Ex: Développeur full stack, technicien spécialisé..." required>
+                <span class="error-message text-red-500 text-sm mt-1"></span> 
+              </div>
             </div>
-            </div>
+            
             <!-- Email et Téléphone -->
             <div class="flex space-x-4 mb-6">
+              
               <!-- Email -->
               <div class="flex-1">
                 <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="email" name="email"
-                  class="email bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                <input type="email" id="email" name="email" aria-label="Email" placeholder="Ex: mouadfl@gmail.com"
+                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                   required>
+                <span class="error-message text-red-500 text-sm mt-1"></span> 
               </div>
+              
               <!-- Téléphone -->
               <div class="flex-1">
                 <label for="phone" class="block mb-2 text-sm font-medium text-gray-700">Téléphone</label>
-                <input type="tel" id="phone" name="phone"
-                  class="phone bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                <input type="tel" id="phone" name="phone" aria-label="Téléphone" placeholder="Ex: 06 23 45 67 89"
+                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                   required>
+                <span class="error-message text-red-500 text-sm mt-1"></span> 
               </div>
             </div>
+            
             <!-- Adresse -->
             <div class="mb-6">
               <label for="adresse" class="block mb-2 text-sm font-medium text-gray-700">Adresse</label>
-              <input type="text" id="adresse" name="adresse"
+              <input type="text" id="adresse" name="adresse" aria-label="Adresse" placeholder="Ex: 123 rue de 123 casablanca maroc"
                 class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                 required>
+              <span class="error-message text-red-500 text-sm mt-1"></span> 
             </div>
+            
             <!-- LinkedIn et GitHub -->
             <div class="flex space-x-4 mb-6">
+              
               <!-- LinkedIn -->
               <div class="flex-1">
                 <label for="linkedin" class="block mb-2 text-sm font-medium text-gray-700">LinkedIn</label>
-                <input type="url" id="linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/username"
+                <input type="url" id="linkedin" name="linkedin" aria-label="LinkedIn" placeholder="https://www.linkedin.com/in/username"
                   class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                   required>
+                <span class="error-message text-red-500 text-sm mt-1"></span> 
               </div>
+              
               <!-- GitHub -->
               <div class="flex-1">
                 <label for="github" class="block mb-2 text-sm font-medium text-gray-700">GitHub</label>
-                <input type="url" id="github" name="github" placeholder="https://github.com/username"
+                <input type="url" id="github" name="github" aria-label="GitHub" placeholder="https://github.com/username"
                   class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                   required>
+                <span class="error-message text-red-500 text-sm mt-1"></span> 
               </div>
             </div>
+            
             <!-- À propos de toi -->
             <div class="mb-6">
               <label for="aboutMe" class="block mb-2 text-sm font-medium text-gray-700">À propos de toi</label>
-              <textarea id="aboutMe" name="aboutMe" rows="4"
+              <textarea id="aboutMe" name="aboutMe" rows="4" aria-label="À propos de toi"
                 class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                 placeholder="Décrivez votre expérience, vos compétences et votre spécialité dans votre domaine"
                 required></textarea>
+              <span class="error-message text-red-500 text-sm mt-1"></span> 
             </div>
+            
             <!-- Image de Profil -->
-            <!-- <div class="mb-6">
+            <div class="mb-6">
               <label for="profileImage" class="block mb-2 text-sm font-medium text-gray-700">Ajoutez votre image</label>
-              <input type="file" id="profileImage" name="profileImage" accept="image/*"
+              <input type="file" id="profileImage" name="profileImage" accept="image/*" aria-label="Image de Profil"
                 class="block w-full text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300 cursor-pointer focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg p-3"
                 required>
-            </div> -->
+              <span class="error-message text-red-500 text-sm mt-1"></span> 
+            </div>
+            
             <!-- Bouton Suivant -->
             <div class="flex justify-end">
-              <button type="button" id="nextBtnInfo" name="next"
+              <button type="button" id="nextBtnInfo" name="next" aria-label="Suivant"
                 class="nextBtnInfo flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
                 Suivant
               </button>
             </div>
-           </div>
-          </form>
+            
+          </div>
+        </form>
+              
           <!------------------------ Step: 2 ---------------------------->
           <!------------------- Section des Expériences ----------------->
           <div id="step-2" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
@@ -483,9 +507,9 @@
                     <h3 class="text-lg font-medium text-gray-700">Loisirs</h3>
                     <div id="hobbyInputs" class="space-y-2">
                       <div class="flex items-center space-x-2">
-                        <input type="text" name="hobbies[]" id="hibbies" placeholder="Loisir" class="w-full p-2 border rounded-md"
+                        <input type="text" name="loisirs" id="loisirs" placeholder="Loisir" class="w-full p-2 border rounded-md"
                           required>
-                        <button type="button" id="addHobbyInput"
+                        <button type="button" id="addInteretInput"
                           class="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600">
                           Ajouter
                         </button>
@@ -564,12 +588,12 @@
               scale: 3, 
               useCORS: true 
           });
-          const imgData = canvas.toDataURL("./images/homePage.svg");
-          
+          const imgData = canvas.toDataURL("inputPhoto");
           pdf.addImage(imgData, "PNG", 0, 0, 210, 297);
           pdf.save("CV.pdf");
       }
   </script>
   <script src="main.js"></script>
+  <script src="validation.js"></script>
 </body>
 </html>

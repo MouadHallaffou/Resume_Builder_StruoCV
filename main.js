@@ -526,66 +526,65 @@ document.addEventListener("DOMContentLoaded", function () {
       if (selectedType.value === "Type 1") {
         cvTemplate.innerHTML = `
               <section class="bg-gray-100">
-              <div class="a4-container border border-gray-300 shadow-lg rounded-lg p-4">
+               <div class="a4-container border border-gray-300 shadow-lg rounded-lg p-4">
                   <!-- Partie gauche (30%) -->
-                  <div class="left-section w-1/3">
-                      <!-- Section : Image, Nom et Statut -->
-                      <div class="section-item mt-2 flex flex-col items-center">
-                          <img src="${inputPhoto}" alt="Photo de profil" />
-                          <h2 class="text-sm font-semibold text-center">${nomComplet}</h2>
-                          <p class="text-xs text-gray-600 text-center">${profile}</p>
-                      </div>
+                   <div class="left-section w-1/3">
+                    <!-- Section : Image, Nom et Statut -->
+                    <div class="section-item mt-2 flex flex-col items-center">
+                        <img src="${inputPhoto}" alt="Photo de profil" />
+                        <h2 class="text-sm font-bold text-center">${nomComplet}</h2>
+                        <p class="text-xs text-gray-600 text-center">${profile}</p>
+                    </div>
 
-                      <!-- Section : À propos de moi -->
-                      <div class="section-item mt-2">
-                          <h3 class="section-title text-sm mx-4 text-center">Apros</h3>
-                          <p class="section-content text-xs whitespace-normal text-left mx-4">${aboutMe}</p>
-                      </div>
+                    <!-- Section : À propos de moi -->
+                    <div class="section-item mt-2">
+                        <h3 class="section-title text-lg mx-4 text-center">Apros</h3>
+                        <p class="section-content text-xs whitespace-normal text-left mx-4">${aboutMe}</p>
+                    </div>
 
-                      <!-- Section : Contacts -->
-                      <div class="section-item mt-2">
-                          <h3 class="section-title text-sm mx-4 text-center">Contacts</h3>
-                          <p class="section-content text-xs flex items-start space-x-2 mx-4">
-                              <i class="fas fa-envelope"></i>
-                              <span>${email}</span>
-                          </p>
-                          <p class="section-content text-xs flex items-start space-x-2 mx-4">
-                              <i class="fas fa-phone"></i>
-                              <span>${telephone}</span>
-                          </p>
-                          <p class="section-content text-xs flex items-start space-x-2 mx-4">
-                              <i class="fas fa-location"></i>
-                              <span>${adresse}</span>
-                          </p>
-                          <div class="flex space-x-4 mt-1 flex-wrap justify-center">
-                          <i class="fa-brands fa-github"></i><a href="${github}" class="text-xs"> GitHub</a>
-                          <i class="fa-brands fa-linkedin"></i><a href="${linkdIn}" class="text-xs"> LinkedIn</a>
-                          </div>
+                    <!-- Section : Contacts -->
+                    <div class="section-item mt-2">
+                        <h3 class="section-title text-lg mx-4 text-center">Contacts</h3>
+                        <p class="section-content text-sm flex items-start space-x-2 mx-4">
+                            <i class="fas fa-envelope"></i>
+                            <span>${email}</span>
+                        </p>
+                        <p class="section-content text-sm flex items-start space-x-2 mx-4">
+                            <i class="fas fa-phone"></i>
+                            <span>${telephone}</span>
+                        </p>
+                        <p class="section-content text-sm flex items-start space-x-2 mx-4">
+                            <i class="fas fa-location"></i>
+                            <span>${adresse}</span>
+                        </p>
+                        <div class="flex space-x-2 mt-1 flex-wrap justify-center">
+                            <i class="fa-brands fa-github"></i><a href="${github}"class="text-sm">Github</a>
+                            <i class="fa-brands fa-linkedin"></i><a href="${linkdIn}"class="text-sm">LinkedIn</a>
+                        </div>
+                    </div>
 
-                      </div>
+                    <!-- Section : Langues -->
+                    <div class="section-item mt-2">
+                        <h3 class="section-title text-lg text-center mx-4">Langues</h3>
+                        <ul class="text-sm text-left mx-4 space-y-2" style="line-height: 1.6; list-style-type: none; margin-top: 0; padding-left: 0;">
+                            ${arrayLangues
+                              .map(
+                                (langue) =>
+                                  `<li class="text-sm">${langue.langue} : ${langue.niveau}</li>`
+                              )
+                              .join("")}
+                        </ul>
+                    </div>
 
-                      <!-- Section : Langues -->
-                      <div class="section-item mt-2">
-                          <h3 class="section-title text-lg text-center mx-4">Langues</h3>
-                          <ul class="list-none list-inside text-sm text-left mx-4">
-                              ${arrayLangues
-                                .map(
-                                  (langue) =>
-                                    `<li>${langue.langue} : ${langue.niveau}</li>`
-                                )
-                                .join("")}
-                          </ul>
-                      </div>
-
-                      <!-- Section : Loisirs -->
-                      <div class="section-item mt-2">
-                          <h3 class="section-title text-lg text-center mx-4">Loisirs</h3>
-                          <ul class="list-none list-inside text-sm text-left mx-4">
-                              ${arrayLoisirs
-                                .map((loisir) => `<li>${loisir}</li>`)
-                                .join("")}
-                          </ul>
-                      </div>
+                    <!-- Section : Loisirs -->
+                    <div class="section-item mt-2">
+                        <h3 class="section-title text-lg text-center mx-4">Loisirs</h3>
+                        <ul class="text-sm text-left mx-4 space-y-2" style="line-height: 1.6; list-style-type: none; margin-top: 0; padding-left: 0;">
+                            ${arrayLoisirs
+                              .map((loisir) => `<li class="text-sm">${loisir}</li>`)
+                              .join("")}
+                        </ul>
+                    </div>
                   </div>
 
                   <!-- Partie droite (70%) -->
@@ -597,9 +596,9 @@ document.addEventListener("DOMContentLoaded", function () {
                             .map(
                               (exp) => `
                               <div class="experience mb-2 text-sm">
-                                  <p><strong>${exp.mission}</strong> - ${exp.company}</p>
+                                  <p><strong>${exp.mission}</strong> || ${exp.company}</p>
                                   <p>${exp.sector} || ${exp.location}</p>
-                                  <p>${exp.startDate} || ${exp.endDate}</p>
+                                  <p>Depuis: ${exp.startDate} jusqua: ${exp.endDate}</p>
                                   <p>${exp.description}</p>
                               </div>
                           `
@@ -616,7 +615,7 @@ document.addEventListener("DOMContentLoaded", function () {
                               <div class="degree mb-2 text-sm">
                                   <h6>${diplome.name} - ${diplome.specialty}</h6>
                                   <p>${diplome.university} | ${diplome.city}</p>
-                                  <p>${diplome.startDate} - ${diplome.endDate}</p>
+                                  <p>Depuis: ${diplome.startDate}jusqua: ${diplome.endDate}</p>
                                   <p>${diplome.description}</p>
                               </div>
                           `

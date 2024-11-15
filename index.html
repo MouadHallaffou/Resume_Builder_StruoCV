@@ -49,7 +49,7 @@
       </div>
       <div class="relative flex items-center md:inline-flex">
         <marquee behavior="title" direction="left">
-          <blockquote class="text-4xl text-blue-900 font-bold">Bienvenue Dans Mon Espace</blockquote>
+          <blockquote class="text-3xl text-blue-900 font-bold">Bienvenue Dans Mon Espace</blockquote>
         </marquee>
       </div>
       <div class="flex items-center gap-4">
@@ -61,12 +61,13 @@
     </div>
 
     <div
-      class="items-center w-10/12 grid-cols-2 mx-auto overflow-y-hidden overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-0" style="max-height: 85vh;"
+      class="items-start w-10/12 grid-cols-2 mx-auto overflow-y-hidden overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-0" style="max-height:85vh;"
       data-aos="fade-right" data-aos-duration="800">
       <div class="pr-2 md:mb-14 py-14 md:py-0">
-        <h1 class="font-bold space-y-6 text-blue-900 text-4xl"><span class="block w-full">Créez un CV
-            professionnel pour</span> booster votre carrière !</h1>
-        <p class="py-4 text-1xl text-white 2xl:py-8 md:py-6 2xl:pr-5">
+        <h1 class="font-bold text-blue-900 text-3xl leading-relaxed">
+          <span class="block w-full">Créez un CV professionnel pour</span> booster votre carrière !
+        </h1>
+        <p class="py-4 text-1xl text-white leading-loose 2xl:py-8 md:py-6 2xl:pr-5">
           Concevez facilement un CV moderne et personnalisé grâce à notre outil intuitif. Suivez des étapes simples pour
           ajouter vos informations, choisissez parmi plusieurs modèles élégants, et sauvegardez votre CV en ligne. Idéal
           pour mettre en avant vos compétences et votre expérience professionnelle, prêt pour l'impression ou le
@@ -74,10 +75,10 @@
         </p>
         <div class="mt-4">
           <a id="startedBtn" href="#"
-            class="px-5 py-5 text-2xl font-semibold tracking-wider text-white bg-blue-800 rounded-lg md:px-8 hover:bg-blue-700 group"><span>Commencer</span>
+            class="p-4 text-1xl tracking-widest font-bold text-white bg-blue-800 rounded-lg md:px-4 hover:bg-blue-700 group"><span>Commencer</span>
           </a>
         </div>
-      </div>
+      </div>      
 
       <div class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0" style="height: 70%; display: flex; align-items: center; margin-left: 100px; width: 700px;">
         <img id="heroImg1"
@@ -160,118 +161,117 @@
           </div>
         </div>
         <!-- Contenu du formulaire -->
-        <form class="space-y-8 bg-white shadow-md rounded-lg max-w-3xl mx-auto">
-          <!-- Step 1: Information Personnel -->
-          <div id="step-1" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
-        
-            <!-- Nom complet et Profil Professionnel -->
-            <div class="flex space-x-4 mb-6">
+          <form id="formInfoPersonnelle" class="space-y-8 bg-white shadow-md rounded-lg max-w-3xl mx-auto">
+            <!-- Step 1: Information Personnel -->
+            <div id="step-1" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
+          
+              <!-- Nom complet et Profil Professionnel -->
+              <div class="flex space-x-4 mb-6">
+                
+                <!-- Nom complet -->
+                <div class="flex-1">
+                  <label for="fullName" class="block mb-2 text-sm font-medium text-gray-700">Nom Complet</label>
+                  <input type="text" id="fullName" aria-label="Nom Complet" placeholder="Ex: Mouad Hallaffou"
+                    class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                    required>
+                  <span id="fullNameError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez entrer votre nom et prenom.</span> 
+                </div>
+                
+                <!-- Profil Professionnel -->
+                <div class="flex-1">
+                  <label for="jobLocation" class="block mb-2 text-sm font-medium text-gray-700">Profil</label>
+                  <input type="text" id="jobLocation" name="jobLocation" aria-label="Profil professionnel"
+                    class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                    placeholder="Ex: Développeur full stack, technicien spécialisé..." required>
+                  <span id="jobLocationError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez spécifier votre profil professionnel.</span> 
+                </div>
+              </div>
               
-              <!-- Nom complet -->
-              <div class="flex-1">
-                <label for="fullName" class="block mb-2 text-sm font-medium text-gray-700">Nom Complet</label>
-                <input type="text" id="fullName" aria-label="Nom Complet" placeholder="Ex: Mouad Hallaffou"
+              <!-- Email et Téléphone -->
+              <div class="flex space-x-4 mb-6">
+                
+                <!-- Email -->
+                <div class="flex-1">
+                  <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email</label>
+                  <input type="email" id="email" name="email" aria-label="Email" placeholder="Ex: mouadfl@gmail.com"
+                    class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                    required>
+                  <span id="emailError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez saisir une adresse email valide</span> 
+                </div>
+                
+                <!-- Téléphone -->
+                <div class="flex-1">
+                  <label for="phone" class="block mb-2 text-sm font-medium text-gray-700">Téléphone</label>
+                  <input type="tel" id="phone" name="phone" aria-label="Téléphone" placeholder="Ex: 06 23 45 67 89"
+                    class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                    required>
+                  <span id="phoneError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez saisir un numéro de téléphone valide.</span> 
+                </div>
+              </div>
+              
+              <!-- Adresse -->
+              <div class="mb-6">
+                <label for="adresse" class="block mb-2 text-sm font-medium text-gray-700">Adresse</label>
+                <input type="text" id="adresse" name="adresse" aria-label="Adresse" placeholder="Ex: 123 rue de 123 casablanca maroc"
                   class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                   required>
-                <span id="fullNameError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez entrer votre nom et prenom.</span> 
+                <span id="adresseError" class="error-message text-red-500 text-xs mt-1 hidden">Veuillez entrer une adresse valide.</span> 
               </div>
               
-              <!-- Profil Professionnel -->
-              <div class="flex-1">
-                <label for="jobLocation" class="block mb-2 text-sm font-medium text-gray-700">Profil</label>
-                <input type="text" id="jobLocation" name="jobLocation" aria-label="Profil professionnel"
-                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
-                  placeholder="Ex: Développeur full stack, technicien spécialisé..." required>
-                <span id="jobLocationError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez spécifier votre profil professionnel.</span> 
+              <!-- LinkedIn et GitHub -->
+              <div class="flex space-x-4 mb-6">
+                
+                <!-- LinkedIn -->
+                <div class="flex-1">
+                  <label for="linkedin" class="block mb-2 text-sm font-medium text-gray-700">LinkedIn</label>
+                  <input type="url" id="linkedin" name="linkedin" aria-label="LinkedIn" placeholder="https://www.linkedin.com/in/username"
+                    class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                    required>
+                  <span id="linkedinError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez entrer un lien vers votre profil LinkedIn.</span> 
+                </div>
+                
+                <!-- GitHub -->
+                <div class="flex-1">
+                  <label for="github" class="block mb-2 text-sm font-medium text-gray-700">GitHub</label>
+                  <input type="url" id="github" name="github" aria-label="GitHub" placeholder="https://github.com/username"
+                    class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                    required>
+                  <span id="githubError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez entrer un lien vers votre profil GitHub.</span> 
+                </div>
               </div>
-            </div>
-            
-            <!-- Email et Téléphone -->
-            <div class="flex space-x-4 mb-6">
               
-              <!-- Email -->
-              <div class="flex-1">
-                <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="email" name="email" aria-label="Email" placeholder="Ex: mouadfl@gmail.com"
-                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+              <!-- À propos de toi -->
+              <div class="mb-6">
+                <label for="aboutMe" class="block mb-2 text-sm font-medium text-gray-700">À propos de toi</label>
+                <textarea id="aboutMe" name="aboutMe" rows="4" aria-label="À propos de toi"
+                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3 aboutMeField"
+                  placeholder="Décrivez votre expérience, vos compétences et votre spécialité dans votre domaine"
+                  required maxlength="1000" minlength="50"></textarea>
+                <span id="aboutMeError" class="error-message text-red-500 text-xs mt-1 hidden ">
+                  *Le texte doit contenir entre 50 et 1000 caractères.
+                </span>
+              </div>            
+              
+              <!-- Image de Profil -->
+              <div class="mb-6">
+                <label for="profileImage" class="block mb-2 text-sm font-medium text-gray-700">Ajoutez votre image</label>
+                <input type="file" id="profileImage" name="profileImage" accept="image/*" aria-label="Image de Profil"
+                  class="block w-full text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300 cursor-pointer focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg p-3"
                   required>
-                <span id="emailError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez saisir une adresse email valide</span> 
+                <span id="profileImageError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez télécharger une photo de profil.</span> 
               </div>
-              
-              <!-- Téléphone -->
-              <div class="flex-1">
-                <label for="phone" class="block mb-2 text-sm font-medium text-gray-700">Téléphone</label>
-                <input type="tel" id="phone" name="phone" aria-label="Téléphone" placeholder="Ex: 06 23 45 67 89"
-                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
-                  required>
-                <span id="phoneError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez saisir un numéro de téléphone valide.</span> 
+          
+              <!-- Bouton Suivant -->
+              <div class="flex justify-end">
+                <button type="button" id="nextBtnInfo" name="next" aria-label="Suivant"
+                  class="nextBtnInfo flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
+                  Suivant
+                </button>
               </div>
+          
             </div>
-            
-            <!-- Adresse -->
-            <div class="mb-6">
-              <label for="adresse" class="block mb-2 text-sm font-medium text-gray-700">Adresse</label>
-              <input type="text" id="adresse" name="adresse" aria-label="Adresse" placeholder="Ex: 123 rue de 123 casablanca maroc"
-                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
-                required>
-              <span id="adresseError" class="error-message text-red-500 text-xs mt-1 hidden">Veuillez entrer une adresse valide.</span> 
-            </div>
-            
-            <!-- LinkedIn et GitHub -->
-            <div class="flex space-x-4 mb-6">
-              
-              <!-- LinkedIn -->
-              <div class="flex-1">
-                <label for="linkedin" class="block mb-2 text-sm font-medium text-gray-700">LinkedIn</label>
-                <input type="url" id="linkedin" name="linkedin" aria-label="LinkedIn" placeholder="https://www.linkedin.com/in/username"
-                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
-                  required>
-                <span id="linkedinError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez entrer un lien vers votre profil LinkedIn.</span> 
-              </div>
-              
-              <!-- GitHub -->
-              <div class="flex-1">
-                <label for="github" class="block mb-2 text-sm font-medium text-gray-700">GitHub</label>
-                <input type="url" id="github" name="github" aria-label="GitHub" placeholder="https://github.com/username"
-                  class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
-                  required>
-                <span id="githubError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez entrer un lien vers votre profil GitHub.</span> 
-              </div>
-            </div>
-            
-            <!-- À propos de toi -->
-            <div class="mb-6">
-              <label for="aboutMe" class="block mb-2 text-sm font-medium text-gray-700">À propos de toi</label>
-              <textarea id="aboutMe" name="aboutMe" rows="4" aria-label="À propos de toi"
-                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3 aboutMeField"
-                placeholder="Décrivez votre expérience, vos compétences et votre spécialité dans votre domaine"
-                required maxlength="1000" minlength="50"></textarea>
-              <span id="aboutMeError" class="error-message text-red-500 text-xs mt-1 hidden ">
-                *Le texte doit contenir entre 50 et 1000 caractères.
-              </span>
-            </div>            
-            
-            <!-- Image de Profil -->
-            <div class="mb-6">
-              <label for="profileImage" class="block mb-2 text-sm font-medium text-gray-700">Ajoutez votre image</label>
-              <input type="file" id="profileImage" name="profileImage" accept="image/*" aria-label="Image de Profil"
-                class="block w-full text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300 cursor-pointer focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg p-3"
-                required>
-              <span id="profileImageError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez télécharger une photo de profil.</span> 
-            </div>
-        
-            <!-- Bouton Suivant -->
-            <div class="flex justify-end">
-              <button type="button" id="nextBtnInfo" name="next" aria-label="Suivant"
-                class="nextBtnInfo flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
-                Suivant
-              </button>
-            </div>
-        
-          </div>
-        </form>
-        
-              
+          </form>
+  
           <!------------------------ Step: 2 ---------------------------->
           <!------------------- Section des Expériences ----------------->
           <div id="step-2" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
@@ -579,7 +579,7 @@
   
   <div id="cvTemplete"></div>
   
-  <button onclick="generatePDF()" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded absolute top-0 right-60" id="telechargerCV" style="display: none;">Télécharger</button>
+  <button onclick="generatePDF()" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded fixed top-0 right-0" id="telechargerCV" style="display: none;">Télécharger</button>
   <script>
       async function generatePDF() {
           const { jsPDF } = window.jspdf;

@@ -5,8 +5,13 @@ startedBtn.addEventListener("click", () => {
   heroSection.style.display = "none";
   formulaire.style.display = "block";
 });
+/**
+ * Gestion de la validation du formulaire et de la navigation entre les étapes
+ */
+
 // Sélection des éléments du formulaire et de la barre de progression
 const progressBar = document.getElementById("progress-bar");
+
 // Sélection des étapes du formulaire dans un tableau
 const forms = [
   document.getElementById("step-1"),
@@ -16,6 +21,7 @@ const forms = [
   document.getElementById("step-5"),
   document.getElementById("step-6"),
 ];
+
 // Sélection des indicateurs de progression affichés dans l'interface
 const steppers = [
   document.getElementById("step1"),
@@ -25,14 +31,19 @@ const steppers = [
   document.getElementById("step5"),
   document.getElementById("step6"),
 ];
-// Définition des styles pour les étapes actives et no active
+
+// Définition des styles pour les étapes actives et non actives
 const activeStepStyle =
   "flex items-center justify-center w-10 h-10 bg-blue-500 text-white font-bold rounded-full transition-all duration-500 ease-in-out";
 const inactiveStepStyle =
   "flex items-center justify-center w-10 h-10 bg-blue-200 text-white font-bold rounded-full transition-all duration-500 ease-in-out";
+
 // Initialisation du compteur d'étape
 let currentStep = 0;
-// Fonction pour mettre à jour la barre de progression et les étapes visuelles
+
+/**
+ * Fonction pour mettre à jour la barre de progression et les étapes visuelles
+ */
 const updateProgressBar = () => {
   const progressPercentage = ((currentStep + 1) / forms.length) * 100;
   progressBar.style.width = `${progressPercentage}%`;
@@ -42,21 +53,41 @@ const updateProgressBar = () => {
     step.className = index <= currentStep ? activeStepStyle : inactiveStepStyle;
   });
 };
-// Fonction pour afficher une étape spécifique
+
+/**
+ * Fonction pour afficher une étape spécifique
+ */
 const showStep = (index) => {
   forms.forEach((form, idx) => {
     form.style.display = idx === index ? "block" : "none";
   });
 };
-// Fonction pour passer à l'étape suivante
+
+/**
+ * Fonction pour passer à l'étape suivante avec validation
+ */
 const Suivantstep = () => {
+  // Validation des champs de l'étape actuelle
+  if (currentStep === 0) {
+    if (!validateStep1()) return; // Valider l'étape 1 avant de passer
+  } else if (currentStep === 1) {
+    if (!validateStep2()) return; // Valider l'étape 2 avant de passer
+  }
+  /**
+ * Autres étapes peuvent être ajoutées ulterieurement 
+ */ 
+
+  // Si l'étape est valide, passe à l'étape suivante
   if (currentStep < forms.length - 1) {
     currentStep++;
     showStep(currentStep);
     updateProgressBar();
   }
 };
-// Fonction pour revenir à l'étape précédente
+
+/**
+ * Fonction pour revenir à l'étape précédente
+ */
 const precedentStep = () => {
   if (currentStep > 0) {
     currentStep--;
@@ -64,78 +95,201 @@ const precedentStep = () => {
     updateProgressBar();
   }
 };
+
+/**
+ * Fonction de validation de l'étape 1
+ * Valide les champs de l'étape 1 avant de passer à l'étape suivante
+ */
+const validateStep1 = () => {
+  const fullName = document.getElementById("fullName");
+  const jobLocation = document.getElementById("jobLocation");
+  const email = document.getElementById("email");
+
+  let isValid = true;
+
+  // Validation du nom complet
+  const fullNamePattern = /^[A-Z][a-z]+(?: [A-Z][a-z]+)+$/;
+  if (!fullNamePattern.test(fullName.value.trim())) {
+    document.getElementById("fullNameError").classList.remove("hidden");
+    isValid = false;
+  } else {
+    document.getElementById("fullNameError").classList.add("hidden");
+  }
+
+  // Validation du profil
+  const jobLocationPattern = /^[a-zA-Z0-9\s\-]+$/;
+  if (!jobLocationPattern.test(jobLocation.value.trim())) {
+    document.getElementById("jobLocationError").classList.remove("hidden");
+    isValid = false;
+  } else {
+    document.getElementById("jobLocationError").classList.add("hidden");
+  }
+
+  // Validation de l'email
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailPattern.test(email.value.trim())) {
+    document.getElementById("emailError").classList.remove("hidden");
+    isValid = false;
+  } else {
+    document.getElementById("emailError").classList.add("hidden");
+  }
+
+  return isValid;
+};
+
+/**
+ * Fonction de validation de l'étape 2
+ * Valide les champs de l'étape 2 avant de passer à l'étape suivante
+ */
+const validateStep2 = () => {
+  const phone = document.getElementById("phone");
+  const adresse = document.getElementById("adresse");
+  const linkedin = document.getElementById("linkedin");
+
+  let isValid = true;
+
+  // Validation du téléphone
+  const phonePattern = /^[0-9]{10}$/;
+  if (!phonePattern.test(phone.value.trim())) {
+    document.getElementById("phoneError").classList.remove("hidden");
+    isValid = false;
+  } else {
+    document.getElementById("phoneError").classList.add("hidden");
+  }
+
+  // Validation de l'adresse
+  if (adresse.value.trim() === "") {
+    document.getElementById("adresseError").classList.remove("hidden");
+    isValid = false;
+  } else {
+    document.getElementById("adresseError").classList.add("hidden");
+  }
+
+  // Validation du lien LinkedIn
+  const urlPattern = /^https?:\/\/(?:www\.)?[a-z0-9.-]+(?:\/[a-z0-9.-]+)+\/?$/i;
+  if (!urlPattern.test(linkedin.value.trim())) {
+    document.getElementById("linkedinError").classList.remove("hidden");
+    isValid = false;
+  } else {
+    document.getElementById("linkedinError").classList.add("hidden");
+  }
+
+  return isValid;
+};
+
 // Ajout des écouteurs d'événements pour les boutons "Suivant" et "Précédent"
 document.getElementById("nextBtnInfo").addEventListener("click", Suivantstep);
 document.getElementById("nextBtnExp").addEventListener("click", Suivantstep);
-document
-  .getElementById("nextBtnDiplomes")
-  .addEventListener("click", Suivantstep);
-document
-  .getElementById("nextBtnCertificats")
-  .addEventListener("click", Suivantstep);
-document
-  .getElementById("nextBtnCompetences")
-  .addEventListener("click", Suivantstep);
+document.getElementById("nextBtnDiplomes").addEventListener("click", Suivantstep);
+document.getElementById("nextBtnCertificats").addEventListener("click", Suivantstep);
+document.getElementById("nextBtnCompetences").addEventListener("click", Suivantstep);
 document.getElementById("prevBtnExp").addEventListener("click", precedentStep);
-document
-  .getElementById("prevBtnDiplomes")
-  .addEventListener("click", precedentStep);
-document
-  .getElementById("prevBtnCertificats")
-  .addEventListener("click", precedentStep);
-document
-  .getElementById("prevBtnCompetances")
-  .addEventListener("click", precedentStep);
-document
-  .getElementById("prevBtnLangues")
-  .addEventListener("click", precedentStep);
+document.getElementById("prevBtnDiplomes").addEventListener("click", precedentStep);
+document.getElementById("prevBtnCertificats").addEventListener("click", precedentStep);
+document.getElementById("prevBtnCompetances").addEventListener("click", precedentStep);
+document.getElementById("prevBtnLangues").addEventListener("click", precedentStep);
+
+// Afficher la première étape et mettre à jour la barre de progression
 showStep(currentStep);
 updateProgressBar();
 
-const experienceForm = document.getElementById("experience-form");
-const experienceList = document.getElementById("experience-list");
+
+const experiences = [];
 const addExperienceButton = document.getElementById("add-experience");
-let experiences = [];
+const experienceFormsContainer = document.getElementById("experience-forms-container");
+const nextBtn = document.getElementById("nextBtnExp");
+
 addExperienceButton.addEventListener("click", () => {
-  const mission = document.getElementById("experience-mission").value;
-  const sector = document.getElementById("experience-sector").value;
-  const startDate = document.getElementById("experience-start-date").value;
-  const endDate = document.getElementById("experience-end-date").value;
-  const company = document.getElementById("experience-company").value;
-  const location = document.getElementById("experience-location").value;
-  const description = document.getElementById("experience-description").value;
-  const newExperience = {
-    mission,
-    sector,
-    startDate,
-    endDate,
-    company,
-    location,
-    description,
-  };
-  experiences.push(newExperience);
-  const experienceItem = document.createElement("div");
-  experienceItem.classList.add(
-    "bg-white",
-    "p-4",
-    "rounded-lg",
-    "shadow",
-    "experience-item"
-  );
-  experienceItem.innerHTML = `
-        <h6 class="text-lg font-semibold">${mission} - ${company}</h6>
-        <p class="text-sm text-gray-600">${sector} | ${location}</p>
-        <p class="text-sm text-gray-600">${startDate} - ${endDate}</p>
-        <p class="mt-2 text-gray-800">${description}</p>
-        <button type="button" class="bg-red-400 text-white px-3 py-2 rounded-md hover:bg-red-600 remove-experience">remove</button>
-    `;
-  experienceList.appendChild(experienceItem);
-  const removeButton = experienceItem.querySelector(".remove-experience");
-  removeButton.addEventListener("click", () => {
-    experienceList.removeChild(experienceItem);
-    experiences = experiences.filter((exp) => exp !== newExperience); // Supprimer l'expérience du tableau
+  // Créer un nouveau formulaire dynamique
+  const formId = `experience-form-${experiences.length + 1}`;
+  const experienceForm = document.createElement("form");
+  experienceForm.id = formId;
+  experienceForm.classList.add("space-y-6");
+  experienceForm.innerHTML = `
+     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div>
+          <label for="${formId}-mission" class="block mb-2 text-sm font-medium text-gray-800">Mission</label>
+          <input type="text" id="${formId}-mission" name="experience_mission" class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" placeholder="Entrez la mission" required>
+        </div>
+        <div>
+          <label for="${formId}-sector" class="block mb-2 text-sm font-medium text-gray-800">Secteur</label>
+          <input type="text" id="${formId}-sector" name="experience_sector" class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" placeholder="Entrez le secteur" required>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div>
+          <label for="${formId}-start-date" class="block mb-2 text-sm font-medium text-gray-800">Date de Début</label>
+          <input type="date" id="${formId}-start-date" name="experience_start_date" class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" required>
+        </div>
+        <div>
+          <label for="${formId}-end-date" class="block mb-2 text-sm font-medium text-gray-800">Date de Fin</label>
+          <input type="date" id="${formId}-end-date" name="experience_end_date" class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" required>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div>
+          <label for="${formId}-company" class="block mb-2 text-sm font-medium text-gray-800">Nom de l'Entreprise</label>
+          <input type="text" id="${formId}-company" name="experience_company" class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" placeholder="Entrez le nom de l'entreprise" required>
+        </div>
+        <div>
+          <label for="${formId}-location" class="block mb-2 text-sm font-medium text-gray-800">Lieu</label>
+          <input type="text" id="${formId}-location" name="experience_location" class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" placeholder="Entrez le lieu" required>
+        </div>
+      </div>
+
+      <div>
+        <label for="${formId}-description" class="block mb-2 text-sm font-medium text-gray-800">Description</label>
+        <textarea id="${formId}-description" name="experience_description" rows="4" class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full text-sm text-gray-700 placeholder-gray-400" placeholder="Entrez une description" required></textarea>
+      </div>
+  `;
+
+  const submitButton = document.createElement("button");
+  submitButton.type = "button";
+  submitButton.classList.add("bg-blue-600", "text-white", "px-4", "py-2", "rounded-lg");
+  submitButton.innerText = "Enregistrer";
+  submitButton.addEventListener("click", () => {
+    const experience = {
+      mission: document.getElementById(`${formId}-mission`).value,
+      sector: document.getElementById(`${formId}-sector`).value,
+      startDate: document.getElementById(`${formId}-start-date`).value,
+      endDate: document.getElementById(`${formId}-end-date`).value,
+      company: document.getElementById(`${formId}-company`).value,
+      location: document.getElementById(`${formId}-location`).value,
+      description: document.getElementById(`${formId}-description`).value,
+    };
+    experiences.push(experience);
+    alert("Expérience ajoute!");
+
+    experienceForm.reset();
+    displayExperiences();
+    experienceForm.preventDefault();
   });
-  experienceForm.reset();
+
+  experienceForm.appendChild(submitButton);
+  experienceFormsContainer.appendChild(experienceForm);
+});
+
+function displayExperiences() {
+  const experienceListContainer = document.getElementById("experience-list");
+  experienceListContainer.innerHTML = ''; 
+
+  experiences.forEach(experience => {
+    const experienceItem = document.createElement("div");
+    experienceItem.classList.add("bg-white", "p-4", "rounded-lg", "shadow");
+    experienceItem.innerHTML = `
+      <h6 class="text-lg font-semibold">${experience.mission} - ${experience.company}</h6>
+      <p class="text-sm text-gray-600">${experience.sector} | ${experience.location}</p>
+      <p class="text-sm text-gray-600">${experience.startDate} - ${experience.endDate}</p>
+      <p class="mt-2 text-gray-800">${experience.description}</p>
+    `;
+    experienceListContainer.appendChild(experienceItem);
+  });
+}
+
+nextBtn.addEventListener("click", () => {
+  console.log(experiences);
 });
 
 const diplomesFormContainer = document.getElementById(
@@ -221,7 +375,9 @@ function saveDiplomesDonner() {
     const endElement = item.querySelector('[name="diplome-end"]');
     const universityElement = item.querySelector('[name="diplome-university"]');
     const cityElement = item.querySelector('[name="diplome-city"]');
-    const descriptionElement = item.querySelector('[name="diplome-description"]');
+    const descriptionElement = item.querySelector(
+      '[name="diplome-description"]'
+    );
 
     if (
       nameElement &&
@@ -418,7 +574,7 @@ resetButton.classList.add(
   "rounded-md",
   "hover:bg-red-600"
 );
-resetButton.innerText = "Réinitialiser les Compétences";
+resetButton.innerText = "Reinitialiser tout!";
 resetButton.addEventListener("click", resetSkills);
 const formContainer = document.getElementById("dynamicSkillsForm");
 formContainer.appendChild(resetButton);
@@ -501,21 +657,37 @@ submitBtn.addEventListener("click", (event) => {
 
 document.addEventListener("DOMContentLoaded", function () {
   const confirmSelectionBtn = document.getElementById("confirmSelectionBtn");
+  // Fonction pour specifie le nom d'utilisateur LinkedIn
+  function specifiqueLinkedInUsername(linkedinUrl) {
+    const regex = /https:\/\/www\.linkedin\.com\/in\/([^\/]+)/;
+    const match = linkedinUrl.match(regex);
+    return match ? match[1] : "";
+  }
+  // Fonction pour specifie le nom d'utilisateur GitHub
+  function specifiqueGitHubUsername(githubUrl) {
+    const regex = /https:\/\/github\.com\/([^\/]+)/;
+    const match = githubUrl.match(regex);
+    return match ? match[1] : "";
+  }
   confirmSelectionBtn.addEventListener("click", function () {
     const nomComplet = document.getElementById("fullName").value;
     const profile = document.getElementById("jobLocation").value;
     const email = document.querySelector("#email").value;
     const telephone = document.querySelector("#phone").value;
     const adresse = document.getElementById("adresse").value;
-    const linkdIn = document.getElementById("linkedin").value;
-    const github = document.getElementById("github").value;
+    const linkedinUrl = document.getElementById("linkedin").value;
+    const githubUrl = document.getElementById("github").value;
+
+    // Extraire les noms d'utilisateur LinkedIn et GitHub
+    const linkedinUsername = specifiqueLinkedInUsername(linkedinUrl);
+    const githubUsername = specifiqueGitHubUsername(githubUrl);
     const aboutMe = document.getElementById("aboutMe").value;
     let inputPhotosUrl = document.querySelector("#profileImage").files[0];
-    inputPhoto = URL.createObjectURL(inputPhotosUrl);
-
+    let inputPhoto = URL.createObjectURL(inputPhotosUrl);
     const selectedType = document.querySelector(
       'input[name="typeSelection"]:checked'
     );
+
     if (selectedType) {
       document.querySelector(".type-selection-section").classList.add("hidden");
       menuPrincipale.style.display = "none";
@@ -523,145 +695,155 @@ document.addEventListener("DOMContentLoaded", function () {
       telechargerCV.style.display = "block";
       const cvTemplate = document.getElementById("cvTemplete");
       cvTemplate.classList.add("cv-template");
+
       if (selectedType.value === "Type 1") {
         cvTemplate.innerHTML = `
-              <section class="bg-gray-100">
-               <div class="a4-container border border-gray-300 shadow-lg rounded-lg p-4">
-                  <!-- Partie gauche (30%) -->
-                   <div class="left-section w-1/3">
-                    <!-- Section : Image, Nom et Statut -->
-                    <div class="section-item mt-2 flex flex-col items-center">
-                        <img src="${inputPhoto}" alt="Photo de profil" />
-                        <h2 class="text-sm font-bold text-center">${nomComplet}</h2>
-                        <p class="text-xs text-gray-600 text-center">${profile}</p>
-                    </div>
+          <section class="bg-gray-100">
+            <div class="a4-container border border-gray-300 shadow-lg rounded-lg p-4">
+              <!-- Partie gauche (30%) -->
+              <div class="left-section w-1/3">
+                <!-- Section : Image, Nom et Statut -->
+                <div class="section-item mt-2 flex flex-col items-center">
+                    <img src="${inputPhoto}" alt="Photo de profil" />
+                    <h2 class="text-sm font-bold text-center">${nomComplet}</h2>
+                    <p class="text-xs text-gray-600 text-center">${profile}</p>
+                </div>
 
-                    <!-- Section : À propos de moi -->
-                    <div class="section-item mt-2">
-                        <h3 class="section-title text-lg mx-4 text-center">Apros</h3>
-                        <p class="section-content text-xs whitespace-normal text-left mx-4">${aboutMe}</p>
-                    </div>
+                <!-- Section : À propos de moi -->
+                <div class="section-item mt-2">
+                    <h3 class="section-title text-lg mx-4 text-center">À propos de moi:</h3>
+                    <p class="section-content text-xs whitespace-normal text-left mx-4">${aboutMe}</p>
+                </div>
 
-                    <!-- Section : Contacts -->
-                    <div class="section-item mt-2">
-                        <h3 class="section-title text-lg mx-4 text-center">Contacts</h3>
-                        <p class="section-content text-sm flex items-start space-x-2 mx-4">
-                            <i class="fas fa-envelope"></i>
-                            <span>${email}</span>
-                        </p>
-                        <p class="section-content text-sm flex items-start space-x-2 mx-4">
-                            <i class="fas fa-phone"></i>
-                            <span>${telephone}</span>
-                        </p>
-                        <p class="section-content text-sm flex items-start space-x-2 mx-4">
-                            <i class="fas fa-location"></i>
-                            <span>${adresse}</span>
-                        </p>
-                        <div class="flex space-x-2 mt-1 flex-wrap justify-center">
-                            <i class="fa-brands fa-github"></i><a href="${github}"class="text-sm">Github</a>
-                            <i class="fa-brands fa-linkedin"></i><a href="${linkdIn}"class="text-sm">LinkedIn</a>
-                        </div>
+                <!-- Section : Contacts -->
+                <div class="section-item mt-2">
+                    <h3 class="section-title text-lg mx-4 text-center">Contacts:</h3>
+                    <p class="section-content text-sm flex items-center space-x-2 mx-4">
+                        <i class="fas fa-envelope"></i>
+                        <span>${email}</span>
+                    </p>
+                    <p class="section-content text-sm flex items-center space-x-2 mx-4">
+                        <i class="fas fa-phone"></i>
+                        <span>${telephone}</span>
+                    </p>
+                    <p class="section-content text-sm flex items-center space-x-2 mx-4">
+                        <i class="fas fa-location"></i>
+                        <span>${adresse}</span>
+                    </p>
+                  <div class="mt-1 flex flex-col space-y-2 mx-4">
+                      <!-- Lien GitHub -->
+                      <div class="flex items-center space-x-2 justify-start">
+                        <i class="fa-brands fa-github text-xl"></i>
+                        <a href="${githubUrl}" class="text-sm text-blue-500">${githubUsername}</a>
+                      </div>
+                      
+                      <!-- Lien LinkedIn -->
+                      <div class="flex items-center space-x-2 justify-start">
+                        <i class="fa-brands fa-linkedin text-xl"></i>
+                        <a href="${linkedinUrl}" class="text-sm text-blue-700">${linkedinUsername}</a>
+                      </div>
                     </div>
+                 </div>
 
-                    <!-- Section : Langues -->
-                    <div class="section-item mt-2">
-                        <h3 class="section-title text-lg text-center mx-4">Langues</h3>
-                        <ul class="text-sm text-left mx-4 space-y-2" style="line-height: 1.6; list-style-type: none; margin-top: 0; padding-left: 0;">
-                            ${arrayLangues
-                              .map(
-                                (langue) =>
-                                  `<li class="text-sm">${langue.langue} : ${langue.niveau}</li>`
-                              )
-                              .join("")}
-                        </ul>
-                    </div>
+                <!-- Section : Langues -->
+                 <div class="section-item mt-2">
+                    <h3 class="section-title text-lg text-center mx-4">Langues:</h3>
+                    <ul class="text-sm text-left mx-4 space-y-2" style="line-height: 1.6; list-style-type: none; margin-top: 0; padding-left: 0;">
+                        ${arrayLangues
+                          .map(
+                            (langue) =>
+                              `<li class="text-sm">${langue.langue} : ${langue.niveau}</li>`
+                          )
+                          .join("")}
+                    </ul>
+                </div>
 
-                    <!-- Section : Loisirs -->
-                    <div class="section-item mt-2">
-                        <h3 class="section-title text-lg text-center mx-4">Loisirs</h3>
-                        <ul class="text-sm text-left mx-4 space-y-2" style="line-height: 1.6; list-style-type: none; margin-top: 0; padding-left: 0;">
-                            ${arrayLoisirs
-                              .map((loisir) => `<li class="text-sm">${loisir}</li>`)
-                              .join("")}
-                        </ul>
-                    </div>
+                <!-- Section : Loisirs -->
+                <div class="section-item mt-2">
+                    <h3 class="section-title text-lg text-center mx-4">Loisirs:</h3>
+                    <ul class="text-sm text-left mx-4 space-y-2" style="line-height: 1.6; list-style-type: none; margin-top: 0; padding-left: 0;">
+                        ${arrayLoisirs
+                          .map((loisir) => `<li class="text-sm">${loisir}</li>`)
+                          .join("")}
+                    </ul>
+                 </div>
+              </div>
+
+              <!-- Partie droite (70%) -->
+              <div class="right-section w-2/3">
+                  <!-- Section : Expériences professionnelles -->
+                  <div class="section-item mt-2">
+                      <h3 class="section-title text-lg">Expériences professionnelles:</h3>
+                      ${experiences
+                        .map(
+                          (exp) => `
+                          <div class="experience mb-2 text-sm">
+                              <p><strong>${exp.mission}</strong> || ${exp.company}</p>
+                              <p>${exp.sector} || ${exp.location}</p>
+                              <p>Depuis: ${exp.startDate} jusqu'à: ${exp.endDate}</p>
+                              <p>${exp.description}</p>
+                          </div>
+                      `
+                        )
+                        .join("")}
                   </div>
 
-                  <!-- Partie droite (70%) -->
-                  <div class="right-section w-2/3">
-                      <!-- Section : Expériences professionnelles -->
-                      <div class="section-item mt-2">
-                          <h3 class="section-title text-lg">Expériences professionnelles</h3>
-                          ${experiences
-                            .map(
-                              (exp) => `
-                              <div class="experience mb-2 text-sm">
-                                  <p><strong>${exp.mission}</strong> || ${exp.company}</p>
-                                  <p>${exp.sector} || ${exp.location}</p>
-                                  <p>Depuis: ${exp.startDate} jusqua: ${exp.endDate}</p>
-                                  <p>${exp.description}</p>
-                              </div>
-                          `
-                            )
-                            .join("")}
-                      </div>
+                  <!-- Section : Diplômes -->
+                  <div class="section-item mt-2">
+                      <h3 class="section-title text-lg">Diplômes:</h3>
+                      ${diplomesDonner
+                        .map(
+                          (diplome) => `
+                          <div class="degree mb-2 text-sm">
+                              <h6>${diplome.name} || ${diplome.specialty}</h6>
+                              <p>${diplome.university} || ${diplome.city}</p>
+                              <p>Depuis: ${diplome.startDate} jusqu'à: ${diplome.endDate}</p>
+                              <p>${diplome.description}</p>
+                          </div>
+                      `
+                        )
+                        .join("")}
+                  </div>
 
-                      <!-- Section : Diplômes -->
-                      <div class="section-item mt-2">
-                          <h3 class="section-title text-lg">Diplômes</h3>
-                          ${diplomesDonner
-                            .map(
-                              (diplome) => `
-                              <div class="degree mb-2 text-sm">
-                                  <h6>${diplome.name} - ${diplome.specialty}</h6>
-                                  <p>${diplome.university} | ${diplome.city}</p>
-                                  <p>Depuis: ${diplome.startDate}jusqua: ${diplome.endDate}</p>
-                                  <p>${diplome.description}</p>
-                              </div>
-                          `
-                            )
-                            .join("")}
-                      </div>
+                  <!-- Section : Certifications -->
+                  <div class="section-item mt-2">
+                      <h3 class="section-title text-lg">Certifications:</h3>
+                      ${certificatesDonner
+                        .map(
+                          (cert) => `
+                          <div class="certificate mb-2 text-sm">
+                              <p>Spécialité : ${cert.name} || Organisme : ${cert.organism}</p>
+                              <p>depuis: ${cert.startDate} jusqua: ${cert.endDate}</p>
+                          </div>
+                      `
+                        )
+                        .join("")}
+                  </div>
 
-                      <!-- Section : Certifications -->
-                      <div class="section-item mt-2">
-                          <h3 class="section-title text-lg">Certifications</h3>
-                          ${certificatesDonner
-                            .map(
-                              (cert) => `
-                              <div class="certificate mb-2 text-sm">
-                                  <p>Spécialité : ${cert.name} || Organisme : ${cert.organism}</p>
-                                  <p>Dates : ${cert.startDate} - ${cert.endDate}</p>
-                              </div>
-                          `
-                            )
-                            .join("")}
-                      </div>
-
-                      <!-- Section : Compétences -->
-                      <div class="section-item mt-2">
-                          <h3 class="section-title text-lg">Compétences</h3>
-                          <div class="skills">
-                              <div class="certificate mb-4">
-                                  <h4 class="text-xs font-semibold">Soft Skills :</h4>
-                                  <ul class="list-none list-inside text-sm text-left">
-                                      ${arraySoftSkills
-                                        .map((skill) => `<li>${skill}</li>`)
-                                        .join("")}
-                                  </ul>
-                              </div>
-                              <div class="certificate mb-4">
-                                  <h4 class="text-xs font-semibold">Hard Skills :</h4>
-                                  <ul class="list-none list-inside text-sm text-left">
-                                      ${arrayHardSkills
-                                        .map((skill) => `<li>${skill}</li>`)
-                                        .join("")}
-                                  </ul>
-                              </div>
+                  <!-- Section : Compétences -->
+                  <div class="section-item mt-2">
+                      <h3 class="section-title text-lg">Compétences:</h3>
+                      <div class="skills">
+                          <div class="certificate mb-4">
+                              <h4 class="text-xs font-semibold">Compétences interpersonnelles:</h4>
+                              <ul class="list-none list-inside text-sm text-left">
+                                  ${arraySoftSkills
+                                    .map((skill) => `<li>${skill}</li>`)
+                                    .join("")}
+                              </ul>
+                          </div>
+                          <div class="certificate mb-4">
+                              <h4 class="text-xs font-semibold">Compétences techniques:</h4>
+                              <ul class="list-none list-inside text-sm text-left">
+                                  ${arrayHardSkills
+                                    .map((skill) => `<li>${skill}</li>`)
+                                    .join("")}
+                              </ul>
                           </div>
                       </div>
                   </div>
               </div>
+            </div>
           </section>
         `;
       } else if (selectedType.value === "Type 2") {
@@ -675,3 +857,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+

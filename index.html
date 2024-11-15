@@ -22,7 +22,7 @@
 </head>
 
 <body>
-<section id="heroSection" style="width: 100%; height: 100vh; display: none;">
+<section id="heroSection" style="width: 100%; height: 100vh; ">
 
   <!-----Start Background Animation Body------->
   <div class="area">
@@ -49,7 +49,7 @@
       </div>
       <div class="relative flex items-center md:inline-flex">
         <marquee behavior="title" direction="left">
-          <blockquote class="text-4xl text-white font-bold">Bienvenue Dans Mon Espace</blockquote>
+          <blockquote class="text-4xl text-blue-900 font-bold">Bienvenue Dans Mon Espace</blockquote>
         </marquee>
       </div>
       <div class="flex items-center gap-4">
@@ -61,12 +61,12 @@
     </div>
 
     <div
-      class="items-center w-10/12 grid-cols-2 mx-auto overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-0 "
+      class="items-center w-10/12 grid-cols-2 mx-auto overflow-y-hidden overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-0" style="max-height: 85vh;"
       data-aos="fade-right" data-aos-duration="800">
       <div class="pr-2 md:mb-14 py-14 md:py-0">
-        <h1 class="text-5xl font-semibold text-blue-900 xl:text-5xl lg:text-3xl"><span class="block w-full">Créez un CV
+        <h1 class="font-bold space-y-6 text-blue-900 text-4xl"><span class="block w-full">Créez un CV
             professionnel pour</span> booster votre carrière !</h1>
-        <p class="py-4 text-2xl text-white 2xl:py-8 md:py-6 2xl:pr-5">
+        <p class="py-4 text-1xl text-white 2xl:py-8 md:py-6 2xl:pr-5">
           Concevez facilement un CV moderne et personnalisé grâce à notre outil intuitif. Suivez des étapes simples pour
           ajouter vos informations, choisissez parmi plusieurs modèles élégants, et sauvegardez votre CV en ligne. Idéal
           pour mettre en avant vos compétences et votre expérience professionnelle, prêt pour l'impression ou le
@@ -79,7 +79,7 @@
         </div>
       </div>
 
-      <div class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0">
+      <div class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0" style="height: 70%; display: flex; align-items: center; margin-left: 100px; width: 700px;">
         <img id="heroImg1"
           class="transition-all duration-300 ease-in-out hover:scale-105 lg:w-full sm:mx-auto sm:w-4/6 sm:pb-12 lg:pb-0"
           src="images/homePage.svg" style="height: 750px;" alt="Awesome hero page image"  />
@@ -90,7 +90,7 @@
   <!------------ end Page pricipale ------------>
   
   <!-- le formulaire -->
-  <div id="formulaire" class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div id="formulaire" class="bg-gray-100 min-h-screen flex items-center justify-center" style="display: none;">
     <div class="container mx-auto p-4">
       <div id="menuPrincipale" class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto">
         <h1 class="text-4xl font-bold text-center text-gray-800 mb-10">Générez votre CV</h1>
@@ -138,7 +138,7 @@
               <span
                 class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out"
                 id="step5">
-                <i class="fas fa-star text-blue-500"></i>
+                <i class="fas fa-star "></i>
               </span>
               <span class="text-sm font-medium text-gray-600 mt-2"> Skills</span>
             </div>
@@ -163,7 +163,7 @@
         <form class="space-y-8 bg-white shadow-md rounded-lg max-w-3xl mx-auto">
           <!-- Step 1: Information Personnel -->
           <div id="step-1" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
-            
+        
             <!-- Nom complet et Profil Professionnel -->
             <div class="flex space-x-4 mb-6">
               
@@ -173,7 +173,7 @@
                 <input type="text" id="fullName" aria-label="Nom Complet" placeholder="Ex: Mouad Hallaffou"
                   class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                   required>
-                <span class="error-message text-red-500 text-sm mt-1"></span> 
+                <span id="fullNameError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez entrer votre nom et prenom.</span> 
               </div>
               
               <!-- Profil Professionnel -->
@@ -182,7 +182,7 @@
                 <input type="text" id="jobLocation" name="jobLocation" aria-label="Profil professionnel"
                   class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                   placeholder="Ex: Développeur full stack, technicien spécialisé..." required>
-                <span class="error-message text-red-500 text-sm mt-1"></span> 
+                <span id="jobLocationError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez spécifier votre profil professionnel.</span> 
               </div>
             </div>
             
@@ -195,7 +195,7 @@
                 <input type="email" id="email" name="email" aria-label="Email" placeholder="Ex: mouadfl@gmail.com"
                   class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                   required>
-                <span class="error-message text-red-500 text-sm mt-1"></span> 
+                <span id="emailError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez saisir une adresse email valide</span> 
               </div>
               
               <!-- Téléphone -->
@@ -204,7 +204,7 @@
                 <input type="tel" id="phone" name="phone" aria-label="Téléphone" placeholder="Ex: 06 23 45 67 89"
                   class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                   required>
-                <span class="error-message text-red-500 text-sm mt-1"></span> 
+                <span id="phoneError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez saisir un numéro de téléphone valide.</span> 
               </div>
             </div>
             
@@ -214,7 +214,7 @@
               <input type="text" id="adresse" name="adresse" aria-label="Adresse" placeholder="Ex: 123 rue de 123 casablanca maroc"
                 class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                 required>
-              <span class="error-message text-red-500 text-sm mt-1"></span> 
+              <span id="adresseError" class="error-message text-red-500 text-xs mt-1 hidden">Veuillez entrer une adresse valide.</span> 
             </div>
             
             <!-- LinkedIn et GitHub -->
@@ -226,7 +226,7 @@
                 <input type="url" id="linkedin" name="linkedin" aria-label="LinkedIn" placeholder="https://www.linkedin.com/in/username"
                   class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                   required>
-                <span class="error-message text-red-500 text-sm mt-1"></span> 
+                <span id="linkedinError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez entrer un lien vers votre profil LinkedIn.</span> 
               </div>
               
               <!-- GitHub -->
@@ -235,7 +235,7 @@
                 <input type="url" id="github" name="github" aria-label="GitHub" placeholder="https://github.com/username"
                   class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                   required>
-                <span class="error-message text-red-500 text-sm mt-1"></span> 
+                <span id="githubError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez entrer un lien vers votre profil GitHub.</span> 
               </div>
             </div>
             
@@ -243,11 +243,13 @@
             <div class="mb-6">
               <label for="aboutMe" class="block mb-2 text-sm font-medium text-gray-700">À propos de toi</label>
               <textarea id="aboutMe" name="aboutMe" rows="4" aria-label="À propos de toi"
-                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3 aboutMeField"
                 placeholder="Décrivez votre expérience, vos compétences et votre spécialité dans votre domaine"
-                required></textarea>
-              <span class="error-message text-red-500 text-sm mt-1"></span> 
-            </div>
+                required maxlength="1000" minlength="50"></textarea>
+              <span id="aboutMeError" class="error-message text-red-500 text-xs mt-1 hidden ">
+                *Le texte doit contenir entre 50 et 1000 caractères.
+              </span>
+            </div>            
             
             <!-- Image de Profil -->
             <div class="mb-6">
@@ -255,9 +257,9 @@
               <input type="file" id="profileImage" name="profileImage" accept="image/*" aria-label="Image de Profil"
                 class="block w-full text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300 cursor-pointer focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg p-3"
                 required>
-              <span class="error-message text-red-500 text-sm mt-1"></span> 
+              <span id="profileImageError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez télécharger une photo de profil.</span> 
             </div>
-            
+        
             <!-- Bouton Suivant -->
             <div class="flex justify-end">
               <button type="button" id="nextBtnInfo" name="next" aria-label="Suivant"
@@ -265,9 +267,10 @@
                 Suivant
               </button>
             </div>
-            
+        
           </div>
         </form>
+        
               
           <!------------------------ Step: 2 ---------------------------->
           <!------------------- Section des Expériences ----------------->
@@ -551,16 +554,16 @@
               <label for="version-1" class="flex flex-col items-center cursor-pointer">
                 <input type="radio" name="typeSelection" id="version-1" value="Type 1" class="">
                 
-                <img src="images/version-1.png" alt="Image Type 1" class="w-48 h-48 object-cover rounded-lg border-4 border-transparent hover:border-blue-500 transition duration-300">
-                <span class="mt-3 text-lg font-medium text-gray-700">Version 1</span>
+                <img src="images/version-1.png" alt="Image Type 1" class="object-scale-down rounded-lg border-4 border-transparent hover:border-blue-500 transition duration-300">
+                <span class="mt-3 text-lg font-medium text-gray-700">Cv Moderne</span>
               </label>
               
               <!-- Option 2 -->
               <label for="version-2" class="flex flex-col items-center cursor-pointer">
                 <input type="radio" name="typeSelection" id="version-2" value="Type 2" class="">
                 
-                <img src="images/version-2.png" alt="Image Type 2" class="w-48 h-48 object-cover rounded-lg border-4 border-transparent hover:border-blue-500 transition duration-300">
-                <span class="mt-3 text-lg font-medium text-gray-700">Version 2</span>
+                <img src="images/version-2.png" alt="Image Type 2" class="object-scale-down rounded-lg border-4 border-transparent hover:border-blue-500 transition duration-300">
+                <span class="mt-3 text-lg font-medium text-gray-700">Cv Classic</span>
               </label>
             </div>
             
@@ -576,7 +579,7 @@
   
   <div id="cvTemplete"></div>
   
-  <button onclick="generatePDF()" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded" id="telechargerCV" style="display: none;">Télécharger le CV</button>
+  <button onclick="generatePDF()" class="mt-6 bg-blue-500 text-white px-4 py-2 rounded absolute top-0 right-60" id="telechargerCV" style="display: none;">Télécharger</button>
   <script>
       async function generatePDF() {
           const { jsPDF } = window.jspdf;

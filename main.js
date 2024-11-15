@@ -142,7 +142,7 @@ const diplomesFormContainer = document.getElementById(
   "diplomes-form-container"
 );
 const addDiplomesButton = document.getElementById("add-diplome-button");
-let diplomesData = [];
+let diplomesDonner = [];
 function addDiplomesForm() {
   const diplomesItem = document.createElement("div");
   diplomesItem.classList.add(
@@ -210,36 +210,36 @@ addDiplomesButton.addEventListener("click", (e) => {
   addDiplomesForm();
 });
 
-function saveDiplomesData() {
+function saveDiplomesDonner() {
   const formItems = diplomesFormContainer.querySelectorAll("div");
-  diplomesData = [];
+  diplomesDonner = [];
 
   formItems.forEach((item) => {
-    const nameElem = item.querySelector('[name="diplome-name"]');
-    const specialtyElem = item.querySelector('[name="diplome-specialty"]');
-    const startElem = item.querySelector('[name="diplome-start"]');
-    const endElem = item.querySelector('[name="diplome-end"]');
-    const universityElem = item.querySelector('[name="diplome-university"]');
-    const cityElem = item.querySelector('[name="diplome-city"]');
-    const descriptionElem = item.querySelector('[name="diplome-description"]');
+    const nameElement = item.querySelector('[name="diplome-name"]');
+    const specialtyElement = item.querySelector('[name="diplome-specialty"]');
+    const startElement = item.querySelector('[name="diplome-start"]');
+    const endElement = item.querySelector('[name="diplome-end"]');
+    const universityElement = item.querySelector('[name="diplome-university"]');
+    const cityElement = item.querySelector('[name="diplome-city"]');
+    const descriptionElement = item.querySelector('[name="diplome-description"]');
 
     if (
-      nameElem &&
-      specialtyElem &&
-      startElem &&
-      endElem &&
-      universityElem &&
-      cityElem &&
-      descriptionElem
+      nameElement &&
+      specialtyElement &&
+      startElement &&
+      endElement &&
+      universityElement &&
+      cityElement &&
+      descriptionElement
     ) {
-      const name = nameElem.value;
-      const specialty = specialtyElem.value;
-      const start = startElem.value;
-      const end = endElem.value;
-      const university = universityElem.value;
-      const city = cityElem.value;
-      const description = descriptionElem.value;
-      diplomesData.push({
+      const name = nameElement.value;
+      const specialty = specialtyElement.value;
+      const start = startElement.value;
+      const end = endElement.value;
+      const university = universityElement.value;
+      const city = cityElement.value;
+      const description = descriptionElement.value;
+      diplomesDonner.push({
         name,
         specialty,
         startDate: start,
@@ -254,14 +254,14 @@ function saveDiplomesData() {
 
 document.getElementById("nextBtnDiplomes").addEventListener("click", (e) => {
   e.preventDefault();
-  saveDiplomesData();
+  saveDiplomesDonner();
 });
 
 const certificateFormContainer = document.getElementById(
   "certificate-form-container"
 );
 const addCertificateButton = document.getElementById("add-certificate-button");
-let certificatesData = [];
+let certificatesDonner = [];
 function addCertificateForm() {
   const certificateItem = document.createElement("div");
   certificateItem.classList.add(
@@ -313,9 +313,9 @@ addCertificateButton.addEventListener("click", (e) => {
   addCertificateForm();
 });
 
-function saveCertificatesData() {
+function saveCertificatesDonner() {
   const formItems = certificateFormContainer.querySelectorAll("div");
-  certificatesData = [];
+  certificatesDonner = [];
   formItems.forEach((item) => {
     const nameInput = item.querySelector('[name="certificate-name"]');
     const organismInput = item.querySelector('[name="certificate-organism"]');
@@ -327,7 +327,7 @@ function saveCertificatesData() {
       const start = startInput.value;
       const end = endInput.value;
 
-      certificatesData.push({
+      certificatesDonner.push({
         name,
         organism,
         startDate: start,
@@ -339,7 +339,7 @@ function saveCertificatesData() {
 
 document.getElementById("nextBtnCertificats").addEventListener("click", (e) => {
   e.preventDefault();
-  saveCertificatesData();
+  saveCertificatesDonner();
 });
 
 const btnAadSoftSkills = document.getElementById("btnAadSoftSkills");
@@ -418,7 +418,7 @@ resetButton.classList.add(
   "rounded-md",
   "hover:bg-red-600"
 );
-resetButton.innerText = "Réinitialiser Compétences";
+resetButton.innerText = "Réinitialiser les Compétences";
 resetButton.addEventListener("click", resetSkills);
 const formContainer = document.getElementById("dynamicSkillsForm");
 formContainer.appendChild(resetButton);
@@ -538,7 +538,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                       <!-- Section : À propos de moi -->
                       <div class="section-item mt-2">
-                          <h3 class="section-title text-sm mx-4 text-center">About Me</h3>
+                          <h3 class="section-title text-sm mx-4 text-center">Apros</h3>
                           <p class="section-content text-xs whitespace-normal text-left mx-4">${aboutMe}</p>
                       </div>
 
@@ -557,7 +557,7 @@ document.addEventListener("DOMContentLoaded", function () {
                               <i class="fas fa-location"></i>
                               <span>${adresse}</span>
                           </p>
-                          <div class="flex space-x-2 mt-1 flex-wrap justify-center">
+                          <div class="flex space-x-4 mt-1 flex-wrap justify-center">
                           <i class="fa-brands fa-github"></i><a href="${github}" class="text-xs"> GitHub</a>
                           <i class="fa-brands fa-linkedin"></i><a href="${linkdIn}" class="text-xs"> LinkedIn</a>
                           </div>
@@ -566,8 +566,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                       <!-- Section : Langues -->
                       <div class="section-item mt-2">
-                          <h3 class="section-title text-sm text-center mx-4">Langues</h3>
-                          <ul class="list-none list-inside text-xs text-left mx-4">
+                          <h3 class="section-title text-lg text-center mx-4">Langues</h3>
+                          <ul class="list-none list-inside text-sm text-left mx-4">
                               ${arrayLangues
                                 .map(
                                   (langue) =>
@@ -579,8 +579,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                       <!-- Section : Loisirs -->
                       <div class="section-item mt-2">
-                          <h3 class="section-title text-sm text-center mx-4">Loisirs</h3>
-                          <ul class="list-none list-inside text-xs text-left mx-4">
+                          <h3 class="section-title text-lg text-center mx-4">Loisirs</h3>
+                          <ul class="list-none list-inside text-sm text-left mx-4">
                               ${arrayLoisirs
                                 .map((loisir) => `<li>${loisir}</li>`)
                                 .join("")}
@@ -596,7 +596,7 @@ document.addEventListener("DOMContentLoaded", function () {
                           ${experiences
                             .map(
                               (exp) => `
-                              <div class="experience mb-2 text-xs">
+                              <div class="experience mb-2 text-sm">
                                   <p><strong>${exp.mission}</strong> - ${exp.company}</p>
                                   <p>${exp.sector} || ${exp.location}</p>
                                   <p>${exp.startDate} || ${exp.endDate}</p>
@@ -610,10 +610,10 @@ document.addEventListener("DOMContentLoaded", function () {
                       <!-- Section : Diplômes -->
                       <div class="section-item mt-2">
                           <h3 class="section-title text-lg">Diplômes</h3>
-                          ${diplomesData
+                          ${diplomesDonner
                             .map(
                               (diplome) => `
-                              <div class="degree mb-2 text-xs">
+                              <div class="degree mb-2 text-sm">
                                   <h6>${diplome.name} - ${diplome.specialty}</h6>
                                   <p>${diplome.university} | ${diplome.city}</p>
                                   <p>${diplome.startDate} - ${diplome.endDate}</p>
@@ -627,10 +627,10 @@ document.addEventListener("DOMContentLoaded", function () {
                       <!-- Section : Certifications -->
                       <div class="section-item mt-2">
                           <h3 class="section-title text-lg">Certifications</h3>
-                          ${certificatesData
+                          ${certificatesDonner
                             .map(
                               (cert) => `
-                              <div class="certificate mb-2 text-xs">
+                              <div class="certificate mb-2 text-sm">
                                   <p>Spécialité : ${cert.name} || Organisme : ${cert.organism}</p>
                                   <p>Dates : ${cert.startDate} - ${cert.endDate}</p>
                               </div>
@@ -645,7 +645,7 @@ document.addEventListener("DOMContentLoaded", function () {
                           <div class="skills">
                               <div class="certificate mb-4">
                                   <h4 class="text-xs font-semibold">Soft Skills :</h4>
-                                  <ul class="list-none list-inside text-xs text-left">
+                                  <ul class="list-none list-inside text-sm text-left">
                                       ${arraySoftSkills
                                         .map((skill) => `<li>${skill}</li>`)
                                         .join("")}
@@ -653,7 +653,7 @@ document.addEventListener("DOMContentLoaded", function () {
                               </div>
                               <div class="certificate mb-4">
                                   <h4 class="text-xs font-semibold">Hard Skills :</h4>
-                                  <ul class="list-none list-inside text-xs text-left">
+                                  <ul class="list-none list-inside text-sm text-left">
                                       ${arrayHardSkills
                                         .map((skill) => `<li>${skill}</li>`)
                                         .join("")}
@@ -667,7 +667,7 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
       } else if (selectedType.value === "Type 2") {
         cvTemplate.innerHTML = `
-        <section>not found!</section>
+        <section> 404 not found! </section>
         `;
       }
       document.body.appendChild(cvTemplate);

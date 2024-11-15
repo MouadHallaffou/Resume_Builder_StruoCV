@@ -47,9 +47,10 @@
 /*
 -- Start BackGround Animation 
 */
+
 .area {
-  background: #000;
-  background: -webkit-linear-gradient(to left, #4248bb, #0a13b4);
+  background: #a18e8e;
+  background: -webkit-linear-gradient(to left, #3e46d6, #1e29f8);
   width: 100%;
   height: 100vh;
   border-radius: 6px;
@@ -171,14 +172,16 @@
 
 /* Styles pour l'impression (A4)*/
 .a4-container {
-  width: 210mm; 
-  padding: 1mm;
+  width: 794px; 
+  height: 1122px;
+  padding: 4px;
   display: flex;
   flex-direction: row;
 }
 
 .left-section {
   width: 30%;
+  max-height: 100%;
   padding: 4px;
   display: flex;
   flex-direction: column;
@@ -188,8 +191,8 @@
 }
 
 .left-section img {
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   object-fit: cover;
   border-radius: 50%;
   margin-bottom: 10px;
@@ -219,15 +222,42 @@
   list-style-type: disc;
 }
 
-
-
 .right-section {
   width: 70%;
-  padding: 4px;
+  padding: 10px;
 }
 
 .skills{
   display: flex;
   gap: 60px;
-  list-style-type: circle;
+}
+
+.aboutMeField {
+  position: relative;
+}
+
+.aboutMeField:invalid {
+  border-color: #f62d2d;
+  box-shadow: 0 0 5px #f53030;
+}
+
+.aboutMeField:valid {
+  border-color: #03dd03;
+  box-shadow: 0 0 5px #32f332;
+}
+
+.aboutMeField + #aboutMeError {
+  display: block;
+  color: #999;
+  font-size: 0.8rem;
+  padding-top: 4px;
+}
+
+.aboutMeField:invalid + #aboutMeError {
+  color: #f92929;
+  display: inline-block;
+}
+
+.aboutMeField:valid + #aboutMeError {
+  display: none;
 }

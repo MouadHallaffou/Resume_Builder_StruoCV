@@ -1,3 +1,4 @@
+// page principale de la platforme 
 const heroSection = document.getElementById("heroSection");
 const startedBtn = document.getElementById("startedBtn");
 const formulaire = document.getElementById("formulaire");
@@ -5,11 +6,13 @@ startedBtn.addEventListener("click", () => {
   heroSection.style.display = "none";
   formulaire.style.display = "block";
 });
+
 /**
  * Gestion de la validation du formulaire et de la navigation entre les étapes
+ * Ce code est utilisé pour un formulaire multi-étapes avec des validations spécifiques pour chaque champ.
  */
 
-// Sélection des éléments du formulaire et de la barre de progression
+// Sélection de la barre de progression
 const progressBar = document.getElementById("progress-bar");
 
 // Sélection des étapes du formulaire dans un tableau
@@ -22,7 +25,7 @@ const forms = [
   document.getElementById("step-6"),
 ];
 
-// Sélection des indicateurs de progression affichés dans l'interface
+// Sélection des indicateurs de progression dans l'interface
 const steppers = [
   document.getElementById("step1"),
   document.getElementById("step2"),
@@ -32,30 +35,31 @@ const steppers = [
   document.getElementById("step6"),
 ];
 
-// Définition des styles pour les étapes actives et non actives
+// Définition des styles pour les étapes actives et inactives
 const activeStepStyle =
   "flex items-center justify-center w-10 h-10 bg-blue-500 text-white font-bold rounded-full transition-all duration-500 ease-in-out";
 const inactiveStepStyle =
   "flex items-center justify-center w-10 h-10 bg-blue-200 text-white font-bold rounded-full transition-all duration-500 ease-in-out";
 
-// Initialisation du compteur d'étape
+// Initialisation de l'étape actuelle
 let currentStep = 0;
 
 /**
- * Fonction pour mettre à jour la barre de progression et les étapes visuelles
+ * Met à jour la barre de progression et les indicateurs visuels.
  */
 const updateProgressBar = () => {
   const progressPercentage = ((currentStep + 1) / forms.length) * 100;
   progressBar.style.width = `${progressPercentage}%`;
 
-  // Mettre à jour les styles des steppers
+  // Met à jour le style des indicateurs de progression (steppers)
   steppers.forEach((step, index) => {
     step.className = index <= currentStep ? activeStepStyle : inactiveStepStyle;
   });
 };
 
 /**
- * Fonction pour afficher une étape spécifique
+ * Affiche une étape spécifique du formulaire.
+ * @param {number} index - L'index de l'étape à afficher.
  */
 const showStep = (index) => {
   forms.forEach((form, idx) => {
@@ -64,20 +68,13 @@ const showStep = (index) => {
 };
 
 /**
- * Fonction pour passer à l'étape suivante avec validation
+ * Passe à l'étape suivante après validation.
  */
 const Suivantstep = () => {
-  // Validation des champs de l'étape actuelle
-  if (currentStep === 0) {
-    if (!validateStep1()) return; // Valider l'étape 1 avant de passer
-  } else if (currentStep === 1) {
-    if (!validateStep2()) return; // Valider l'étape 2 avant de passer
-  }
-  /**
- * Autres étapes peuvent être ajoutées ulterieurement 
- */ 
+  // Validation de l'étape actuelle
+  if (!validateForm()) return;
 
-  // Si l'étape est valide, passe à l'étape suivante
+  // Passe à l'étape suivante si elle est valide
   if (currentStep < forms.length - 1) {
     currentStep++;
     showStep(currentStep);
@@ -86,7 +83,7 @@ const Suivantstep = () => {
 };
 
 /**
- * Fonction pour revenir à l'étape précédente
+ * Revient à l'étape précédente.
  */
 const precedentStep = () => {
   if (currentStep > 0) {
@@ -97,13 +94,19 @@ const precedentStep = () => {
 };
 
 /**
- * Fonction de validation de l'étape 1
- * Valide les champs de l'étape 1 avant de passer à l'étape suivante
+ * Valide tous les champs du formulaire pour l'étape actuelle.
+ * @returns {boolean} - `true` si tous les champs sont valides, sinon `false`.
  */
-const validateStep1 = () => {
+const validateForm = () => {
   const fullName = document.getElementById("fullName");
   const jobLocation = document.getElementById("jobLocation");
   const email = document.getElementById("email");
+  const phone = document.getElementById("phone");
+  const adresse = document.getElementById("adresse");
+  const linkedin = document.getElementById("linkedin");
+  const github = document.getElementById("github");
+  const aboutMe = document.getElementById("aboutMe");
+  const profileImage = document.getElementById("profileImage");
 
   let isValid = true;
 
@@ -116,7 +119,7 @@ const validateStep1 = () => {
     document.getElementById("fullNameError").classList.add("hidden");
   }
 
-  // Validation du profil
+  // Validation de la localisation du job
   const jobLocationPattern = /^[a-zA-Z0-9\s\-]+$/;
   if (!jobLocationPattern.test(jobLocation.value.trim())) {
     document.getElementById("jobLocationError").classList.remove("hidden");
@@ -133,20 +136,6 @@ const validateStep1 = () => {
   } else {
     document.getElementById("emailError").classList.add("hidden");
   }
-
-  return isValid;
-};
-
-/**
- * Fonction de validation de l'étape 2
- * Valide les champs de l'étape 2 avant de passer à l'étape suivante
- */
-const validateStep2 = () => {
-  const phone = document.getElementById("phone");
-  const adresse = document.getElementById("adresse");
-  const linkedin = document.getElementById("linkedin");
-
-  let isValid = true;
 
   // Validation du téléphone
   const phonePattern = /^[0-9]{10}$/;
@@ -166,37 +155,73 @@ const validateStep2 = () => {
   }
 
   // Validation du lien LinkedIn
-  const urlPattern = /^https?:\/\/(?:www\.)?[a-z0-9.-]+(?:\/[a-z0-9.-]+)+\/?$/i;
-  if (!urlPattern.test(linkedin.value.trim())) {
+  const linkedinPattern = /^https:\/\/(?:www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
+  if (!linkedinPattern.test(linkedin.value.trim())) {
     document.getElementById("linkedinError").classList.remove("hidden");
     isValid = false;
   } else {
     document.getElementById("linkedinError").classList.add("hidden");
   }
 
+  // Validation du lien GitHub
+  const githubPattern = /^https:\/\/github\.com\/[a-zA-Z0-9_-]+$/;
+  if (!githubPattern.test(github.value.trim())) {
+    document.getElementById("githubError").classList.remove("hidden");
+    isValid = false;
+  } else {
+    document.getElementById("githubError").classList.add("hidden");
+  }
+
+  // Validation du champ "À propos de moi"
+  if (aboutMe.value.trim().length < 50 || aboutMe.value.trim().length > 500) {
+    document.getElementById("aboutMeError").classList.remove("hidden");
+    isValid = false;
+  } else {
+    document.getElementById("aboutMeError").classList.add("hidden");
+  }
+
+  // Validation de l'image de profil
+  if (profileImage.files.length === 0) {
+    document.getElementById("profileImageError").classList.remove("hidden");
+    isValid = false;
+  } else {
+    document.getElementById("profileImageError").classList.add("hidden");
+  }
+
   return isValid;
 };
 
-// Ajout des écouteurs d'événements pour les boutons "Suivant" et "Précédent"
+// Gestion des événements des boutons "Suivant" et "Précédent"
 document.getElementById("nextBtnInfo").addEventListener("click", Suivantstep);
 document.getElementById("nextBtnExp").addEventListener("click", Suivantstep);
 document.getElementById("nextBtnDiplomes").addEventListener("click", Suivantstep);
 document.getElementById("nextBtnCertificats").addEventListener("click", Suivantstep);
 document.getElementById("nextBtnCompetences").addEventListener("click", Suivantstep);
+
 document.getElementById("prevBtnExp").addEventListener("click", precedentStep);
 document.getElementById("prevBtnDiplomes").addEventListener("click", precedentStep);
 document.getElementById("prevBtnCertificats").addEventListener("click", precedentStep);
 document.getElementById("prevBtnCompetances").addEventListener("click", precedentStep);
 document.getElementById("prevBtnLangues").addEventListener("click", precedentStep);
 
+// Initialisation : affiche la première étape et met à jour la barre de progression
+showStep(currentStep);
+updateProgressBar();
+
+// Ajout des écouteurs d'événements pour les boutons "Suivant" et "Précédent"
+document.getElementById("nextBtnInfo").addEventListener("click", Suivantstep);
+document.getElementById("nextBtnExp").addEventListener("click", Suivantstep);
+document.getElementById("prevBtnExp").addEventListener("click", precedentStep);
+
 // Afficher la première étape et mettre à jour la barre de progression
 showStep(currentStep);
 updateProgressBar();
 
-
 const experiences = [];
 const addExperienceButton = document.getElementById("add-experience");
-const experienceFormsContainer = document.getElementById("experience-forms-container");
+const experienceFormsContainer = document.getElementById(
+  "experience-forms-container"
+);
 const nextBtn = document.getElementById("nextBtnExp");
 
 addExperienceButton.addEventListener("click", () => {
@@ -247,7 +272,13 @@ addExperienceButton.addEventListener("click", () => {
 
   const submitButton = document.createElement("button");
   submitButton.type = "button";
-  submitButton.classList.add("bg-blue-600", "text-white", "px-4", "py-2", "rounded-lg");
+  submitButton.classList.add(
+    "bg-blue-600",
+    "text-white",
+    "px-4",
+    "py-2",
+    "rounded-lg"
+  );
   submitButton.innerText = "Enregistrer";
   submitButton.addEventListener("click", () => {
     const experience = {
@@ -273,9 +304,9 @@ addExperienceButton.addEventListener("click", () => {
 
 function displayExperiences() {
   const experienceListContainer = document.getElementById("experience-list");
-  experienceListContainer.innerHTML = ''; 
+  experienceListContainer.innerHTML = "";
 
-  experiences.forEach(experience => {
+  experiences.forEach((experience) => {
     const experienceItem = document.createElement("div");
     experienceItem.classList.add("bg-white", "p-4", "rounded-lg", "shadow");
     experienceItem.innerHTML = `
@@ -857,4 +888,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-

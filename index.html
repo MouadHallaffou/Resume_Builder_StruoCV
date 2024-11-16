@@ -1,301 +1,531 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Application de création de CV en ligne offrant un formulaire interactif à étapes avec validation, des modèles personnalisables, une barre de progression, et des options de sauvegarde. Créez facilement votre CV pour le télécharger ou l'imprimer en quelques clics.">
-  <meta name="author" content="mouad_hallaffou">
-  <meta name="keywords"
-    content="CV en ligne, création de CV, formulaire de CV, modèles de CV, Tailwind CSS, JavaScript">
-  <title>Application CV en Ligne</title>
-  <link rel="shortcut icon" href="images/logo.svg" type="image/x-icon">
-  <link rel="stylesheet" href="./src/output.css">
-  <link rel="stylesheet" href="./src/input.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Application de création de CV en ligne offrant un formulaire interactif à étapes avec validation, des modèles personnalisables, une barre de progression, et des options de sauvegarde. Créez facilement votre CV pour le télécharger ou l'imprimer en quelques clics."
+    />
+    <meta name="author" content="mouad_hallaffou" />
+    <meta
+      name="keywords"
+      content="CV en ligne, création de CV, formulaire de CV, modèles de CV, Tailwind CSS, JavaScript"
+    />
+    <title>Application CV en Ligne</title>
+    <link rel="shortcut icon" href="images/logo.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="./src/output.css" />
+    <link rel="stylesheet" href="./src/input.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-</head>
+  </head>
 
-<body>
-<section id="heroSection" style="width: 100%; height: 100vh; ">
-
-  <!-----Start Background Animation Body------->
-  <div class="area">
-    <ul class="circles">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <!------End Background Animation Body-------->
-
-  <!----------start Page pricipale-------------->
-    <div class="flex px-10 py-4 justify-between items-center flex-wrap">
-      <div class="flex items-center">
-        <a href="#"><img src="images/logo.svg" class="w-20 h-12"></a>
-        <a href="#" class="font-bold text-3xl text-blue-900"> CV Builder</a>
+  <body>
+    <section id="heroSection" style="width: 100%; height: 100vh">
+      <!-----Start Background Animation Body------->
+      <div class="area">
+        <ul class="circles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
       </div>
-      <div class="relative flex items-center md:inline-flex">
-        <marquee behavior="title" direction="left">
-          <blockquote class="text-3xl text-blue-900 font-bold">Bienvenue Dans Mon Espace</blockquote>
-        </marquee>
-      </div>
-      <div class="flex items-center gap-4">
-        <button
-          class="border px-2 py-2 rounded-md border-white bg-blue-800 text-white font-semibold hover:bg-purple-800">S'inscrire</button>
-        <button
-          class="border px-2 py-2 rounded-md border-white bg-blue-800 text-white font-semibold hover:bg-purple-800">Connexion</button>
-      </div>
-    </div>
+      <!------End Background Animation Body-------->
 
+      <!----------start Page pricipale-------------->
+      <div class="flex px-10 py-4 justify-between items-center flex-wrap">
+        <div class="flex items-center">
+          <a href="#"><img src="images/logo.svg" class="w-20 h-12" /></a>
+          <a href="#" class="font-bold text-3xl text-blue-900"> CV Builder</a>
+        </div>
+        <div class="relative flex items-center md:inline-flex">
+          <marquee behavior="title" direction="left">
+            <blockquote class="text-3xl text-blue-900 font-bold">
+              Bienvenue Dans Mon Espace
+            </blockquote>
+          </marquee>
+        </div>
+        <div class="flex items-center gap-4">
+          <button
+            class="border px-2 py-2 rounded-md border-white bg-blue-800 text-white font-semibold hover:bg-purple-800"
+          >
+            S'inscrire
+          </button>
+          <button
+            class="border px-2 py-2 rounded-md border-white bg-blue-800 text-white font-semibold hover:bg-purple-800"
+          >
+            Connexion
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="items-start w-10/12 grid-cols-2 mx-auto overflow-y-hidden overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-0"
+        style="max-height: 85vh"
+        data-aos="fade-right"
+        data-aos-duration="800"
+      >
+        <div class="pr-2 md:mb-14 py-14 md:py-0">
+          <h1 class="font-bold text-blue-900 text-3xl leading-relaxed">
+            <span class="block w-full">Créez un CV professionnel pour</span>
+            booster votre carrière !
+          </h1>
+          <p
+            class="py-4 text-1xl text-white leading-loose 2xl:py-8 md:py-6 2xl:pr-5"
+          >
+            Concevez facilement un CV moderne et personnalisé grâce à notre
+            outil intuitif. Suivez des étapes simples pour ajouter vos
+            informations, choisissez parmi plusieurs modèles élégants, et
+            sauvegardez votre CV en ligne. Idéal pour mettre en avant vos
+            compétences et votre expérience professionnelle, prêt pour
+            l'impression ou le téléchargement...
+          </p>
+          <div class="mt-4">
+            <a
+              id="startedBtn"
+              href="#"
+              class="p-4 text-1xl tracking-widest font-bold text-white bg-blue-800 rounded-lg md:px-4 hover:bg-blue-700 group"
+              ><span>Commencer</span>
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0"
+          style="
+            height: 70%;
+            display: flex;
+            align-items: center;
+            margin-left: 100px;
+            width: 700px;
+          "
+        >
+          <img
+            id="heroImg1"
+            class="transition-all duration-300 ease-in-out hover:scale-105 lg:w-full sm:mx-auto sm:w-4/6 sm:pb-12 lg:pb-0"
+            src="images/homePage.svg"
+            style="height: 750px"
+            alt="Awesome hero page image"
+          />
+        </div>
+      </div>
+    </section>
+    <!------------ end Page pricipale ------------>
+
+    <!-- le formulaire -->
     <div
-      class="items-start w-10/12 grid-cols-2 mx-auto overflow-y-hidden overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-0" style="max-height:85vh;"
-      data-aos="fade-right" data-aos-duration="800">
-      <div class="pr-2 md:mb-14 py-14 md:py-0">
-        <h1 class="font-bold text-blue-900 text-3xl leading-relaxed">
-          <span class="block w-full">Créez un CV professionnel pour</span> booster votre carrière !
-        </h1>
-        <p class="py-4 text-1xl text-white leading-loose 2xl:py-8 md:py-6 2xl:pr-5">
-          Concevez facilement un CV moderne et personnalisé grâce à notre outil intuitif. Suivez des étapes simples pour
-          ajouter vos informations, choisissez parmi plusieurs modèles élégants, et sauvegardez votre CV en ligne. Idéal
-          pour mettre en avant vos compétences et votre expérience professionnelle, prêt pour l'impression ou le
-          téléchargement...
-        </p>
-        <div class="mt-4">
-          <a id="startedBtn" href="#"
-            class="p-4 text-1xl tracking-widest font-bold text-white bg-blue-800 rounded-lg md:px-4 hover:bg-blue-700 group"><span>Commencer</span>
-          </a>
-        </div>
-      </div>      
+      id="formulaire"
+      class="bg-gray-100 min-h-screen flex items-center justify-center"
+      style="display: none"
+    >
+      <div class="container mx-auto p-4">
+        <div
+          id="menuPrincipale"
+          class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto"
+        >
+          <h1 class="text-4xl font-bold text-center text-gray-800 mb-10">
+            Générez votre CV
+          </h1>
+          <!-- Barre de progression -->
+          <div class="mb-10">
+            <!-- Étapes avec icônes et effets -->
+            <div class="flex justify-between items-center mb-8">
+              <div class="flex flex-col items-center">
+                <span
+                  class="flex items-center justify-center w-10 h-10 bg-blue-500 text-white font-bold rounded-full transition-all duration-500 ease-in-out"
+                  id="step1"
+                >
+                  <i class="fas fa-user"></i>
+                </span>
+                <span class="text-sm font-medium text-gray-600 mt-2"
+                  >Contacts</span
+                >
+              </div>
 
-      <div class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0" style="height: 70%; display: flex; align-items: center; margin-left: 100px; width: 700px;">
-        <img id="heroImg1"
-          class="transition-all duration-300 ease-in-out hover:scale-105 lg:w-full sm:mx-auto sm:w-4/6 sm:pb-12 lg:pb-0"
-          src="images/homePage.svg" style="height: 750px;" alt="Awesome hero page image"  />
-      </div>
-    </div>
+              <div class="flex flex-col items-center">
+                <span
+                  class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out"
+                  id="step2"
+                >
+                  <i class="fas fa-briefcase"></i>
+                </span>
+                <span class="text-sm font-medium text-gray-600 mt-2"
+                  >Experience</span
+                >
+              </div>
 
-  </section>
-  <!------------ end Page pricipale ------------>
-  
-  <!-- le formulaire -->
-  <div id="formulaire" class="bg-gray-100 min-h-screen flex items-center justify-center" style="display: none;">
-    <div class="container mx-auto p-4">
-      <div id="menuPrincipale" class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto">
-        <h1 class="text-4xl font-bold text-center text-gray-800 mb-10">Générez votre CV</h1>
-        <!-- Barre de progression -->
-        <div class="mb-10">
-          <!-- Étapes avec icônes et effets -->
-          <div class="flex justify-between items-center mb-8">
-            <div class="flex flex-col items-center">
-              <span
-                class="flex items-center justify-center w-10 h-10 bg-blue-500 text-white font-bold rounded-full transition-all duration-500 ease-in-out"
-                id="step1">
-                <i class="fas fa-user"></i>
-              </span>
-              <span class="text-sm font-medium text-gray-600 mt-2">Contacts</span>
+              <div class="flex flex-col items-center">
+                <span
+                  class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out"
+                  id="step3"
+                >
+                  <i class="fas fa-graduation-cap"></i>
+                </span>
+                <span class="text-sm font-medium text-gray-600 mt-2"
+                  >Éducation</span
+                >
+              </div>
+
+              <div class="flex flex-col items-center">
+                <span
+                  class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out"
+                  id="step4"
+                >
+                  <i class="fas fa-certificate"></i>
+                </span>
+                <span class="text-sm font-medium text-gray-600 mt-2"
+                  >Certifications</span
+                >
+              </div>
+
+              <div class="flex flex-col items-center">
+                <span
+                  class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out"
+                  id="step5"
+                >
+                  <i class="fas fa-star"></i>
+                </span>
+                <span class="text-sm font-medium text-gray-600 mt-2">
+                  Skills</span
+                >
+              </div>
+
+              <div class="flex flex-col items-center">
+                <span
+                  class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out"
+                  id="step6"
+                >
+                  <i class="fas fa-language"></i>
+                </span>
+                <span class="text-sm font-medium text-gray-600 mt-2"
+                  >Langues</span
+                >
+              </div>
             </div>
-            
-            <div class="flex flex-col items-center">
-              <span
-                class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out"
-                id="step2">
-                <i class="fas fa-briefcase"></i>
-              </span>
-              <span class="text-sm font-medium text-gray-600 mt-2">Experience</span>
-            </div>
-            
-            <div class="flex flex-col items-center">
-              <span
-                class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out"
-                id="step3">
-                <i class="fas fa-graduation-cap"></i>
-              </span>
-              <span class="text-sm font-medium text-gray-600 mt-2">Éducation</span>
-            </div>
-            
-            <div class="flex flex-col items-center">
-              <span
-                class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out"
-                id="step4">
-                <i class="fas fa-certificate"></i>
-              </span>
-              <span class="text-sm font-medium text-gray-600 mt-2">Certifications</span>
-            </div>
-            
-            <div class="flex flex-col items-center">
-              <span
-                class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out"
-                id="step5">
-                <i class="fas fa-star "></i>
-              </span>
-              <span class="text-sm font-medium text-gray-600 mt-2"> Skills</span>
-            </div>
-            
-            <div class="flex flex-col items-center">
-              <span
-                class="flex items-center justify-center w-10 h-10 bg-blue-200 text-gray-500 font-bold rounded-full transition-all duration-500 ease-in-out"
-                id="step6">
-                <i class="fas fa-language"></i>
-              </span>
-              <span class="text-sm font-medium text-gray-600 mt-2">Langues</span>
+            <!-- Barre de progression visuelle -->
+            <div
+              class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200"
+            >
+              <div
+                id="progress-bar"
+                class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500 w-0/5 transition-all duration-500 ease-in-out"
+              ></div>
             </div>
           </div>
-          <!-- Barre de progression visuelle -->
-          <div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
-            <div id="progress-bar"
-              class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500 w-0/5 transition-all duration-500 ease-in-out">
-            </div>
-          </div>
-        </div>
-        <!-- Contenu du formulaire -->
-          <form id="formInfoPersonnelle" class="space-y-8 bg-white shadow-md rounded-lg max-w-3xl mx-auto">
+          <!-- Contenu du formulaire -->
+          <form
+            id="formInfoPersonnelle"
+            class="space-y-8 bg-white shadow-md rounded-lg max-w-3xl mx-auto"
+          >
             <!-- Step 1: Information Personnel -->
-            <div id="step-1" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
-          
+            <div
+              id="step-1"
+              class="bg-gray-200 p-4 rounded-lg shadow-lg"
+              style="width: 600px"
+            >
               <!-- Nom complet et Profil Professionnel -->
               <div class="flex space-x-4 mb-6">
-                
                 <!-- Nom complet -->
                 <div class="flex-1">
-                  <label for="fullName" class="block mb-2 text-sm font-medium text-gray-700">Nom Complet</label>
-                  <input type="text" id="fullName" aria-label="Nom Complet" placeholder="Ex: Mouad Hallaffou"
+                  <label
+                    for="fullName"
+                    class="block mb-2 text-sm font-medium text-gray-700"
+                    >Nom Complet</label
+                  >
+                  <input
+                    type="text"
+                    id="fullName"
+                    aria-label="Nom Complet"
+                    placeholder="Ex: Mouad Hallaffou"
                     class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
-                    required>
-                  <span id="fullNameError" class="error-message text-red-500 text-xs mt-1 hidden">*entrer votre nom et prenom.</span> 
+                    required
+                  />
+                  <span
+                    id="fullNameError"
+                    class="error-message text-red-500 text-xs mt-1 hidden"
+                    >*entrer votre nom et prenom.</span
+                  >
                 </div>
-                
+
                 <!-- Profil Professionnel -->
                 <div class="flex-1">
-                  <label for="jobLocation" class="block mb-2 text-sm font-medium text-gray-700">Profil</label>
-                  <input type="text" id="jobLocation" name="jobLocation" aria-label="Profil professionnel"
+                  <label
+                    for="jobLocation"
+                    class="block mb-2 text-sm font-medium text-gray-700"
+                    >Profil</label
+                  >
+                  <input
+                    type="text"
+                    id="jobLocation"
+                    name="jobLocation"
+                    aria-label="Profil professionnel"
                     class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
-                    placeholder="Ex: Développeur full stack, technicien spécialisé..." required>
-                  <span id="jobLocationError" class="error-message text-red-500 text-xs mt-1 hidden">*spécifier votre profil professionnel.</span> 
+                    placeholder="Ex: Développeur full stack, technicien spécialisé..."
+                    required
+                  />
+                  <span
+                    id="jobLocationError"
+                    class="error-message text-red-500 text-xs mt-1 hidden"
+                    >*spécifier votre profil professionnel.</span
+                  >
                 </div>
               </div>
-              
+
               <!-- Email et Téléphone -->
               <div class="flex space-x-4 mb-6">
-                
                 <!-- Email -->
                 <div class="flex-1">
-                  <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email</label>
-                  <input type="email" id="email" name="email" aria-label="Email" placeholder="Ex: mouadfl@gmail.com"
+                  <label
+                    for="email"
+                    class="block mb-2 text-sm font-medium text-gray-700"
+                    >Email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    aria-label="Email"
+                    placeholder="Ex: mouadfl@gmail.com"
                     class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
-                    required>
-                  <span id="emailError" class="error-message text-red-500 text-xs mt-1 hidden">*saisir une adresse email valide</span> 
+                    required
+                  />
+                  <span
+                    id="emailError"
+                    class="error-message text-red-500 text-xs mt-1 hidden"
+                    >*saisir une adresse email valide</span
+                  >
                 </div>
-                
+
                 <!-- Téléphone -->
                 <div class="flex-1">
-                  <label for="phone" class="block mb-2 text-sm font-medium text-gray-700">Téléphone</label>
-                  <input type="tel" id="phone" name="phone" aria-label="Téléphone" placeholder="Ex: 06 23 45 67 89"
+                  <label
+                    for="phone"
+                    class="block mb-2 text-sm font-medium text-gray-700"
+                    >Téléphone</label
+                  >
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    aria-label="Téléphone"
+                    placeholder="Ex: 06 23 45 67 89"
                     class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
-                    required>
-                  <span id="phoneError" class="error-message text-red-500 text-xs mt-1 hidden">*saisir un numéro de téléphone valide</span> 
+                    required
+                  />
+                  <span
+                    id="phoneError"
+                    class="error-message text-red-500 text-xs mt-1 hidden"
+                    >*saisir un numéro de téléphone valide</span
+                  >
                 </div>
               </div>
-              
+
               <!-- Adresse -->
               <div class="mb-6">
-                <label for="adresse" class="block mb-2 text-sm font-medium text-gray-700">Adresse</label>
-                <input type="text" id="adresse" name="adresse" aria-label="Adresse" placeholder="Ex: 123 rue de 123 casablanca maroc"
+                <label
+                  for="adresse"
+                  class="block mb-2 text-sm font-medium text-gray-700"
+                  >Adresse</label
+                >
+                <input
+                  type="text"
+                  id="adresse"
+                  name="adresse"
+                  aria-label="Adresse"
+                  placeholder="Ex: 123 rue de 123 casablanca maroc"
                   class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
-                  required>
-                <span id="adresseError" class="error-message text-red-500 text-xs mt-1 hidden">*entrer une adresse valide</span> 
+                  required
+                />
+                <span
+                  id="adresseError"
+                  class="error-message text-red-500 text-xs mt-1 hidden"
+                  >*entrer une adresse valide</span
+                >
               </div>
-              
+
               <!-- LinkedIn et GitHub -->
               <div class="flex space-x-4 mb-6">
-                
                 <!-- LinkedIn -->
                 <div class="flex-1">
-                  <label for="linkedin" class="block mb-2 text-sm font-medium text-gray-700">LinkedIn</label>
-                  <input type="url" id="linkedin" name="linkedin" aria-label="LinkedIn" placeholder="https://www.linkedin.com/in/username"
+                  <label
+                    for="linkedin"
+                    class="block mb-2 text-sm font-medium text-gray-700"
+                    >LinkedIn</label
+                  >
+                  <input
+                    type="url"
+                    id="linkedin"
+                    name="linkedin"
+                    aria-label="LinkedIn"
+                    placeholder="https://www.linkedin.com/in/username"
                     class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
-                    required>
-                  <span id="linkedinError" class="error-message text-red-500 text-xs mt-1 hidden">*entrer un lien vers votre profil LinkedIn</span> 
+                    required
+                  />
+                  <span
+                    id="linkedinError"
+                    class="error-message text-red-500 text-xs mt-1 hidden"
+                    >*entrer un lien vers votre profil LinkedIn</span
+                  >
                 </div>
-                
+
                 <!-- GitHub -->
                 <div class="flex-1">
-                  <label for="github" class="block mb-2 text-sm font-medium text-gray-700">GitHub</label>
-                  <input type="url" id="github" name="github" aria-label="GitHub" placeholder="https://github.com/username"
+                  <label
+                    for="github"
+                    class="block mb-2 text-sm font-medium text-gray-700"
+                    >GitHub</label
+                  >
+                  <input
+                    type="url"
+                    id="github"
+                    name="github"
+                    aria-label="GitHub"
+                    placeholder="https://github.com/username"
                     class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
-                    required>
-                  <span id="githubError" class="error-message text-red-500 text-xs mt-1 hidden">*entrer un lien vers votre profil GitHub</span> 
+                    required
+                  />
+                  <span
+                    id="githubError"
+                    class="error-message text-red-500 text-xs mt-1 hidden"
+                    >*entrer un lien vers votre profil GitHub</span
+                  >
                 </div>
               </div>
-              
+
               <!-- À propos de toi -->
               <div class="mb-6">
-                <label for="aboutMe" class="block mb-2 text-sm font-medium text-gray-700">À propos de toi</label>
-                <textarea id="aboutMe" name="aboutMe" rows="4" aria-label="À propos de toi"
+                <label
+                  for="aboutMe"
+                  class="block mb-2 text-sm font-medium text-gray-700"
+                  >À propos de toi</label
+                >
+                <textarea
+                  id="aboutMe"
+                  name="aboutMe"
+                  rows="4"
+                  aria-label="À propos de toi"
                   class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3 aboutMeField"
                   placeholder="Décrivez votre expérience, vos compétences et votre spécialité dans votre domaine"
-                  required maxlength="1000" minlength="50"></textarea>
-                <span id="aboutMeError" class="error-message text-red-500 text-xs mt-1 mx-2 hidden ">
+                  required
+                  maxlength="1000"
+                  minlength="50"
+                ></textarea>
+                <span
+                  id="aboutMeError"
+                  class="error-message text-red-500 text-xs mt-1 mx-2 hidden"
+                >
                   *Le texte doit contenir entre 50 et 1000 caractères.
                 </span>
-              </div>            
-              
+              </div>
+
               <!-- Image de Profil -->
               <div class="mb-6">
-                <label for="profileImage" class="block mb-2 text-sm font-medium text-gray-700">Ajoutez votre image</label>
-                <input type="file" id="profileImage" name="profileImage" accept="image/*" aria-label="Image de Profil"
+                <label
+                  for="profileImage"
+                  class="block mb-2 text-sm font-medium text-gray-700"
+                  >Ajoutez votre image</label
+                >
+                <input
+                  type="file"
+                  id="profileImage"
+                  name="profileImage"
+                  accept="image/*"
+                  aria-label="Image de Profil"
                   class="block w-full text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300 cursor-pointer focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg p-3"
-                  required>
-                <span id="profileImageError" class="error-message text-red-500 text-xs mt-1 hidden">*Veuillez télécharger une photo de profil.</span> 
+                  required
+                />
+                <span
+                  id="profileImageError"
+                  class="error-message text-red-500 text-xs mt-1 hidden"
+                  >*Veuillez télécharger une photo de profil.</span
+                >
               </div>
-          
+
               <!-- Bouton Suivant -->
               <div class="flex justify-end">
-                <button type="button" id="nextBtnInfo" name="next" aria-label="Suivant"
-                  class="nextBtnInfo flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
+                <button
+                  type="button"
+                  id="nextBtnInfo"
+                  name="next"
+                  aria-label="Suivant"
+                  class="nextBtnInfo flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out"
+                >
                   Suivant
                 </button>
               </div>
-          
             </div>
           </form>
-          
+
           <!------------------------ Step: 2 ---------------------------->
           <!------------------- Section des Expériences ----------------->
-          <div id="step-2" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
+          <div
+            id="step-2"
+            class="bg-gray-200 p-4 rounded-lg shadow-lg"
+            style="width: 600px"
+          >
             <div class="text-center mb-6">
-              <h2 class="text-2xl font-semibold text-gray-800">Ajouter une expérience professionnelle</h2>
+              <h2 class="text-2xl font-semibold text-gray-800">
+                Ajouter une expérience professionnelle
+              </h2>
             </div>
-            
+
             <!-- Liste des formulaires d'expérience -->
             <div id="experience-forms-container" class="space-y-6"></div>
 
             <!-- Bouton pour ajouter un formulaire -->
             <div class="flex justify-end">
-              <button type="button" id="add-experience"
-                class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2.5 text-center">
-                Ajouter Expérience
+              <button
+                title="add-experience"
+                class="group cursor-pointer outline-none hover:rotate-90 duration-300"
+                type="button"
+                id="add-experience"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="50px"
+                  height="50px"
+                  viewBox="0 0 24 24"
+                  class="stroke-blue-400 fill-none group-hover:fill-blue-800 group-active:stroke-blue-200 group-active:fill-blue-600 group-active:duration-0 duration-300"
+                >
+                  <path
+                    d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                    stroke-width="1.5"
+                  ></path>
+                  <path d="M8 12H16" stroke-width="1.5"></path>
+                  <path d="M12 16V8" stroke-width="1.5"></path>
+                </svg>
               </button>
             </div>
 
             <!-- Navigation -->
             <div class="flex justify-between items-center mt-8 space-x-4">
-              <button type="button" id="prevBtnExp" class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg">
+              <button
+                type="button"
+                id="prevBtnExp"
+                class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg"
+              >
                 Précédent
               </button>
-              <button type="button" id="nextBtnExp" class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg">
+              <button
+                type="button"
+                id="nextBtnExp"
+                class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg"
+              >
                 Suivant
               </button>
             </div>
@@ -305,152 +535,317 @@
 
           <!-------------------------------------------------------------->
           <!----------------------- Step 3: Diplome ---------------------->
-          <div id="step-3" class="bg-gray-200 p-6 rounded-lg shadow-lg" style="width: 600px;">
+          <div
+            id="step-3"
+            class="bg-gray-200 p-6 rounded-lg shadow-lg"
+            style="width: 600px"
+          >
             <!-- Titre principal pour le formulaire -->
             <div class="text-center mb-6">
-                <h2 class="text-2xl font-semibold text-gray-800">Diplômes</h2>
+              <h2 class="text-2xl font-semibold text-gray-800">Diplômes</h2>
             </div>
-        
+
             <!-- Formulaire Diplôme -->
             <div id="diplomes-form-container" class="space-y-6">
-                <!-- Section dynamique des diplômes -->
+              <!-- Section dynamique des diplômes -->
             </div>
-        
+
             <!-- Bouton pour ajouter un diplôme -->
             <div class="flex justify-end mb-4">
-                <button id="add-diplome-button" class="text-blue-600 hover:text-blue-800 text-lg font-semibold">
-                    <i class="fas fa-plus-circle"></i> Ajouter un Diplôme
-                </button>
+              <button
+                title="add-diplome"
+                class="group cursor-pointer outline-none hover:rotate-90 duration-300"
+                id="add-diplome-button"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="50px"
+                  height="50px"
+                  viewBox="0 0 24 24"
+                  class="stroke-blue-400 fill-none group-hover:fill-blue-800 group-active:stroke-blue-200 group-active:fill-blue-600 group-active:duration-0 duration-300"
+                >
+                  <path
+                    d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                    stroke-width="1.5"
+                  ></path>
+                  <path d="M8 12H16" stroke-width="1.5"></path>
+                  <path d="M12 16V8" stroke-width="1.5"></path>
+                </svg>
+              </button>
             </div>
-        
+
             <!-- Navigation entre les étapes -->
             <div class="flex justify-between items-center mt-8 space-x-4">
-                <button type="button" id="prevBtnDiplomes" name="prev"
-                    class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline">
-                    Précédent
-                </button>
-        
-                <button type="button" id="nextBtnDiplomes" name="next"
-                    class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
-                    Suivant
-                </button>
-             </div>
+              <button
+                type="button"
+                id="prevBtnDiplomes"
+                name="prev"
+                class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline"
+              >
+                Précédent
+              </button>
+
+              <button
+                type="button"
+                id="nextBtnDiplomes"
+                name="next"
+                class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out"
+              >
+                Suivant
+              </button>
+            </div>
           </div>
-          <!-------------------------- fin Section des diplome ---------------------->
+          <!------------------------ fin Section des diplome ------------>
           <!------------------------------------------------------------->
 
           <!------------------------------------------------------------->
           <!---------------------- Step 4: Certificat ------------------->
-          <div id="step-4" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
-            <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">Certificats</h2>
+          <div
+            id="step-4"
+            class="bg-gray-200 p-4 rounded-lg shadow-lg"
+            style="width: 600px"
+          >
+            <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">
+              Certificats
+            </h2>
             <!-- Formulaire Certificat -->
             <div id="certificate-form-container" class="space-y-6">
               <!-- Section dynamique des certificats -->
             </div>
             <!-- Bouton pour ajouter un certificat -->
             <div class="flex justify-end mb-4">
-              <button id="add-certificate-button" class="text-blue-600 hover:text-blue-800 text-lg font-semibold">
-                <i class="fas fa-plus-circle"></i> Ajouter un Certificat
+              <button
+                title="add-Competence"
+                class="group cursor-pointer outline-none hover:rotate-90 duration-300"
+                type="button"
+                id="add-certificate-button"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="50px"
+                  height="50px"
+                  viewBox="0 0 24 24"
+                  class="stroke-blue-400 fill-none group-hover:fill-blue-800 group-active:stroke-blue-200 group-active:fill-blue-600 group-active:duration-0 duration-300"
+                >
+                  <path
+                    d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                    stroke-width="1.5"
+                  ></path>
+                  <path d="M8 12H16" stroke-width="1.5"></path>
+                  <path d="M12 16V8" stroke-width="1.5"></path>
+                </svg>
               </button>
             </div>
 
             <!-- Navigation entre les étapes -->
             <div class="flex justify-between items-center mt-8 px-6 space-x-4">
-              <button type="button" id="prevBtnCertificats" name="prev"
-                class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline">
+              <button
+                type="button"
+                id="prevBtnCertificats"
+                name="prev"
+                class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline"
+              >
                 Précédent
               </button>
 
-              <button type="button" id="nextBtnCertificats" name="next"
-                class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
+              <button
+                type="button"
+                id="nextBtnCertificats"
+                name="next"
+                class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out"
+              >
                 Suivant
               </button>
             </div>
           </div>
-          <!------------------------ fin Section des certifications ----------------->
+          <!------------------ fin Section des certifications ---------->
           <!------------------------------------------------------------->
 
           <!------------------------ Competances ------------------------>
           <!------------------------------------------------------------->
-          <div id="step-5" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
+          <div
+            id="step-5"
+            class="bg-gray-200 p-4 rounded-lg shadow-lg"
+            style="width: 600px"
+          >
             <div class="space-y-6">
               <!-- Compétences -->
               <div class="w-full p-4 bg-white rounded-lg shadow-lg">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">Compétences</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">
+                  Compétences
+                </h2>
                 <form id="dynamicSkillsForm" class="space-y-6">
-                  
                   <!-- Section Soft Skills -->
                   <div>
-                    <h3 class="text-lg font-medium text-gray-700">Compétences interpersonnelles</h3>
+                    <h3 class="text-lg font-medium text-gray-700">
+                      Compétences interpersonnelles
+                    </h3>
                     <div id="softSkillInputs" class="space-y-2">
                       <div class="flex items-center space-x-2">
-                        <input type="text" id="softSkillInputsValue" placeholder="Communication, Gestion de temps ..." class="w-full p-2 border rounded-md" required>
-                        <button type="button" id="btnAadSoftSkills" class="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600">
-                          Ajouter
+                        <input
+                          type="text"
+                          id="softSkillInputsValue"
+                          placeholder="Communication, Gestion de temps ..."
+                          class="w-full p-2 border rounded-md"
+                          required
+                        />
+
+                        <button
+                          title="add-Competence"
+                          class="group cursor-pointer outline-none hover:rotate-90 duration-300"
+                          type="button"
+                          id="btnAadSoftSkills"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="50px"
+                            height="50px"
+                            viewBox="0 0 24 24"
+                            class="stroke-blue-400 fill-none group-hover:fill-blue-800 group-active:stroke-blue-200 group-active:fill-blue-600 group-active:duration-0 duration-300"
+                          >
+                            <path
+                              d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                              stroke-width="1.5"
+                            ></path>
+                            <path d="M8 12H16" stroke-width="1.5"></path>
+                            <path d="M12 16V8" stroke-width="1.5"></path>
+                          </svg>
                         </button>
                       </div>
                       <ul id="softSkillsList" class="mt-4"></ul>
                     </div>
                   </div>
-          
+
                   <!-- Section Hard Skills -->
                   <div>
-                    <h3 class="text-lg font-medium text-gray-700">Compétences techniques</h3>
+                    <h3 class="text-lg font-medium text-gray-700">
+                      Compétences techniques
+                    </h3>
                     <div id="hardSkillInputs" class="space-y-2">
                       <div class="flex items-center space-x-2">
-                        <input type="text" id="hardSkillInputsValue" placeholder="Développement web, Comptabilité..." class="w-full p-2 border rounded-md" required>
-                        <button type="button" id="btnAadHardSkills" class="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600">
-                          Ajouter
+                        <input
+                          type="text"
+                          id="hardSkillInputsValue"
+                          placeholder="Développement web, Comptabilité..."
+                          class="w-full p-2 border rounded-md"
+                          required
+                        />
+
+                        <button
+                          title="add-Competence"
+                          class="group cursor-pointer outline-none hover:rotate-90 duration-300"
+                          type="button"
+                          id="btnAadHardSkills"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="50px"
+                            height="50px"
+                            viewBox="0 0 24 24"
+                            class="stroke-blue-400 fill-none group-hover:fill-blue-800 group-active:stroke-blue-200 group-active:fill-blue-600 group-active:duration-0 duration-300"
+                          >
+                            <path
+                              d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                              stroke-width="1.5"
+                            ></path>
+                            <path d="M8 12H16" stroke-width="1.5"></path>
+                            <path d="M12 16V8" stroke-width="1.5"></path>
+                          </svg>
                         </button>
                       </div>
                       <ul id="hardSkillsList" class="mt-4"></ul>
                     </div>
                   </div>
-          
+
                   <!-- Navigation entre les étapes -->
-                  <div class="flex justify-between items-center mt-8 px-6 space-x-4">
-                    <button type="button" id="prevBtnCompetances" name="prev"
-                      class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline">
+                  <div
+                    class="flex justify-between items-center mt-8 px-6 space-x-4"
+                  >
+                    <button
+                      type="button"
+                      id="prevBtnCompetances"
+                      name="prev"
+                      class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline"
+                    >
                       Précédent
                     </button>
-          
-                    <button type="button" id="nextBtnCompetences" name="next"
-                      class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
+
+                    <button
+                      type="button"
+                      id="nextBtnCompetences"
+                      name="next"
+                      class="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out"
+                    >
                       Suivant
                     </button>
                   </div>
                 </form>
               </div>
             </div>
-          </div>          
-          <!---------------------fin Section des Competances -------------------------->
+          </div>
+          <!------------------fin Section des Competances ------------------>
           <!---------------------------------------------------------------->
 
           <!---------------------------------------------------------------->
           <!-------------------- Step 5: Langues et Loisirs ---------------->
-          <div id="step-6" class="bg-gray-200 p-4 rounded-lg shadow-lg" style="width: 600px;">
+          <div
+            id="step-6"
+            class="bg-gray-200 p-4 rounded-lg shadow-lg"
+            style="width: 600px"
+          >
             <div class="space-y-6">
               <!-- Langues et Niveau -->
               <div class="w-full p-4 bg-white rounded-lg shadow-lg">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">Compétences Linguistiques et Loisirs</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">
+                  Compétences Linguistiques et Loisirs
+                </h2>
                 <form id="dynamicForm" class="space-y-6">
                   <!-- Section dynamique des champs de langue -->
                   <div>
                     <h3 class="text-lg font-medium text-gray-700">Langues</h3>
                     <div id="languageInputs" class="space-y-2">
                       <div class="flex items-center space-x-2">
-                        <input type="text" name="languages" id="languages" placeholder="Langue" class="w-full p-2 border rounded-md"
-                          required>
-                        <select name="niveau" id="niveau" class="p-2 border rounded-md" required>
+                        <input
+                          type="text"
+                          name="languages"
+                          id="languages"
+                          placeholder="Langue"
+                          class="w-full p-2 border rounded-md"
+                          required
+                        />
+                        <select
+                          name="niveau"
+                          id="niveau"
+                          class="p-2 border rounded-md"
+                          required
+                        >
                           <option value="">Niveau</option>
                           <option value="Débutant">Débutant</option>
                           <option value="Intermédiaire">Intermédiaire</option>
                           <option value="Avancé">Avancé</option>
                           <option value="Courant">Courant</option>
                         </select>
-                        <button type="button" id="addLanguageInput"
-                          class="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600">
-                          Ajouter
+
+                        <button
+                          title="add-langue"
+                          class="group cursor-pointer outline-none hover:rotate-90 duration-300"
+                          type="button"
+                          id="addLanguageInput"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="50px"
+                            height="50px"
+                            viewBox="0 0 24 24"
+                            class="stroke-blue-400 fill-none group-hover:fill-blue-800 group-active:stroke-blue-200 group-active:fill-blue-600 group-active:duration-0 duration-300"
+                          >
+                            <path
+                              d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                              stroke-width="1.5"
+                            ></path>
+                            <path d="M8 12H16" stroke-width="1.5"></path>
+                            <path d="M12 16V8" stroke-width="1.5"></path>
+                          </svg>
                         </button>
                       </div>
                       <ul id="languesNiveauList" class="mt-4"></ul>
@@ -461,11 +856,35 @@
                     <h3 class="text-lg font-medium text-gray-700">Loisirs</h3>
                     <div id="hobbyInputs" class="space-y-2">
                       <div class="flex items-center space-x-2">
-                        <input type="text" name="loisirs" id="loisirs" placeholder="Loisir" class="w-full p-2 border rounded-md"
-                          required>
-                        <button type="button" id="addInteretInput"
-                          class="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600">
-                          Ajouter
+                        <input
+                          type="text"
+                          name="loisirs"
+                          id="loisirs"
+                          placeholder="Loisir"
+                          class="w-full p-2 border rounded-md"
+                          required
+                        />
+
+                        <button
+                          title="add-Loisir"
+                          class="group cursor-pointer outline-none hover:rotate-90 duration-300"
+                          type="button"
+                          id="addInteretInput"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="50px"
+                            height="50px"
+                            viewBox="0 0 24 24"
+                            class="stroke-blue-400 fill-none group-hover:fill-blue-800 group-active:stroke-blue-200 group-active:fill-blue-600 group-active:duration-0 duration-300"
+                          >
+                            <path
+                              d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                              stroke-width="1.5"
+                            ></path>
+                            <path d="M8 12H16" stroke-width="1.5"></path>
+                            <path d="M12 16V8" stroke-width="1.5"></path>
+                          </svg>
                         </button>
                       </div>
                       <ul id="LoisirLists" class="mt-4"></ul>
@@ -475,81 +894,136 @@
               </div>
 
               <!-- Navigation Buttons -->
-              <div class="flex justify-between items-center mt-8 px-6 space-x-4">
-                <button type="button" id="prevBtnLangues" name="prev"
-                  class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline">
+              <div
+                class="flex justify-between items-center mt-8 px-6 space-x-4"
+              >
+                <button
+                  type="button"
+                  id="prevBtnLangues"
+                  name="prev"
+                  class="flex items-center px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:shadow-outline"
+                >
                   Précédent
                 </button>
 
                 <!-- Bouton soumission pour derniere forme-->
-                <button type="submit" id="submitBtn" name="submit"
-                  class="flex items-center px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out">
+                <button
+                  type="submit"
+                  id="submitBtn"
+                  name="submit"
+                  class="flex items-center px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:shadow-outline transition-all duration-300 ease-in-out"
+                >
                   Soumettre
                 </button>
               </div>
             </div>
           </div>
-          <!-----------------------fin Section deslangues et loisirs------------------->
+          <!------------------fin Section deslangues et loisirs------------->
           <!---------------------------------------------------------------->
           <!---------------------------------------------------------------->
-          <div class="type-selection-section hidden mt-6 w-full p-8 bg-white rounded-lg shadow-lg flex flex-col items-center space-y-6">
+          <div
+            class="type-selection-section hidden mt-6 w-full p-8 bg-white rounded-lg shadow-lg flex flex-col items-center space-y-6"
+          >
             <!-- Titre principal -->
-            <h2 class="text-3xl font-bold text-gray-800">Choisissez Votre Type Préféré</h2>
- 
+            <h2 class="text-3xl font-bold text-gray-800">
+              Choisissez Votre Type Préféré
+            </h2>
+
             <p class="text-md text-gray-600 text-center mb-6">
-              Sélectionnez l'un des types ci-dessous en fonction de vos préférences.
+              Sélectionnez l'un des types ci-dessous en fonction de vos
+              préférences.
             </p>
 
             <div class="flex justify-around items-center space-x-8 w-full">
               <!-- Option 1 -->
-              <label for="version-1" class="flex flex-col items-center cursor-pointer">
-                <input type="radio" name="typeSelection" id="version-1" value="Type 1" class="">
-                
-                <img src="images/version-1.png" alt="Image Type 1" class="object-scale-down rounded-lg border-4 border-transparent hover:border-blue-500 transition duration-300">
-                <span class="mt-3 text-lg font-medium text-gray-700">Cv Moderne</span>
+              <label
+                for="version-1"
+                class="flex flex-col items-center cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  name="typeSelection"
+                  id="version-1"
+                  value="Type 1"
+                  class=""
+                />
+
+                <img
+                  src="images/version-1.png"
+                  alt="Image Type 1"
+                  class="object-scale-down rounded-lg border-4 border-transparent hover:border-blue-500 transition duration-300"
+                />
+                <span class="mt-3 text-lg font-medium text-gray-700"
+                  >Cv Moderne</span
+                >
               </label>
-              
+
               <!-- Option 2 -->
-              <label for="version-2" class="flex flex-col items-center cursor-pointer">
-                <input type="radio" name="typeSelection" id="version-2" value="Type 2" class="">
-                
-                <img src="images/version-2.png" alt="Image Type 2" class="object-scale-down rounded-lg border-4 border-transparent hover:border-blue-500 transition duration-300">
-                <span class="mt-3 text-lg font-medium text-gray-700">Cv Classic</span>
+              <label
+                for="version-2"
+                class="flex flex-col items-center cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  name="typeSelection"
+                  id="version-2"
+                  value="Type 2"
+                  class=""
+                />
+
+                <img
+                  src="images/version-2.png"
+                  alt="Image Type 2"
+                  class="object-scale-down rounded-lg border-4 border-transparent hover:border-blue-500 transition duration-300"
+                />
+                <span class="mt-3 text-lg font-medium text-gray-700"
+                  >Cv Classic</span
+                >
               </label>
             </div>
-            
+
             <!-- Bouton pour soumettre la sélection -->
-            <button type="button" id="confirmSelectionBtn" type="submit" class="mt-8 px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition duration-300">
+            <button
+              type="button"
+              id="confirmSelectionBtn"
+              type="submit"
+              class="mt-8 px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition duration-300"
+            >
               Afficher votre CV
             </button>
-          </div>          
-
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  
-  <div id="cvTemplete"></div>
 
-  <button onclick="generatePDF()" class="fixed top-0 right-0 mt-6 mr-6 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 focus:outline-none" id="telechargerCV" style="display: none;">
-    <i class="fa fa-download text-white text-2xl"></i>
-  </button>  
-  
-  <script>
+    <div id="cvTemplete"></div>
+
+    <button
+      onclick="generatePDF()"
+      class="fixed top-0 right-0 mt-6 mr-6 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 focus:outline-none"
+      id="telechargerCV"
+      style="display: none"
+    >
+      <i class="fa fa-download text-white text-2xl"></i>
+    </button>
+
+    <script>
       async function generatePDF() {
-          const { jsPDF } = window.jspdf;
-          const cvContainer = document.querySelector(".a4-container");
-            
-          const pdf = new jsPDF("p", "mm", "a4");
-           
-          const canvas = await html2canvas(cvContainer, {
-              scale: 3, 
-              useCORS: true 
-          });
-          const imgData = canvas.toDataURL("inputPhoto");
-          pdf.addImage(imgData, "PNG", 0, 0, 210, 297);
-          pdf.save("CV.pdf");
+        const { jsPDF } = window.jspdf;
+        const cvContainer = document.querySelector(".a4-container");
+
+        const pdf = new jsPDF("p", "mm", "a4");
+
+        const canvas = await html2canvas(cvContainer, {
+          scale: 3,
+          useCORS: true,
+        });
+        const imgData = canvas.toDataURL("inputPhoto");
+        pdf.addImage(imgData, "PNG", 0, 0, 210, 297);
+        pdf.save("CV.pdf");
       }
-  </script>
-  <script src="main.js"></script>
-</body>
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="main.js"></script>
+  </body>
 </html>

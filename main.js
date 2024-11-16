@@ -219,89 +219,10 @@ updateProgressBar();
 
 const experiences = [];
 const addExperienceButton = document.getElementById("add-experience");
-const experienceFormsContainer = document.getElementById(
-  "experience-forms-container"
-);
+const experienceFormsContainer = document.getElementById("experience-forms-container");
 const nextBtn = document.getElementById("nextBtnExp");
 
-addExperienceButton.addEventListener("click", () => {
-  // Créer un nouveau formulaire dynamique
-  const formId = `experience-form-${experiences.length + 1}`;
-  const experienceForm = document.createElement("form");
-  experienceForm.id = formId;
-  experienceForm.classList.add("space-y-6");
-  experienceForm.innerHTML = `
-     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div>
-          <label for="${formId}-mission" class="block mb-2 text-sm font-medium text-gray-800">Mission</label>
-          <input type="text" id="${formId}-mission" name="experience_mission" class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" placeholder="Entrez la mission" required>
-        </div>
-        <div>
-          <label for="${formId}-sector" class="block mb-2 text-sm font-medium text-gray-800">Secteur</label>
-          <input type="text" id="${formId}-sector" name="experience_sector" class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" placeholder="Entrez le secteur" required>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div>
-          <label for="${formId}-start-date" class="block mb-2 text-sm font-medium text-gray-800">Date de Début</label>
-          <input type="date" id="${formId}-start-date" name="experience_start_date" class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" required>
-        </div>
-        <div>
-          <label for="${formId}-end-date" class="block mb-2 text-sm font-medium text-gray-800">Date de Fin</label>
-          <input type="date" id="${formId}-end-date" name="experience_end_date" class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" required>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div>
-          <label for="${formId}-company" class="block mb-2 text-sm font-medium text-gray-800">Nom de l'Entreprise</label>
-          <input type="text" id="${formId}-company" name="experience_company" class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" placeholder="Entrez le nom de l'entreprise" required>
-        </div>
-        <div>
-          <label for="${formId}-location" class="block mb-2 text-sm font-medium text-gray-800">Lieu</label>
-          <input type="text" id="${formId}-location" name="experience_location" class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" placeholder="Entrez le lieu" required>
-        </div>
-      </div>
-
-      <div>
-        <label for="${formId}-description" class="block mb-2 text-sm font-medium text-gray-800">Description</label>
-        <textarea id="${formId}-description" name="experience_description" rows="4" class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full text-sm text-gray-700 placeholder-gray-400" placeholder="Entrez une description" required></textarea>
-      </div>
-  `;
-
-  const submitButton = document.createElement("button");
-  submitButton.type = "button";
-  submitButton.classList.add(
-    "bg-blue-600",
-    "text-white",
-    "px-4",
-    "py-2",
-    "rounded-lg"
-  );
-  submitButton.innerText = "Enregistrer";
-  submitButton.addEventListener("click", () => {
-    const experience = {
-      mission: document.getElementById(`${formId}-mission`).value,
-      sector: document.getElementById(`${formId}-sector`).value,
-      startDate: document.getElementById(`${formId}-start-date`).value,
-      endDate: document.getElementById(`${formId}-end-date`).value,
-      company: document.getElementById(`${formId}-company`).value,
-      location: document.getElementById(`${formId}-location`).value,
-      description: document.getElementById(`${formId}-description`).value,
-    };
-    experiences.push(experience);
-    alert("Expérience ajoute!");
-
-    experienceForm.reset();
-    displayExperiences();
-    experienceForm.preventDefault();
-  });
-
-  experienceForm.appendChild(submitButton);
-  experienceFormsContainer.appendChild(experienceForm);
-});
-
+// Fonction pour afficher la liste des expériences enregistrées
 function displayExperiences() {
   const experienceListContainer = document.getElementById("experience-list");
   experienceListContainer.innerHTML = "";
@@ -319,15 +240,169 @@ function displayExperiences() {
   });
 }
 
-nextBtn.addEventListener("click", () => {
-  console.log(experiences);
+// Ajouter un formulaire dynamique pour une nouvelle expérience
+addExperienceButton.addEventListener("click", () => {
+  const formId = `experience-form-${experiences.length + 1}`;
+  const experienceForm = document.createElement("form");
+  experienceForm.id = formId;
+  experienceForm.classList.add("relative", "space-y-6", "border", "p-4", "rounded-lg", "bg-gray-100");
+
+  experienceForm.innerHTML = `
+    <div class="relative p-0 rounded-lg">
+      <button 
+        type="button" 
+        class="absolute top-0 right-0 mb-12 text-red-500 hover:text-red-700 transition duration-300" 
+        title="Supprimer"
+      >
+        <i class="fas fa-trash"></i>
+      </button>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div>
+          <label for="${formId}-mission" class="block mb-2 text-sm font-medium text-gray-800">Mission</label>
+          <input 
+            type="text" 
+            id="${formId}-mission" 
+            name="experience_mission" 
+            class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" 
+            placeholder="Entrez la mission" 
+            required
+          />
+        </div>
+        <div>
+          <label for="${formId}-sector" class="block mb-2 text-sm font-medium text-gray-800">Secteur</label>
+          <input 
+            type="text" 
+            id="${formId}-sector" 
+            name="experience_sector" 
+            class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" 
+            placeholder="Entrez le secteur" 
+            required
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+        <div>
+          <label for="${formId}-start-date" class="block mb-2 text-sm font-medium text-gray-800">Date de Début</label>
+          <input 
+            type="date" 
+            id="${formId}-start-date" 
+            name="experience_start_date" 
+            class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" 
+            required
+          />
+        </div>
+        <div>
+          <label for="${formId}-end-date" class="block mb-2 text-sm font-medium text-gray-800">Date de Fin</label>
+          <input 
+            type="date" 
+            id="${formId}-end-date" 
+            name="experience_end_date" 
+            class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" 
+            required
+          />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+        <div>
+          <label for="${formId}-company" class="block mb-2 text-sm font-medium text-gray-800">Nom de l'Entreprise</label>
+          <input 
+            type="text" 
+            id="${formId}-company" 
+            name="experience_company" 
+            class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" 
+            placeholder="Entrez le nom de l'entreprise" 
+            required
+          />
+        </div>
+        <div>
+          <label for="${formId}-location" class="block mb-2 text-sm font-medium text-gray-800">Lieu</label>
+          <input 
+            type="text" 
+            id="${formId}-location" 
+            name="experience_location" 
+            class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full h-12 text-sm text-gray-700 placeholder-gray-400" 
+            placeholder="Entrez le lieu" 
+            required
+          />
+        </div>
+      </div>
+
+      <div>
+        <label for="${formId}-description" class="block mb-2 text-sm font-medium text-gray-800">Description</label>
+        <textarea 
+          id="${formId}-description" 
+          name="experience_description" 
+          rows="4" 
+          class="form-input border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition duration-300 w-full text-sm text-gray-700 placeholder-gray-400" 
+          placeholder="Entrez une description" 
+          required
+        ></textarea>
+      </div>
+    </div>
+  `;
+
+  const deleteButton = experienceForm.querySelector("button[title='Supprimer']");
+  deleteButton.addEventListener("click", () => {
+    experienceForm.remove();
+  });
+
+  experienceFormsContainer.appendChild(experienceForm);
 });
 
-const diplomesFormContainer = document.getElementById(
-  "diplomes-form-container"
-);
+nextBtn.addEventListener("click", () => {
+  const forms = document.querySelectorAll("#experience-forms-container form");
+  
+  forms.forEach((form) => {
+    const mission = form.querySelector("[name='experience_mission']").value;
+    const sector = form.querySelector("[name='experience_sector']").value;
+    const startDate = form.querySelector("[name='experience_start_date']").value;
+    const endDate = form.querySelector("[name='experience_end_date']").value;
+    const company = form.querySelector("[name='experience_company']").value;
+    const location = form.querySelector("[name='experience_location']").value;
+    const description = form.querySelector("[name='experience_description']").value;
+
+    if (!mission || !sector || !startDate || !endDate || !company || !location || !description) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Tous les champs doivent être remplis',
+        text: 'Veuillez compléter tous les champs du formulaire.',
+      });
+      return;
+    }
+
+    if (startDate > endDate) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur de dates',
+        text: "La date de début ne peut pas être supérieure à la date de fin.",
+      });
+      return;
+    }
+
+    const experience = {
+      mission,
+      sector,
+      startDate,
+      endDate,
+      company,
+      location,
+      description,
+    };
+
+    experiences.push(experience);
+    form.reset();
+  });
+
+  displayExperiences();
+});
+
+const diplomesDonner = [];
+const diplomesFormContainer = document.getElementById("diplomes-form-container");
 const addDiplomesButton = document.getElementById("add-diplome-button");
-let diplomesDonner = [];
+
 function addDiplomesForm() {
   const diplomesItem = document.createElement("div");
   diplomesItem.classList.add(
@@ -381,6 +456,7 @@ function addDiplomesForm() {
             </label>
         </div>
     `;
+
   diplomesItem
     .querySelector(".remove-diplomes")
     .addEventListener("click", () => {
@@ -395,9 +471,11 @@ addDiplomesButton.addEventListener("click", (e) => {
   addDiplomesForm();
 });
 
-function saveDiplomesDonner() {
+// Fonction de validation des champs et d'alerte d'erreur
+function validateDiplomesForm() {
   const formItems = diplomesFormContainer.querySelectorAll("div");
-  diplomesDonner = [];
+  let isValid = true;
+  let invalidFields = [];
 
   formItems.forEach((item) => {
     const nameElement = item.querySelector('[name="diplome-name"]');
@@ -406,9 +484,60 @@ function saveDiplomesDonner() {
     const endElement = item.querySelector('[name="diplome-end"]');
     const universityElement = item.querySelector('[name="diplome-university"]');
     const cityElement = item.querySelector('[name="diplome-city"]');
-    const descriptionElement = item.querySelector(
-      '[name="diplome-description"]'
-    );
+    const descriptionElement = item.querySelector('[name="diplome-description"]');
+
+    // Vérification de la validité des champs
+    if (
+      !nameElement.value ||
+      !specialtyElement.value ||
+      !startElement.value ||
+      !endElement.value ||
+      !universityElement.value ||
+      !cityElement.value ||
+      !descriptionElement.value
+    ) {
+      isValid = false;
+      invalidFields.push("Tous les champs sont obligatoires.");
+    }
+
+    // Vérification de la validité des dates
+    if (startElement.value && endElement.value) {
+      if (new Date(startElement.value) > new Date(endElement.value)) {
+        isValid = false;
+        invalidFields.push("La date de début ne peut pas être après la date de fin.");
+      }
+    }
+  });
+
+  // Si le formulaire est invalide, afficher une alerte
+  if (!isValid) {
+    Swal.fire({
+      icon: "error",
+      title: "Erreur de validation",
+      text: invalidFields.join(" | "),
+    });
+  }
+
+  return isValid;
+}
+
+// Sauvegarde des données et validation avant de passer à la prochaine étape
+function saveDiplomesDonner() {
+  if (!validateDiplomesForm()) {
+    return; // Arrêter l'exécution si la validation échoue
+  }
+
+  const formItems = diplomesFormContainer.querySelectorAll("div");
+  diplomesDonner.length = 0; // Réinitialiser le tableau
+
+  formItems.forEach((item) => {
+    const nameElement = item.querySelector('[name="diplome-name"]');
+    const specialtyElement = item.querySelector('[name="diplome-specialty"]');
+    const startElement = item.querySelector('[name="diplome-start"]');
+    const endElement = item.querySelector('[name="diplome-end"]');
+    const universityElement = item.querySelector('[name="diplome-university"]');
+    const cityElement = item.querySelector('[name="diplome-city"]');
+    const descriptionElement = item.querySelector('[name="diplome-description"]');
 
     if (
       nameElement &&

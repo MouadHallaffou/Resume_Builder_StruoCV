@@ -232,7 +232,7 @@
   gap: 60px;
 }
 
-.aboutMeField {
+/* .aboutMeField {
   position: relative;
 }
 
@@ -260,4 +260,7 @@
 
 .aboutMeField:valid + #aboutMeError {
   display: none;
-}
+} */
+
+
+

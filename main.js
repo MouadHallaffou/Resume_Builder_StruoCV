@@ -173,7 +173,7 @@ const validateForm = () => {
   }
 
   // Validation du champ "À propos de moi"
-  if (aboutMe.value.trim().length < 50 || aboutMe.value.trim().length > 500) {
+  if (aboutMe.value.trim().length < 50 || aboutMe.value.trim().length > 1000) {
     document.getElementById("aboutMeError").classList.remove("hidden");
     isValid = false;
   } else {
@@ -402,6 +402,12 @@ nextBtn.addEventListener("click", () => {
 const diplomesDonner = [];
 const diplomesFormContainer = document.getElementById("diplomes-form-container");
 const addDiplomesButton = document.getElementById("add-diplome-button");
+const nextBtnDiplomes = document.getElementById("nextBtnDiplomes");
+
+// Vérification de l'existence des éléments DOM
+if (!diplomesFormContainer || !addDiplomesButton || !nextBtnDiplomes) {
+  console.error("Certains éléments DOM nécessaires sont introuvables.");
+}
 
 function addDiplomesForm() {
   const diplomesItem = document.createElement("div");
@@ -466,50 +472,34 @@ function addDiplomesForm() {
   diplomesFormContainer.appendChild(diplomesItem);
 }
 
-addDiplomesButton.addEventListener("click", (e) => {
+// Ajout d'un formulaire de diplôme
+addDiplomesButton?.addEventListener("click", (e) => {
   e.preventDefault();
   addDiplomesForm();
 });
 
-// Fonction de validation des champs et d'alerte d'erreur
 function validateDiplomesForm() {
-  const formItems = diplomesFormContainer.querySelectorAll("div");
+  const formItems = diplomesFormContainer.querySelectorAll(".bg-white");
   let isValid = true;
   let invalidFields = [];
 
   formItems.forEach((item) => {
-    const nameElement = item.querySelector('[name="diplome-name"]');
-    const specialtyElement = item.querySelector('[name="diplome-specialty"]');
-    const startElement = item.querySelector('[name="diplome-start"]');
-    const endElement = item.querySelector('[name="diplome-end"]');
-    const universityElement = item.querySelector('[name="diplome-university"]');
-    const cityElement = item.querySelector('[name="diplome-city"]');
-    const descriptionElement = item.querySelector('[name="diplome-description"]');
-
-    // Vérification de la validité des champs
-    if (
-      !nameElement.value ||
-      !specialtyElement.value ||
-      !startElement.value ||
-      !endElement.value ||
-      !universityElement.value ||
-      !cityElement.value ||
-      !descriptionElement.value
-    ) {
-      isValid = false;
-      invalidFields.push("Tous les champs sont obligatoires.");
-    }
-
-    // Vérification de la validité des dates
-    if (startElement.value && endElement.value) {
-      if (new Date(startElement.value) > new Date(endElement.value)) {
+    const fields = item.querySelectorAll("input, textarea");
+    fields.forEach((field) => {
+      if (!field.value) {
         isValid = false;
-        invalidFields.push("La date de début ne peut pas être après la date de fin.");
+        invalidFields.push(`${field.name} est obligatoire.`);
       }
+    });
+
+    const startDate = item.querySelector('[name="diplome-start"]');
+    const endDate = item.querySelector('[name="diplome-end"]');
+    if (startDate && endDate && new Date(startDate.value) > new Date(endDate.value)) {
+      isValid = false;
+      invalidFields.push("La date de début doit être avant la date de fin.");
     }
   });
 
-  // Si le formulaire est invalide, afficher une alerte
   if (!isValid) {
     Swal.fire({
       icon: "error",
@@ -521,54 +511,35 @@ function validateDiplomesForm() {
   return isValid;
 }
 
-// Sauvegarde des données et validation avant de passer à la prochaine étape
 function saveDiplomesDonner() {
-  if (!validateDiplomesForm()) {
-    return; // Arrêter l'exécution si la validation échoue
-  }
+  if (!validateDiplomesForm()) return;
 
-  const formItems = diplomesFormContainer.querySelectorAll("div");
-  diplomesDonner.length = 0; // Réinitialiser le tableau
+  diplomesDonner.length = 0;
 
+  const formItems = diplomesFormContainer.querySelectorAll(".bg-white");
   formItems.forEach((item) => {
-    const nameElement = item.querySelector('[name="diplome-name"]');
-    const specialtyElement = item.querySelector('[name="diplome-specialty"]');
-    const startElement = item.querySelector('[name="diplome-start"]');
-    const endElement = item.querySelector('[name="diplome-end"]');
-    const universityElement = item.querySelector('[name="diplome-university"]');
-    const cityElement = item.querySelector('[name="diplome-city"]');
-    const descriptionElement = item.querySelector('[name="diplome-description"]');
+    const name = item.querySelector('[name="diplome-name"]').value;
+    const specialty = item.querySelector('[name="diplome-specialty"]').value;
+    const startDate = item.querySelector('[name="diplome-start"]').value;
+    const endDate = item.querySelector('[name="diplome-end"]').value;
+    const university = item.querySelector('[name="diplome-university"]').value;
+    const city = item.querySelector('[name="diplome-city"]').value;
+    const description = item.querySelector('[name="diplome-description"]').value;
 
-    if (
-      nameElement &&
-      specialtyElement &&
-      startElement &&
-      endElement &&
-      universityElement &&
-      cityElement &&
-      descriptionElement
-    ) {
-      const name = nameElement.value;
-      const specialty = specialtyElement.value;
-      const start = startElement.value;
-      const end = endElement.value;
-      const university = universityElement.value;
-      const city = cityElement.value;
-      const description = descriptionElement.value;
-      diplomesDonner.push({
-        name,
-        specialty,
-        startDate: start,
-        endDate: end,
-        university,
-        city,
-        description,
-      });
-    }
+    diplomesDonner.push({
+      name,
+      specialty,
+      startDate,
+      endDate,
+      university,
+      city,
+      description,
+    });
   });
+  console.log(diplomesDonner);
 }
 
-document.getElementById("nextBtnDiplomes").addEventListener("click", (e) => {
+nextBtnDiplomes?.addEventListener("click", (e) => {
   e.preventDefault();
   saveDiplomesDonner();
 });
@@ -872,7 +843,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <!-- Section : À propos de moi -->
                 <div class="section-item mt-2">
                     <h3 class="section-title text-lg mx-4 text-center">À propos de moi:</h3>
-                    <p class="section-content text-xs whitespace-normal text-left mx-4">${aboutMe}</p>
+                    <p class="section-content text-xs whitespace-normal text-center mx-4">${aboutMe}</p>
                 </div>
 
                 <!-- Section : Contacts -->
@@ -893,14 +864,14 @@ document.addEventListener("DOMContentLoaded", function () {
                   <div class="mt-1 flex flex-col space-y-2 mx-4">
                       <!-- Lien GitHub -->
                       <div class="flex items-center space-x-2 justify-start">
-                        <i class="fa-brands fa-github text-xl"></i>
-                        <a href="${githubUrl}" class="text-sm text-blue-500">${githubUsername}</a>
+                        <i class="fa-brands fa-github"></i>
+                        <a href="${githubUrl}" class="text-sm">${githubUsername}</a>
                       </div>
                       
                       <!-- Lien LinkedIn -->
                       <div class="flex items-center space-x-2 justify-start">
-                        <i class="fa-brands fa-linkedin text-xl"></i>
-                        <a href="${linkedinUrl}" class="text-sm text-blue-700">${linkedinUsername}</a>
+                        <i class="fa-brands fa-linkedin"></i>
+                        <a href="${linkedinUrl}" class="text-sm">${linkedinUsername}</a>
                       </div>
                     </div>
                  </div>
@@ -1017,3 +988,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+//telechargement du cv par bibliothque jsPDF
+async function generatePDF() {
+  const { jsPDF } = window.jspdf;
+  const cvContainer = document.querySelector(".a4-container");
+
+  const pdf = new jsPDF("p", "mm", "a4");
+
+  const canvas = await html2canvas(cvContainer, {
+    scale: 3,
+    useCORS: true,
+  });
+  const imgData = canvas.toDataURL("image/png");
+  pdf.addImage(imgData, "PNG", 0, 0, 210, 297);
+
+  // Récupérer le nom de l'utilisateur
+  const userNameInput = document.getElementById("fullName");
+  const userName = userNameInput ? userNameInput.value.trim() : "Utilisateur";
+
+  const fileName = `CV_${userName}.pdf`;
+  pdf.save(fileName);
+}

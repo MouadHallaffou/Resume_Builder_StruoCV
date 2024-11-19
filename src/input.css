@@ -232,21 +232,28 @@
   gap: 60px;
 }
 
-/* .aboutMeField {
+.aboutMeField ,.phoneField {
   position: relative;
 }
 
-.aboutMeField:invalid {
+.aboutMeField:invalid,.phoneField:invalid {
   border-color: #f62d2d;
-  box-shadow: 0 0 5px #f53030;
+  /* box-shadow: 0 0 5px #f53030; */
 }
 
-.aboutMeField:valid {
+.aboutMeField:valid, .phoneField:valid{
   border-color: #03dd03;
-  box-shadow: 0 0 5px #32f332;
+  /* box-shadow: 0 0 5px #32f332; */
 }
 
 .aboutMeField + #aboutMeError {
+  display: block;
+  color: #999;
+  font-size: 0.8rem;
+  padding-top: 4px;
+}
+
+  .phoneField + #phoneError {
   display: block;
   color: #999;
   font-size: 0.8rem;
@@ -260,7 +267,16 @@
 
 .aboutMeField:valid + #aboutMeError {
   display: none;
-} */
+}
+  
+.phoneField:invalid + #phoneError {
+  color: #f92929;
+  display: inline-block;
+}
+
+.phoneField:valid + #phoneError {
+  display: none;
+}
 
 
 

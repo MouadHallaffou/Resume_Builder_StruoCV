@@ -588,10 +588,6 @@ video {
   }
 }
 
-.static {
-  position: static;
-}
-
 .fixed {
   position: fixed;
 }
@@ -608,28 +604,8 @@ video {
   right: 0px;
 }
 
-.right-2 {
-  right: 0.5rem;
-}
-
 .top-0 {
   top: 0px;
-}
-
-.top-2 {
-  top: 0.5rem;
-}
-
-.right-4 {
-  right: 1rem;
-}
-
-.top-4 {
-  top: 1rem;
-}
-
-.left-0 {
-  left: 0px;
 }
 
 .mx-2 {
@@ -649,6 +625,10 @@ video {
 
 .mb-10 {
   margin-bottom: 2.5rem;
+}
+
+.mb-12 {
+  margin-bottom: 3rem;
 }
 
 .mb-2 {
@@ -697,10 +677,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mb-12 {
-  margin-bottom: 3rem;
 }
 
 .block {
@@ -960,11 +936,6 @@ video {
   background-color: rgb(107 114 128 / var(--tw-bg-opacity));
 }
 
-.bg-gray-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-}
-
 .bg-green-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(34 197 94 / var(--tw-bg-opacity));
@@ -993,6 +964,10 @@ video {
      object-fit: scale-down;
 }
 
+.p-0 {
+  padding: 0px;
+}
+
 .p-2 {
   padding: 0.5rem;
 }
@@ -1011,10 +986,6 @@ video {
 
 .p-8 {
   padding: 2rem;
-}
-
-.p-0 {
-  padding: 0px;
 }
 
 .px-10 {
@@ -1475,21 +1446,28 @@ video {
   gap: 60px;
 }
 
-/* .aboutMeField {
+.aboutMeField ,.phoneField {
   position: relative;
 }
 
-.aboutMeField:invalid {
+.aboutMeField:invalid,.phoneField:invalid {
   border-color: #f62d2d;
-  box-shadow: 0 0 5px #f53030;
+  /* box-shadow: 0 0 5px #f53030; */
 }
 
-.aboutMeField:valid {
+.aboutMeField:valid, .phoneField:valid{
   border-color: #03dd03;
-  box-shadow: 0 0 5px #32f332;
+  /* box-shadow: 0 0 5px #32f332; */
 }
 
 .aboutMeField + #aboutMeError {
+  display: block;
+  color: #999;
+  font-size: 0.8rem;
+  padding-top: 4px;
+}
+
+.phoneField + #phoneError {
   display: block;
   color: #999;
   font-size: 0.8rem;
@@ -1503,7 +1481,16 @@ video {
 
 .aboutMeField:valid + #aboutMeError {
   display: none;
-} */
+}
+
+.phoneField:invalid + #phoneError {
+  color: #f92929;
+  display: inline-block;
+}
+
+.phoneField:valid + #phoneError {
+  display: none;
+}
 
 .hover\:rotate-90:hover {
   --tw-rotate: 90deg;
@@ -1551,14 +1538,14 @@ video {
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
 }
 
-.hover\:text-red-800:hover {
-  --tw-text-opacity: 1;
-  color: rgb(153 27 27 / var(--tw-text-opacity));
-}
-
 .hover\:text-red-700:hover {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+
+.hover\:text-red-800:hover {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity));
 }
 
 .focus\:border-blue-500:focus {

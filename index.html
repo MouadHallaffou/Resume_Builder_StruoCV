@@ -324,8 +324,10 @@
                     name="phone"
                     aria-label="Téléphone"
                     placeholder="Ex: 06 23 45 67 89"
-                    class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
+                    class="bg-gray-100 border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3 phoneField"
                     required
+                    maxlength="10"
+                    minlength="10"
                   />
                   <span
                     id="phoneError"
@@ -1000,29 +1002,13 @@
 
     <button
       onclick="generatePDF()"
-      class="fixed top-0 right-0 mt-6 mr-6 bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 focus:outline-none"
+      class="fixed top-0 right-0 mt-2 mr-2 bg-blue-500 text-white p-2 rounded-full shadow-lg hover:bg-blue-600 focus:outline-none"
       id="telechargerCV"
       style="display: none"
     >
       <i class="fa fa-download text-white text-2xl"></i>
     </button>
-
-    <script>
-      async function generatePDF() {
-        const { jsPDF } = window.jspdf;
-        const cvContainer = document.querySelector(".a4-container");
-
-        const pdf = new jsPDF("p", "mm", "a4");
-
-        const canvas = await html2canvas(cvContainer, {
-          scale: 3,
-          useCORS: true,
-        });
-        const imgData = canvas.toDataURL("inputPhoto");
-        pdf.addImage(imgData, "PNG", 0, 0, 210, 297);
-        pdf.save("CV.pdf");
-      }
-    </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="main.js"></script>
   </body>

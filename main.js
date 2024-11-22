@@ -1,4 +1,4 @@
-// page principale de la platforme 
+// page principale de la platforme
 const heroSection = document.getElementById("heroSection");
 const startedBtn = document.getElementById("startedBtn");
 const formulaire = document.getElementById("formulaire");
@@ -155,7 +155,8 @@ const validateForm = () => {
   }
 
   // Validation du lien LinkedIn
-  const linkedinPattern = /^https:\/\/(?:www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
+  const linkedinPattern =
+    /^https:\/\/(?:www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
   if (!linkedinPattern.test(linkedin.value.trim())) {
     document.getElementById("linkedinError").classList.remove("hidden");
     isValid = false;
@@ -194,15 +195,29 @@ const validateForm = () => {
 // Gestion des événements des boutons "Suivant" et "Précédent"
 document.getElementById("nextBtnInfo").addEventListener("click", Suivantstep);
 document.getElementById("nextBtnExp").addEventListener("click", Suivantstep);
-document.getElementById("nextBtnDiplomes").addEventListener("click", Suivantstep);
-document.getElementById("nextBtnCertificats").addEventListener("click", Suivantstep);
-document.getElementById("nextBtnCompetences").addEventListener("click", Suivantstep);
+document
+  .getElementById("nextBtnDiplomes")
+  .addEventListener("click", Suivantstep);
+document
+  .getElementById("nextBtnCertificats")
+  .addEventListener("click", Suivantstep);
+document
+  .getElementById("nextBtnCompetences")
+  .addEventListener("click", Suivantstep);
 
 document.getElementById("prevBtnExp").addEventListener("click", precedentStep);
-document.getElementById("prevBtnDiplomes").addEventListener("click", precedentStep);
-document.getElementById("prevBtnCertificats").addEventListener("click", precedentStep);
-document.getElementById("prevBtnCompetances").addEventListener("click", precedentStep);
-document.getElementById("prevBtnLangues").addEventListener("click", precedentStep);
+document
+  .getElementById("prevBtnDiplomes")
+  .addEventListener("click", precedentStep);
+document
+  .getElementById("prevBtnCertificats")
+  .addEventListener("click", precedentStep);
+document
+  .getElementById("prevBtnCompetances")
+  .addEventListener("click", precedentStep);
+document
+  .getElementById("prevBtnLangues")
+  .addEventListener("click", precedentStep);
 
 // Initialisation : affiche la première étape et met à jour la barre de progression
 showStep(currentStep);
@@ -219,7 +234,9 @@ updateProgressBar();
 
 const experiences = [];
 const addExperienceButton = document.getElementById("add-experience");
-const experienceFormsContainer = document.getElementById("experience-forms-container");
+const experienceFormsContainer = document.getElementById(
+  "experience-forms-container"
+);
 const nextBtn = document.getElementById("nextBtnExp");
 
 // Fonction pour afficher la liste des expériences enregistrées
@@ -245,7 +262,14 @@ addExperienceButton.addEventListener("click", () => {
   const formId = `experience-form-${experiences.length + 1}`;
   const experienceForm = document.createElement("form");
   experienceForm.id = formId;
-  experienceForm.classList.add("relative", "space-y-6", "border", "p-4", "rounded-lg", "bg-gray-100");
+  experienceForm.classList.add(
+    "relative",
+    "space-y-6",
+    "border",
+    "p-4",
+    "rounded-lg",
+    "bg-gray-100"
+  );
 
   experienceForm.innerHTML = `
     <div class="relative p-0 rounded-lg">
@@ -344,7 +368,9 @@ addExperienceButton.addEventListener("click", () => {
     </div>
   `;
 
-  const deleteButton = experienceForm.querySelector("button[title='Supprimer']");
+  const deleteButton = experienceForm.querySelector(
+    "button[title='Supprimer']"
+  );
   deleteButton.addEventListener("click", () => {
     experienceForm.remove();
   });
@@ -354,29 +380,41 @@ addExperienceButton.addEventListener("click", () => {
 
 nextBtn.addEventListener("click", () => {
   const forms = document.querySelectorAll("#experience-forms-container form");
-  
+
   forms.forEach((form) => {
     const mission = form.querySelector("[name='experience_mission']").value;
     const sector = form.querySelector("[name='experience_sector']").value;
-    const startDate = form.querySelector("[name='experience_start_date']").value;
+    const startDate = form.querySelector(
+      "[name='experience_start_date']"
+    ).value;
     const endDate = form.querySelector("[name='experience_end_date']").value;
     const company = form.querySelector("[name='experience_company']").value;
     const location = form.querySelector("[name='experience_location']").value;
-    const description = form.querySelector("[name='experience_description']").value;
+    const description = form.querySelector(
+      "[name='experience_description']"
+    ).value;
 
-    if (!mission || !sector || !startDate || !endDate || !company || !location || !description) {
+    if (
+      !mission ||
+      !sector ||
+      !startDate ||
+      !endDate ||
+      !company ||
+      !location ||
+      !description
+    ) {
       Swal.fire({
-        icon: 'error',
-        title: 'Tous les champs doivent être remplis',
-        text: 'Veuillez compléter tous les champs du formulaire.',
+        icon: "error",
+        title: "Tous les champs doivent être remplis",
+        text: "Veuillez compléter tous les champs du formulaire.",
       });
       return;
     }
 
     if (startDate > endDate) {
       Swal.fire({
-        icon: 'error',
-        title: 'Erreur de dates',
+        icon: "error",
+        title: "Erreur de dates",
         text: "La date de début ne peut pas être supérieure à la date de fin.",
       });
       return;
@@ -400,7 +438,9 @@ nextBtn.addEventListener("click", () => {
 });
 
 const diplomesDonner = [];
-const diplomesFormContainer = document.getElementById("diplomes-form-container");
+const diplomesFormContainer = document.getElementById(
+  "diplomes-form-container"
+);
 const addDiplomesButton = document.getElementById("add-diplome-button");
 const nextBtnDiplomes = document.getElementById("nextBtnDiplomes");
 
@@ -494,7 +534,11 @@ function validateDiplomesForm() {
 
     const startDate = item.querySelector('[name="diplome-start"]');
     const endDate = item.querySelector('[name="diplome-end"]');
-    if (startDate && endDate && new Date(startDate.value) > new Date(endDate.value)) {
+    if (
+      startDate &&
+      endDate &&
+      new Date(startDate.value) > new Date(endDate.value)
+    ) {
       isValid = false;
       invalidFields.push("La date de début doit être avant la date de fin.");
     }
@@ -524,7 +568,9 @@ function saveDiplomesDonner() {
     const endDate = item.querySelector('[name="diplome-end"]').value;
     const university = item.querySelector('[name="diplome-university"]').value;
     const city = item.querySelector('[name="diplome-city"]').value;
-    const description = item.querySelector('[name="diplome-description"]').value;
+    const description = item.querySelector(
+      '[name="diplome-description"]'
+    ).value;
 
     diplomesDonner.push({
       name,

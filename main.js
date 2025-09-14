@@ -36,15 +36,7 @@ const forms = [
   document.getElementById("step-6"),
 ];
 
-// Importer les fonctions de validation
-import {
-  validatePersonalInfo,
-  validateExperience,
-  validateDiplomas,
-  validateCertificates,
-  validateSkills,
-  validateLanguages,
-} from "./validators.js";
+// Validation gérée par step-navigation.js et form-manager.js
 
 // Sélection des indicateurs de progression dans l'interface
 const steppers = [
@@ -216,47 +208,16 @@ const validateForm = () => {
   return result.isValid;
 };
 
-// Gestion des événements des boutons "Suivant" et "Précédent"
-document.getElementById("nextBtnInfo").addEventListener("click", Suivantstep);
-document.getElementById("nextBtnExp").addEventListener("click", Suivantstep);
-document
-  .getElementById("nextBtnDiplomes")
-  .addEventListener("click", Suivantstep);
-document
-  .getElementById("nextBtnCertificats")
-  .addEventListener("click", Suivantstep);
-document
-  .getElementById("nextBtnCompetences")
-  .addEventListener("click", Suivantstep);
+// Navigation gérée par step-navigation.js - Code déplacé
 
-document.getElementById("prevBtnExp").addEventListener("click", precedentStep);
-document
-  .getElementById("prevBtnDiplomes")
-  .addEventListener("click", precedentStep);
-document
-  .getElementById("prevBtnCertificats")
-  .addEventListener("click", precedentStep);
-document
-  .getElementById("prevBtnCompetances")
-  .addEventListener("click", precedentStep);
-document
-  .getElementById("prevBtnLangues")
-  .addEventListener("click", precedentStep);
-
-// Initialisation : affiche la première étape et met à jour la barre de progression
-showStep(currentStep);
-updateProgressBar();
-
-// Ajout des écouteurs d'événements pour les boutons "Suivant" et "Précédent"
-document.getElementById("nextBtnInfo").addEventListener("click", Suivantstep);
-document.getElementById("nextBtnExp").addEventListener("click", Suivantstep);
-document.getElementById("prevBtnExp").addEventListener("click", precedentStep);
-
-// Afficher la première étape et mettre à jour la barre de progression
-showStep(currentStep);
-updateProgressBar();
-
+// Variables globales pour les données du formulaire - utilisées par step-navigation.js
 const experiences = [];
+let diplomesDonner = [];
+let certificatesDonner = [];
+const arrayHardSkills = [];
+const arraySoftSkills = [];
+const arrayLangues = [];
+const arrayLoisirs = [];
 const addExperienceButton = document.getElementById("add-experience");
 const experienceFormsContainer = document.getElementById(
   "experience-forms-container"
@@ -402,66 +363,8 @@ addExperienceButton.addEventListener("click", () => {
   experienceFormsContainer.appendChild(experienceForm);
 });
 
-nextBtn.addEventListener("click", () => {
-  const forms = document.querySelectorAll("#experience-forms-container form");
+// Navigation gérée par step-navigation.js - Code déplacé vers FormManager
 
-  forms.forEach((form) => {
-    const mission = form.querySelector("[name='experience_mission']").value;
-    const sector = form.querySelector("[name='experience_sector']").value;
-    const startDate = form.querySelector(
-      "[name='experience_start_date']"
-    ).value;
-    const endDate = form.querySelector("[name='experience_end_date']").value;
-    const company = form.querySelector("[name='experience_company']").value;
-    const location = form.querySelector("[name='experience_location']").value;
-    const description = form.querySelector(
-      "[name='experience_description']"
-    ).value;
-
-    if (
-      !mission ||
-      !sector ||
-      !startDate ||
-      !endDate ||
-      !company ||
-      !location ||
-      !description
-    ) {
-      Swal.fire({
-        icon: "error",
-        title: "Tous les champs doivent être remplis",
-        text: "Veuillez compléter tous les champs du formulaire.",
-      });
-      return;
-    }
-
-    if (startDate > endDate) {
-      Swal.fire({
-        icon: "error",
-        title: "Erreur de dates",
-        text: "La date de début ne peut pas être supérieure à la date de fin.",
-      });
-      return;
-    }
-
-    const experience = {
-      mission,
-      sector,
-      startDate,
-      endDate,
-      company,
-      location,
-      description,
-    };
-
-    experiences.push(experience);
-    form.reset();
-  });
-
-  displayExperiences();
-});
-
-const diplomesDonner = [];
 const diplomesFormContainer = document.getElementById(
   "diplomes-form-container"
 );
@@ -618,7 +521,6 @@ const certificateFormContainer = document.getElementById(
   "certificate-form-container"
 );
 const addCertificateButton = document.getElementById("add-certificate-button");
-let certificatesDonner = [];
 function addCertificateForm() {
   const certificateItem = document.createElement("div");
   certificateItem.classList.add(
@@ -694,17 +596,12 @@ function saveCertificatesDonner() {
   });
 }
 
-document.getElementById("nextBtnCertificats").addEventListener("click", (e) => {
-  e.preventDefault();
-  saveCertificatesDonner();
-});
+// Navigation gérée par step-navigation.js - Code déplacé vers FormManager
 
 const btnAadSoftSkills = document.getElementById("btnAadSoftSkills");
 const btnAadHardSkills = document.getElementById("btnAadHardSkills");
 const softSkillInputsValue = document.getElementById("softSkillInputsValue");
 const hardSkillInputsValue = document.getElementById("hardSkillInputsValue");
-const arrayHardSkills = [];
-const arraySoftSkills = [];
 btnAadSoftSkills.addEventListener("click", () => {
   const softSkill = softSkillInputsValue.value.trim();
   if (softSkill) {
@@ -780,7 +677,6 @@ resetButton.addEventListener("click", resetSkills);
 const formContainer = document.getElementById("dynamicSkillsForm");
 formContainer.appendChild(resetButton);
 
-const arrayLangues = [];
 const langues = document.getElementById("languages");
 const languesNiveauList = document.getElementById("languesNiveauList");
 const niveauLangue = document.getElementById("niveau");
@@ -820,7 +716,6 @@ function deleteItem(button, listId, array) {
   }
 }
 
-const arrayLoisirs = [];
 const LoisirLists = document.getElementById("LoisirLists");
 const addInteretInput = document.getElementById("addInteretInput");
 const inputLoisir = document.getElementById("loisirs");
@@ -859,7 +754,9 @@ submitBtn.addEventListener("click", (event) => {
 document.addEventListener("DOMContentLoaded", function () {
   const confirmSelectionBtn = document.getElementById("confirmSelectionBtn");
   confirmSelectionBtn.addEventListener("click", async function () {
-    // Récupérer toutes les données du formulaire
+    // Récupérer toutes les données du formulaire via FormManager
+    const formData = window.formManager ? window.formManager.getAllData() : {};
+
     const data = {
       fullName: document.getElementById("fullName").value,
       profile: document.getElementById("jobLocation").value,
@@ -878,13 +775,13 @@ document.addEventListener("DOMContentLoaded", function () {
       githubUsername: (document
         .getElementById("github")
         .value.match(/https:\/\/github\.com\/([^\/]+)/) || [""])[1],
-      experiences,
-      diplomas: diplomesDonner,
-      certificates: certificatesDonner,
-      softSkills: arraySoftSkills,
-      hardSkills: arrayHardSkills,
-      languages: arrayLangues,
-      hobbies: arrayLoisirs,
+      experiences: formData.experiences || [],
+      diplomas: formData.diplomas || [],
+      certificates: formData.certificates || [],
+      softSkills: formData.softSkills || [],
+      hardSkills: formData.hardSkills || [],
+      languages: formData.languages || [],
+      hobbies: formData.hobbies || [],
     };
 
     // Import dynamique du template selon le choix
@@ -939,7 +836,7 @@ async function generatePDF() {
 }
 
 // Fonction globale pour la génération de CV appelée depuis step-navigation.js
-function startCVGeneration() {
+window.startCVGeneration = function () {
   // Déclencher la sélection de template
   const submitBtn = document.getElementById("submitBtn");
   if (submitBtn) {
@@ -949,4 +846,4 @@ function startCVGeneration() {
   } else {
     console.error("Bouton submitBtn non trouvé");
   }
-}
+};

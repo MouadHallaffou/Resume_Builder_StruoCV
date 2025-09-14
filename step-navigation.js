@@ -132,28 +132,37 @@ class StepNavigator {
   }
 
   validateExperiences() {
-    // Pour les expériences, on peut permettre de passer même sans expérience
-    return true;
+    // Utiliser le FormManager pour valider les expériences
+    if (window.formManager && window.formManager.validateExperiences) {
+      return window.formManager.validateExperiences();
+    }
+    return true; // Par défaut, permettre de passer
   }
 
   validateDiplomas() {
-    // Pour les diplômes, on peut permettre de passer même sans diplôme
-    return true;
+    // Sauvegarder les diplômes avant validation
+    if (window.formManager && window.formManager.saveDiplomes) {
+      window.formManager.saveDiplomes();
+    }
+    return true; // Permettre de passer même sans diplôme
   }
 
   validateCertificates() {
-    // Pour les certificats, on peut permettre de passer même sans certificat
-    return true;
+    // Sauvegarder les certificats avant validation
+    if (window.formManager && window.formManager.saveCertificates) {
+      window.formManager.saveCertificates();
+    }
+    return true; // Permettre de passer même sans certificat
   }
 
   validateSkills() {
-    // Pour les compétences, on peut permettre de passer même sans compétence
-    return true;
+    // Les compétences sont déjà sauvegardées en temps réel
+    return true; // Permettre de passer même sans compétence
   }
 
   validateLanguages() {
-    // Pour les langues, on peut permettre de passer même sans langue
-    return true;
+    // Les langues sont déjà sauvegardées en temps réel
+    return true; // Permettre de passer même sans langue
   }
 
   isValidEmail(email) {
@@ -311,7 +320,9 @@ class StepNavigator {
 
     if (allValid) {
       // Appeler la fonction globale startCVGeneration définie dans main.js
-      if (typeof startCVGeneration === "function") {
+      if (typeof window.startCVGeneration === "function") {
+        window.startCVGeneration();
+      } else if (typeof startCVGeneration === "function") {
         startCVGeneration();
       } else {
         this.showError(

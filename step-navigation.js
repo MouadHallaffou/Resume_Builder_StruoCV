@@ -266,6 +266,15 @@ class StepNavigator {
       });
     });
 
+    // Bouton Submit spécial (génération CV)
+    const submitBtn = document.getElementById("submitBtn");
+    if (submitBtn) {
+      submitBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        this.generateCV();
+      });
+    }
+
     // Navigation par les indicateurs d'étapes
     this.stepIndicators.forEach((indicatorId, index) => {
       const indicator = document.getElementById(indicatorId);
@@ -319,16 +328,21 @@ class StepNavigator {
     }
 
     if (allValid) {
-      // Appeler la fonction globale startCVGeneration définie dans main.js
-      if (typeof window.startCVGeneration === "function") {
-        window.startCVGeneration();
-      } else if (typeof startCVGeneration === "function") {
-        startCVGeneration();
-      } else {
-        this.showError(
-          "Fonction de génération CV non trouvée - Veuillez vérifier que main.js est chargé"
-        );
-      }
+      // Directement déclencher la sélection de template
+      this.showTypeSelection();
+    }
+  }
+
+  showTypeSelection() {
+    const step6Section = document.getElementById("step-6");
+    const typeSelectionSection = document.querySelector(
+      ".type-selection-section"
+    );
+
+    if (step6Section && typeSelectionSection) {
+      step6Section.style.display = "none";
+      typeSelectionSection.style.display = "flex";
+      typeSelectionSection.classList.remove("hidden");
     }
   }
 

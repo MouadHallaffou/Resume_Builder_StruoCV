@@ -2,9 +2,20 @@
 const heroSection = document.getElementById("heroSection");
 const startedBtn = document.getElementById("startedBtn");
 const formulaire = document.getElementById("formulaire");
-startedBtn.addEventListener("click", () => {
+
+// Fonction pour corriger les erreurs d'affichage
+function hideAllErrors() {
+  const errorElements = document.querySelectorAll('[id$="Error"]');
+  errorElements.forEach((element) => {
+    element.classList.add("hidden");
+  });
+}
+
+startedBtn.addEventListener("click", (e) => {
+  e.preventDefault();
   heroSection.style.display = "none";
-  formulaire.style.display = "block";
+  formulaire.style.display = "flex";
+  hideAllErrors();
 });
 
 /**
@@ -24,6 +35,8 @@ const forms = [
   document.getElementById("step-5"),
   document.getElementById("step-6"),
 ];
+
+// Validation gérée par step-navigation.js et form-manager.js
 
 // Sélection des indicateurs de progression dans l'interface
 const steppers = [
@@ -71,8 +84,13 @@ const showStep = (index) => {
  * Passe à l'étape suivante après validation.
  */
 const Suivantstep = () => {
+  // Masquer toutes les erreurs précédentes
+  hideAllErrors();
+
   // Validation de l'étape actuelle
-  if (!validateForm()) return;
+  if (!validateForm()) {
+    return;
+  }
 
   // Passe à l'étape suivante si elle est valide
   if (currentStep < forms.length - 1) {
@@ -98,141 +116,108 @@ const precedentStep = () => {
  * @returns {boolean} - `true` si tous les champs sont valides, sinon `false`.
  */
 const validateForm = () => {
-  const fullName = document.getElementById("fullName");
-  const jobLocation = document.getElementById("jobLocation");
-  const email = document.getElementById("email");
-  const phone = document.getElementById("phone");
-  const adresse = document.getElementById("adresse");
-  const linkedin = document.getElementById("linkedin");
-  const github = document.getElementById("github");
-  const aboutMe = document.getElementById("aboutMe");
-  const profileImage = document.getElementById("profileImage");
+  // Validation centralisée par étape
+  let result = { isValid: true, errors: {} };
 
-  let isValid = true;
+  if (currentStep === 0) {
+    // Infos personnelles
+    const data = {
+      fullName: document.getElementById("fullName")?.value || "",
+      profile: document.getElementById("jobLocation")?.value || "",
+      email: document.getElementById("email")?.value || "",
+      phone: document.getElementById("phone")?.value || "",
+      address: document.getElementById("adresse")?.value || "",
+      linkedinUrl: document.getElementById("linkedin")?.value || "",
+      githubUrl: document.getElementById("github")?.value || "",
+      aboutMe: document.getElementById("aboutMe")?.value || "",
+      photo: document.getElementById("profileImage")?.files[0],
+    };
 
-  // Validation du nom complet
-  const fullNamePattern = /^[A-Z][a-z]+(?: [A-Z][a-z]+)+$/;
-  if (!fullNamePattern.test(fullName.value.trim())) {
-    document.getElementById("fullNameError").classList.remove("hidden");
-    isValid = false;
-  } else {
-    document.getElementById("fullNameError").classList.add("hidden");
+    result = validatePersonalInfo(data);
+
+    // Affichage des erreurs pour les infos personnelles
+    if (!result.isValid) {
+      Object.keys(result.errors).forEach((key) => {
+        const errorSpan = document.getElementById(key + "Error");
+        if (errorSpan) {
+          errorSpan.textContent = result.errors[key];
+          errorSpan.classList.remove("hidden");
+        }
+      });
+    }
   }
 
-  // Validation de la localisation du job
-  const jobLocationPattern = /^[a-zA-Z0-9\s\-]+$/;
-  if (!jobLocationPattern.test(jobLocation.value.trim())) {
-    document.getElementById("jobLocationError").classList.remove("hidden");
-    isValid = false;
-  } else {
-    document.getElementById("jobLocationError").classList.add("hidden");
+  if (currentStep === 1) {
+    result = validateExperience(experiences);
+    if (!result.isValid) {
+      Swal.fire({
+        icon: "error",
+        title: "Erreur - Expériences",
+        text: result.errors.join(" | "),
+      });
+    }
   }
 
-  // Validation de l'email
-  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  if (!emailPattern.test(email.value.trim())) {
-    document.getElementById("emailError").classList.remove("hidden");
-    isValid = false;
-  } else {
-    document.getElementById("emailError").classList.add("hidden");
+  if (currentStep === 2) {
+    result = validateDiplomas(diplomesDonner);
+    if (!result.isValid) {
+      Swal.fire({
+        icon: "error",
+        title: "Erreur - Diplômes",
+        text: result.errors.join(" | "),
+      });
+    }
   }
 
-  // Validation du téléphone
-  const phonePattern = /^[0-9]{10}$/;
-  if (!phonePattern.test(phone.value.trim())) {
-    document.getElementById("phoneError").classList.remove("hidden");
-    isValid = false;
-  } else {
-    document.getElementById("phoneError").classList.add("hidden");
+  if (currentStep === 3) {
+    result = validateCertificates(certificatesDonner);
+    if (!result.isValid) {
+      Swal.fire({
+        icon: "error",
+        title: "Erreur - Certificats",
+        text: result.errors.join(" | "),
+      });
+    }
   }
 
-  // Validation de l'adresse
-  if (adresse.value.trim() === "") {
-    document.getElementById("adresseError").classList.remove("hidden");
-    isValid = false;
-  } else {
-    document.getElementById("adresseError").classList.add("hidden");
+  if (currentStep === 4) {
+    result = validateSkills({
+      softSkills: arraySoftSkills,
+      hardSkills: arrayHardSkills,
+    });
+    if (!result.isValid) {
+      Swal.fire({
+        icon: "error",
+        title: "Erreur - Compétences",
+        text: result.errors.join(" | "),
+      });
+    }
   }
 
-  // Validation du lien LinkedIn
-  const linkedinPattern =
-    /^https:\/\/(?:www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
-  if (!linkedinPattern.test(linkedin.value.trim())) {
-    document.getElementById("linkedinError").classList.remove("hidden");
-    isValid = false;
-  } else {
-    document.getElementById("linkedinError").classList.add("hidden");
+  if (currentStep === 5) {
+    result = validateLanguages(arrayLangues);
+    if (!result.isValid) {
+      Swal.fire({
+        icon: "error",
+        title: "Erreur - Langues",
+        text: result.errors.join(" | "),
+      });
+    }
   }
 
-  // Validation du lien GitHub
-  const githubPattern = /^https:\/\/github\.com\/[a-zA-Z0-9_-]+$/;
-  if (!githubPattern.test(github.value.trim())) {
-    document.getElementById("githubError").classList.remove("hidden");
-    isValid = false;
-  } else {
-    document.getElementById("githubError").classList.add("hidden");
-  }
-
-  // Validation du champ "À propos de moi"
-  if (aboutMe.value.trim().length < 50 || aboutMe.value.trim().length > 1000) {
-    document.getElementById("aboutMeError").classList.remove("hidden");
-    isValid = false;
-  } else {
-    document.getElementById("aboutMeError").classList.add("hidden");
-  }
-
-  // Validation de l'image de profil
-  if (profileImage.files.length === 0) {
-    document.getElementById("profileImageError").classList.remove("hidden");
-    isValid = false;
-  } else {
-    document.getElementById("profileImageError").classList.add("hidden");
-  }
-
-  return isValid;
+  return result.isValid;
 };
 
-// Gestion des événements des boutons "Suivant" et "Précédent"
-document.getElementById("nextBtnInfo").addEventListener("click", Suivantstep);
-document.getElementById("nextBtnExp").addEventListener("click", Suivantstep);
-document
-  .getElementById("nextBtnDiplomes")
-  .addEventListener("click", Suivantstep);
-document
-  .getElementById("nextBtnCertificats")
-  .addEventListener("click", Suivantstep);
-document
-  .getElementById("nextBtnCompetences")
-  .addEventListener("click", Suivantstep);
+// Navigation gérée par step-navigation.js - Code déplacé
 
-document.getElementById("prevBtnExp").addEventListener("click", precedentStep);
-document
-  .getElementById("prevBtnDiplomes")
-  .addEventListener("click", precedentStep);
-document
-  .getElementById("prevBtnCertificats")
-  .addEventListener("click", precedentStep);
-document
-  .getElementById("prevBtnCompetances")
-  .addEventListener("click", precedentStep);
-document
-  .getElementById("prevBtnLangues")
-  .addEventListener("click", precedentStep);
-
-// Initialisation : affiche la première étape et met à jour la barre de progression
-showStep(currentStep);
-updateProgressBar();
-
-// Ajout des écouteurs d'événements pour les boutons "Suivant" et "Précédent"
-document.getElementById("nextBtnInfo").addEventListener("click", Suivantstep);
-document.getElementById("nextBtnExp").addEventListener("click", Suivantstep);
-document.getElementById("prevBtnExp").addEventListener("click", precedentStep);
-
-// Afficher la première étape et mettre à jour la barre de progression
-showStep(currentStep);
-updateProgressBar();
-
+// Variables globales pour les données du formulaire - utilisées par step-navigation.js
 const experiences = [];
+let diplomesDonner = [];
+let certificatesDonner = [];
+const arrayHardSkills = [];
+const arraySoftSkills = [];
+const arrayLangues = [];
+const arrayLoisirs = [];
 const addExperienceButton = document.getElementById("add-experience");
 const experienceFormsContainer = document.getElementById(
   "experience-forms-container"
@@ -378,66 +363,8 @@ addExperienceButton.addEventListener("click", () => {
   experienceFormsContainer.appendChild(experienceForm);
 });
 
-nextBtn.addEventListener("click", () => {
-  const forms = document.querySelectorAll("#experience-forms-container form");
+// Navigation gérée par step-navigation.js - Code déplacé vers FormManager
 
-  forms.forEach((form) => {
-    const mission = form.querySelector("[name='experience_mission']").value;
-    const sector = form.querySelector("[name='experience_sector']").value;
-    const startDate = form.querySelector(
-      "[name='experience_start_date']"
-    ).value;
-    const endDate = form.querySelector("[name='experience_end_date']").value;
-    const company = form.querySelector("[name='experience_company']").value;
-    const location = form.querySelector("[name='experience_location']").value;
-    const description = form.querySelector(
-      "[name='experience_description']"
-    ).value;
-
-    if (
-      !mission ||
-      !sector ||
-      !startDate ||
-      !endDate ||
-      !company ||
-      !location ||
-      !description
-    ) {
-      Swal.fire({
-        icon: "error",
-        title: "Tous les champs doivent être remplis",
-        text: "Veuillez compléter tous les champs du formulaire.",
-      });
-      return;
-    }
-
-    if (startDate > endDate) {
-      Swal.fire({
-        icon: "error",
-        title: "Erreur de dates",
-        text: "La date de début ne peut pas être supérieure à la date de fin.",
-      });
-      return;
-    }
-
-    const experience = {
-      mission,
-      sector,
-      startDate,
-      endDate,
-      company,
-      location,
-      description,
-    };
-
-    experiences.push(experience);
-    form.reset();
-  });
-
-  displayExperiences();
-});
-
-const diplomesDonner = [];
 const diplomesFormContainer = document.getElementById(
   "diplomes-form-container"
 );
@@ -594,7 +521,6 @@ const certificateFormContainer = document.getElementById(
   "certificate-form-container"
 );
 const addCertificateButton = document.getElementById("add-certificate-button");
-let certificatesDonner = [];
 function addCertificateForm() {
   const certificateItem = document.createElement("div");
   certificateItem.classList.add(
@@ -670,17 +596,12 @@ function saveCertificatesDonner() {
   });
 }
 
-document.getElementById("nextBtnCertificats").addEventListener("click", (e) => {
-  e.preventDefault();
-  saveCertificatesDonner();
-});
+// Navigation gérée par step-navigation.js - Code déplacé vers FormManager
 
 const btnAadSoftSkills = document.getElementById("btnAadSoftSkills");
 const btnAadHardSkills = document.getElementById("btnAadHardSkills");
 const softSkillInputsValue = document.getElementById("softSkillInputsValue");
 const hardSkillInputsValue = document.getElementById("hardSkillInputsValue");
-const arrayHardSkills = [];
-const arraySoftSkills = [];
 btnAadSoftSkills.addEventListener("click", () => {
   const softSkill = softSkillInputsValue.value.trim();
   if (softSkill) {
@@ -756,7 +677,6 @@ resetButton.addEventListener("click", resetSkills);
 const formContainer = document.getElementById("dynamicSkillsForm");
 formContainer.appendChild(resetButton);
 
-const arrayLangues = [];
 const langues = document.getElementById("languages");
 const languesNiveauList = document.getElementById("languesNiveauList");
 const niveauLangue = document.getElementById("niveau");
@@ -796,7 +716,6 @@ function deleteItem(button, listId, array) {
   }
 }
 
-const arrayLoisirs = [];
 const LoisirLists = document.getElementById("LoisirLists");
 const addInteretInput = document.getElementById("addInteretInput");
 const inputLoisir = document.getElementById("loisirs");
@@ -834,37 +753,41 @@ submitBtn.addEventListener("click", (event) => {
 
 document.addEventListener("DOMContentLoaded", function () {
   const confirmSelectionBtn = document.getElementById("confirmSelectionBtn");
-  // Fonction pour specifie le nom d'utilisateur LinkedIn
-  function specifiqueLinkedInUsername(linkedinUrl) {
-    const regex = /https:\/\/www\.linkedin\.com\/in\/([^\/]+)/;
-    const match = linkedinUrl.match(regex);
-    return match ? match[1] : "";
-  }
-  // Fonction pour specifie le nom d'utilisateur GitHub
-  function specifiqueGitHubUsername(githubUrl) {
-    const regex = /https:\/\/github\.com\/([^\/]+)/;
-    const match = githubUrl.match(regex);
-    return match ? match[1] : "";
-  }
-  confirmSelectionBtn.addEventListener("click", function () {
-    const nomComplet = document.getElementById("fullName").value;
-    const profile = document.getElementById("jobLocation").value;
-    const email = document.querySelector("#email").value;
-    const telephone = document.querySelector("#phone").value;
-    const adresse = document.getElementById("adresse").value;
-    const linkedinUrl = document.getElementById("linkedin").value;
-    const githubUrl = document.getElementById("github").value;
+  confirmSelectionBtn.addEventListener("click", async function () {
+    // Récupérer toutes les données du formulaire via FormManager
+    const formData = window.formManager ? window.formManager.getAllData() : {};
 
-    // Extraire les noms d'utilisateur LinkedIn et GitHub
-    const linkedinUsername = specifiqueLinkedInUsername(linkedinUrl);
-    const githubUsername = specifiqueGitHubUsername(githubUrl);
-    const aboutMe = document.getElementById("aboutMe").value;
-    let inputPhotosUrl = document.querySelector("#profileImage").files[0];
-    let inputPhoto = URL.createObjectURL(inputPhotosUrl);
+    const data = {
+      fullName: document.getElementById("fullName").value,
+      profile: document.getElementById("jobLocation").value,
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      address: document.getElementById("adresse").value,
+      linkedinUrl: document.getElementById("linkedin").value,
+      githubUrl: document.getElementById("github").value,
+      aboutMe: document.getElementById("aboutMe").value,
+      photo: document.querySelector("#profileImage").files[0]
+        ? URL.createObjectURL(document.querySelector("#profileImage").files[0])
+        : "",
+      linkedinUsername: (document
+        .getElementById("linkedin")
+        .value.match(/https:\/\/www\.linkedin\.com\/in\/([^\/]+)/) || [""])[1],
+      githubUsername: (document
+        .getElementById("github")
+        .value.match(/https:\/\/github\.com\/([^\/]+)/) || [""])[1],
+      experiences: formData.experiences || [],
+      diplomas: formData.diplomas || [],
+      certificates: formData.certificates || [],
+      softSkills: formData.softSkills || [],
+      hardSkills: formData.hardSkills || [],
+      languages: formData.languages || [],
+      hobbies: formData.hobbies || [],
+    };
+
+    // Import dynamique du template selon le choix
     const selectedType = document.querySelector(
       'input[name="typeSelection"]:checked'
     );
-
     if (selectedType) {
       document.querySelector(".type-selection-section").classList.add("hidden");
       menuPrincipale.style.display = "none";
@@ -873,168 +796,23 @@ document.addEventListener("DOMContentLoaded", function () {
       const cvTemplate = document.getElementById("cvTemplete");
       cvTemplate.classList.add("cv-template");
 
+      let htmlCV = "";
       if (selectedType.value === "Type 1") {
-        cvTemplate.innerHTML = `
-          <section class="bg-gray-100">
-            <div class="a4-container border border-gray-300 shadow-lg rounded-lg p-4">
-              <!-- Partie gauche (30%) -->
-              <div class="left-section w-1/3">
-                <!-- Section : Image, Nom et Statut -->
-                <div class="section-item mt-2 flex flex-col items-center">
-                    <img src="${inputPhoto}" alt="Photo de profil" />
-                    <h2 class="text-sm font-bold text-center">${nomComplet}</h2>
-                    <p class="text-xs text-gray-600 text-center">${profile}</p>
-                </div>
-
-                <!-- Section : À propos de moi -->
-                <div class="section-item mt-2">
-                    <h3 class="section-title text-lg mx-4 text-center">À propos de moi:</h3>
-                    <p class="section-content text-xs whitespace-normal text-center mx-4">${aboutMe}</p>
-                </div>
-
-                <!-- Section : Contacts -->
-                <div class="section-item mt-2">
-                    <h3 class="section-title text-lg mx-4 text-center">Contacts:</h3>
-                    <p class="section-content text-sm flex items-center space-x-2 mx-4">
-                        <i class="fas fa-envelope"></i>
-                        <span>${email}</span>
-                    </p>
-                    <p class="section-content text-sm flex items-center space-x-2 mx-4">
-                        <i class="fas fa-phone"></i>
-                        <span>${telephone}</span>
-                    </p>
-                    <p class="section-content text-sm flex items-center space-x-2 mx-4">
-                        <i class="fas fa-location"></i>
-                        <span>${adresse}</span>
-                    </p>
-                  <div class="mt-1 flex flex-col space-y-2 mx-4">
-                      <!-- Lien GitHub -->
-                      <div class="flex items-center space-x-2 justify-start">
-                        <i class="fa-brands fa-github"></i>
-                        <a href="${githubUrl}" class="text-sm">${githubUsername}</a>
-                      </div>
-                      
-                      <!-- Lien LinkedIn -->
-                      <div class="flex items-center space-x-2 justify-start">
-                        <i class="fa-brands fa-linkedin"></i>
-                        <a href="${linkedinUrl}" class="text-sm">${linkedinUsername}</a>
-                      </div>
-                    </div>
-                 </div>
-
-                <!-- Section : Langues -->
-                 <div class="section-item mt-2">
-                    <h3 class="section-title text-lg text-center mx-4">Langues:</h3>
-                    <ul class="text-sm text-left mx-4 space-y-2" style="line-height: 1.6; list-style-type: none; margin-top: 0; padding-left: 0;">
-                        ${arrayLangues
-                          .map(
-                            (langue) =>
-                              `<li class="text-sm">${langue.langue} : ${langue.niveau}</li>`
-                          )
-                          .join("")}
-                    </ul>
-                </div>
-
-                <!-- Section : Loisirs -->
-                <div class="section-item mt-2">
-                    <h3 class="section-title text-lg text-center mx-4">Loisirs:</h3>
-                    <ul class="text-sm text-left mx-4 space-y-2" style="line-height: 1.6; list-style-type: none; margin-top: 0; padding-left: 0;">
-                        ${arrayLoisirs
-                          .map((loisir) => `<li class="text-sm">${loisir}</li>`)
-                          .join("")}
-                    </ul>
-                 </div>
-              </div>
-
-              <!-- Partie droite (70%) -->
-              <div class="right-section w-2/3">
-                  <!-- Section : Expériences professionnelles -->
-                  <div class="section-item mt-2">
-                      <h3 class="section-title text-lg">Expériences professionnelles:</h3>
-                      ${experiences
-                        .map(
-                          (exp) => `
-                          <div class="experience mb-2 text-sm">
-                              <p><strong>${exp.mission}</strong> || ${exp.company}</p>
-                              <p>${exp.sector} || ${exp.location}</p>
-                              <p>Depuis: ${exp.startDate} jusqu'à: ${exp.endDate}</p>
-                              <p>${exp.description}</p>
-                          </div>
-                      `
-                        )
-                        .join("")}
-                  </div>
-
-                  <!-- Section : Diplômes -->
-                  <div class="section-item mt-2">
-                      <h3 class="section-title text-lg">Diplômes:</h3>
-                      ${diplomesDonner
-                        .map(
-                          (diplome) => `
-                          <div class="degree mb-2 text-sm">
-                              <h6>${diplome.name} || ${diplome.specialty}</h6>
-                              <p>${diplome.university} || ${diplome.city}</p>
-                              <p>Depuis: ${diplome.startDate} jusqu'à: ${diplome.endDate}</p>
-                              <p>${diplome.description}</p>
-                          </div>
-                      `
-                        )
-                        .join("")}
-                  </div>
-
-                  <!-- Section : Certifications -->
-                  <div class="section-item mt-2">
-                      <h3 class="section-title text-lg">Certifications:</h3>
-                      ${certificatesDonner
-                        .map(
-                          (cert) => `
-                          <div class="certificate mb-2 text-sm">
-                              <p>Spécialité : ${cert.name} || Organisme : ${cert.organism}</p>
-                              <p>depuis: ${cert.startDate} jusqua: ${cert.endDate}</p>
-                          </div>
-                      `
-                        )
-                        .join("")}
-                  </div>
-
-                  <!-- Section : Compétences -->
-                  <div class="section-item mt-2">
-                      <h3 class="section-title text-lg">Compétences:</h3>
-                      <div class="skills">
-                          <div class="certificate mb-4">
-                              <h4 class="text-xs font-semibold">Compétences interpersonnelles:</h4>
-                              <ul class="list-none list-inside text-sm text-left">
-                                  ${arraySoftSkills
-                                    .map((skill) => `<li>${skill}</li>`)
-                                    .join("")}
-                              </ul>
-                          </div>
-                          <div class="certificate mb-4">
-                              <h4 class="text-xs font-semibold">Compétences techniques:</h4>
-                              <ul class="list-none list-inside text-sm text-left">
-                                  ${arrayHardSkills
-                                    .map((skill) => `<li>${skill}</li>`)
-                                    .join("")}
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-            </div>
-          </section>
-        `;
+        const module = await import("./templates/template1.js");
+        htmlCV = module.renderTemplate1(data);
       } else if (selectedType.value === "Type 2") {
-        cvTemplate.innerHTML = `
-        <section> 404 not found! </section>
-        `;
+        const module = await import("./templates/template2.js");
+        htmlCV = module.renderTemplate2(data);
+      } else {
+        htmlCV = `<section>Template non trouvé !</section>`;
       }
+      cvTemplate.innerHTML = htmlCV;
       document.body.appendChild(cvTemplate);
     } else {
       alert("Veuillez sélectionner un type de CV avant de continuer.");
     }
   });
 });
-
 //telechargement du cv par bibliothque jsPDF
 async function generatePDF() {
   const { jsPDF } = window.jspdf;
@@ -1056,3 +834,16 @@ async function generatePDF() {
   const fileName = `CV_${userName}.pdf`;
   pdf.save(fileName);
 }
+
+// Fonction globale pour la génération de CV appelée depuis step-navigation.js
+window.startCVGeneration = function () {
+  // Déclencher la sélection de template
+  const submitBtn = document.getElementById("submitBtn");
+  if (submitBtn) {
+    // Créer un événement click artificiel
+    const clickEvent = new Event("click", { bubbles: true });
+    submitBtn.dispatchEvent(clickEvent);
+  } else {
+    console.error("Bouton submitBtn non trouvé");
+  }
+};

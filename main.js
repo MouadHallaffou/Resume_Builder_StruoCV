@@ -937,3 +937,16 @@ async function generatePDF() {
   const fileName = `CV_${userName}.pdf`;
   pdf.save(fileName);
 }
+
+// Fonction globale pour la génération de CV appelée depuis step-navigation.js
+function startCVGeneration() {
+  // Déclencher la sélection de template
+  const submitBtn = document.getElementById("submitBtn");
+  if (submitBtn) {
+    // Créer un événement click artificiel
+    const clickEvent = new Event("click", { bubbles: true });
+    submitBtn.dispatchEvent(clickEvent);
+  } else {
+    console.error("Bouton submitBtn non trouvé");
+  }
+}

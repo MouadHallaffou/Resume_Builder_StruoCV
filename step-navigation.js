@@ -199,23 +199,17 @@ class StepNavigator {
         const stepNumber = index + 1;
 
         // Retirer toutes les classes d'état
-        indicator.classList.remove(
-          "bg-blue-500",
-          "bg-green-500",
-          "bg-gray-300",
-          "text-white",
-          "text-gray-500"
-        );
+        indicator.classList.remove("active", "completed", "pending");
 
         if (stepNumber < this.currentStep) {
           // Étape complétée
-          indicator.classList.add("bg-green-500", "text-white");
+          indicator.classList.add("completed");
         } else if (stepNumber === this.currentStep) {
           // Étape actuelle
-          indicator.classList.add("bg-blue-500", "text-white");
+          indicator.classList.add("active");
         } else {
           // Étape future
-          indicator.classList.add("bg-gray-300", "text-gray-500");
+          indicator.classList.add("pending");
         }
       }
     });

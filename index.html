@@ -29,6 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="validation-system.js" defer></script>
     <script src="main.js" defer></script>
     <script src="form-manager.js" defer></script>
     <script src="hero-animations.js" defer></script>
@@ -368,10 +369,10 @@
               <!-- Nom complet et Profil Professionnel -->
               <div class="flex space-x-4 mb-6">
                 <!-- Nom complet -->
-                <div class="flex-1">
+                <div class="flex-1 form-field">
                   <label
                     for="fullName"
-                    class="block mb-2 text-sm font-medium text-gray-700"
+                    class="block mb-2 text-sm font-medium text-gray-700 required-field"
                     >Nom Complet</label
                   >
                   <input
@@ -382,44 +383,34 @@
                     class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                     required
                   />
-                  <span
-                    id="fullNameError"
-                    class="error-message text-red-500 text-xs mt-1 hidden"
-                    >*entrer votre nom et prenom.</span
-                  >
                 </div>
 
                 <!-- Profil Professionnel -->
-                <div class="flex-1">
+                <div class="flex-1 form-field">
                   <label
-                    for="jobLocation"
-                    class="block mb-2 text-sm font-medium text-gray-700"
+                    for="profile"
+                    class="block mb-2 text-sm font-medium text-gray-700 required-field"
                     >Profil</label
                   >
                   <input
                     type="text"
-                    id="jobLocation"
-                    name="jobLocation"
+                    id="profile"
+                    name="profile"
                     aria-label="Profil professionnel"
                     class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                     placeholder="Ex: Développeur full stack, technicien spécialisé..."
                     required
                   />
-                  <span
-                    id="jobLocationError"
-                    class="error-message text-red-500 text-xs mt-1 hidden"
-                    >*spécifier votre profil professionnel.</span
-                  >
                 </div>
               </div>
 
               <!-- Email et Téléphone -->
               <div class="flex space-x-4 mb-6">
                 <!-- Email -->
-                <div class="flex-1">
+                <div class="flex-1 form-field">
                   <label
                     for="email"
-                    class="block mb-2 text-sm font-medium text-gray-700"
+                    class="block mb-2 text-sm font-medium text-gray-700 required-field"
                     >Email</label
                   >
                   <input
@@ -431,18 +422,13 @@
                     class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 focus:shadow-lg block w-full p-3"
                     required
                   />
-                  <span
-                    id="emailError"
-                    class="error-message text-red-500 text-xs mt-1 hidden"
-                    >*saisir une adresse email valide</span
-                  >
                 </div>
 
                 <!-- Téléphone -->
-                <div class="flex-1">
+                <div class="flex-1 form-field">
                   <label
                     for="phone"
-                    class="block mb-2 text-sm font-medium text-gray-700"
+                    class="block mb-2 text-sm font-medium text-gray-700 required-field"
                     >Téléphone</label
                   >
                   <input
@@ -456,11 +442,6 @@
                     maxlength="10"
                     minlength="10"
                   />
-                  <span
-                    id="phoneError"
-                    class="error-message text-red-500 text-xs mt-1 hidden"
-                    >*saisir un numéro de téléphone valide</span
-                  >
                 </div>
               </div>
 

@@ -86,6 +86,11 @@ class StepNavigator {
 
     if (!currentStepElement) return true;
 
+    // Nettoyer les erreurs précédentes
+    if (window.validationSystem) {
+      window.validationSystem.clearAllErrors();
+    }
+
     // Validation spécifique selon l'étape
     switch (this.currentStep) {
       case 1:
@@ -106,6 +111,216 @@ class StepNavigator {
   }
 
   validatePersonalInfo() {
+    if (!window.validationSystem) {
+      // Fallback vers l'ancienne validation
+      return this.validatePersonalInfoFallback();
+    }
+
+    const fields = [
+      "fullName",
+      "profile",
+      "email",
+      "phone",
+      "address",
+      "linkedinUrl",
+      "githubUrl",
+      "aboutMe",
+    ];
+
+    let isValid = true;
+    const errors = [];
+
+    // Valider chaque champ individuellement
+    fields.forEach((fieldId) => {
+      const field = document.getElementById(fieldId);
+      if (field) {
+        // Validation spécifique par champ
+        const fieldValid = this.validatePersonalInfoField(fieldId, field);
+        if (!fieldValid) {
+          isValid = false;
+        }
+      }
+    });
+
+    // Validation de la photo
+    const photoInput = document.getElementById("photo");
+    if (photoInput && !photoInput.files?.[0]) {
+      window.validationSystem.showFieldError(
+        "photo",
+        "Une photo de profil est requise"
+      );
+      errors.push("Photo de profil manquante");
+      isValid = false;
+    }
+
+    // Afficher un résumé si des erreurs existent
+    if (!isValid) {
+      // Collecter tous les messages d'erreur visibles
+      const errorMessages = [];
+      document.querySelectorAll(".error-message").forEach((errorEl) => {
+        const message = errorEl.textContent.trim();
+        if (message) errorMessages.push(message);
+      });
+
+      if (errorMessages.length > 0) {
+        window.validationSystem.showValidationSummary(
+          errorMessages,
+          currentStepId
+        );
+      }
+    }
+
+    return isValid;
+  }
+
+  validatePersonalInfoField(fieldId, field) {
+    const value = field.value?.trim() || "";
+
+    switch (fieldId) {
+      case "fullName":
+        if (!value) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            "Le nom complet est obligatoire"
+          );
+          return false;
+        }
+        if (value.length < 2) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            "Le nom doit contenir au moins 2 caractères"
+          );
+          return false;
+        }
+        if (!/^[a-zA-ZÀ-ÿ\s\-']+$/.test(value)) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            "Le nom ne peut contenir que des lettres"
+          );
+          return false;
+        }
+        break;
+
+      case "profile":
+        if (!value) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            "Le profil professionnel est obligatoire"
+          );
+          return false;
+        }
+        if (value.length < 10) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            "Le profil doit contenir au moins 10 caractères"
+          );
+          return false;
+        }
+        break;
+
+      case "email":
+        if (!value) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            "L'email est obligatoire"
+          );
+          return false;
+        }
+        if (!window.validationSystem.isValidEmail(value)) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            "Veuillez saisir un email valide"
+          );
+          return false;
+        }
+        break;
+
+      case "phone":
+        if (!value) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            "Le téléphone est obligatoire"
+          );
+          return false;
+        }
+        if (!/^[\+]?[\d\s\-\(\)]{8,15}$/.test(value.replace(/\s/g, ""))) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            "Veuillez saisir un numéro de téléphone valide"
+          );
+          return false;
+        }
+        break;
+
+      case "address":
+        if (!value) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            "L'adresse est obligatoire"
+          );
+          return false;
+        }
+        if (value.length < 5) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            "L'adresse doit contenir au moins 5 caractères"
+          );
+          return false;
+        }
+        break;
+
+      case "linkedinUrl":
+        if (value && !value.includes("linkedin.com")) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            "Veuillez saisir un lien LinkedIn valide"
+          );
+          return false;
+        }
+        break;
+
+      case "githubUrl":
+        if (value && !value.includes("github.com")) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            "Veuillez saisir un lien GitHub valide"
+          );
+          return false;
+        }
+        break;
+
+      case "aboutMe":
+        if (!value) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            'La section "À propos" est obligatoire'
+          );
+          return false;
+        }
+        if (value.length < 50) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            "La description doit contenir au moins 50 caractères"
+          );
+          return false;
+        }
+        if (value.length > 1000) {
+          window.validationSystem.showFieldError(
+            fieldId,
+            "La description ne peut pas dépasser 1000 caractères"
+          );
+          return false;
+        }
+        break;
+    }
+
+    // Si on arrive ici, le champ est valide
+    window.validationSystem.showFieldSuccess(fieldId);
+    return true;
+  }
+
+  validatePersonalInfoFallback() {
+    // Ancienne méthode de validation en fallback
     const fullName = document.getElementById("fullName");
     const email = document.getElementById("email");
     const phone = document.getElementById("phone");
@@ -132,37 +347,300 @@ class StepNavigator {
   }
 
   validateExperiences() {
-    // Utiliser le FormManager pour valider les expériences
-    if (window.formManager && window.formManager.validateExperiences) {
-      return window.formManager.validateExperiences();
+    if (!window.validationSystem) {
+      // Fallback vers l'ancienne validation
+      if (window.formManager && window.formManager.validateExperiences) {
+        return window.formManager.validateExperiences();
+      }
+      return true;
     }
-    return true; // Par défaut, permettre de passer
+
+    // Vérifier qu'il y a au moins une expérience
+    const experienceContainers = document.querySelectorAll(
+      '[id^="experience-"]'
+    );
+    if (experienceContainers.length === 0) {
+      const errors = ["Au moins une expérience professionnelle est requise"];
+      window.validationSystem.showValidationSummary(errors, "step-2");
+      return false;
+    }
+
+    let isValid = true;
+    const errors = [];
+
+    // Valider chaque expérience
+    experienceContainers.forEach((container, index) => {
+      const fields = {
+        mission: container.querySelector('[name="mission"]'),
+        company: container.querySelector('[name="company"]'),
+        sector: container.querySelector('[name="sector"]'),
+        location: container.querySelector('[name="location"]'),
+        startDate: container.querySelector('[name="startDate"]'),
+        endDate: container.querySelector('[name="endDate"]'),
+        description: container.querySelector('[name="description"]'),
+      };
+
+      // Valider chaque champ de l'expérience
+      Object.entries(fields).forEach(([fieldName, field]) => {
+        if (field && !field.value?.trim()) {
+          window.validationSystem.showFieldError(
+            field.id || `${fieldName}-${index}`,
+            `${this.getFieldLabel(
+              fieldName
+            )} est obligatoire pour l'expérience ${index + 1}`
+          );
+          isValid = false;
+        }
+      });
+
+      // Validation des dates
+      if (fields.startDate?.value && fields.endDate?.value) {
+        const startDate = new Date(fields.startDate.value);
+        const endDate = new Date(fields.endDate.value);
+
+        if (startDate > endDate) {
+          window.validationSystem.showFieldError(
+            fields.endDate.id || `endDate-${index}`,
+            "La date de fin doit être postérieure à la date de début"
+          );
+          isValid = false;
+        }
+      }
+    });
+
+    if (!isValid) {
+      const errorMessages = [];
+      document.querySelectorAll(".error-message").forEach((errorEl) => {
+        const message = errorEl.textContent.trim();
+        if (message) errorMessages.push(message);
+      });
+
+      if (errorMessages.length > 0) {
+        window.validationSystem.showValidationSummary(errorMessages, "step-2");
+      }
+    }
+
+    return isValid;
   }
 
   validateDiplomas() {
-    // Sauvegarder les diplômes avant validation
-    if (window.formManager && window.formManager.saveDiplomes) {
-      window.formManager.saveDiplomes();
+    if (!window.validationSystem) {
+      // Fallback
+      if (window.formManager && window.formManager.saveDiplomes) {
+        window.formManager.saveDiplomes();
+      }
+      return true;
     }
-    return true; // Permettre de passer même sans diplôme
+
+    // Vérifier qu'il y a au moins un diplôme
+    const diplomaContainers = document.querySelectorAll('[id^="diplome-"]');
+    if (diplomaContainers.length === 0) {
+      const errors = ["Au moins un diplôme ou formation est requis"];
+      window.validationSystem.showValidationSummary(errors, "step-3");
+      return false;
+    }
+
+    let isValid = true;
+
+    // Valider chaque diplôme
+    diplomaContainers.forEach((container, index) => {
+      const fields = {
+        name: container.querySelector('[name="name"]'),
+        specialty: container.querySelector('[name="specialty"]'),
+        university: container.querySelector('[name="university"]'),
+        city: container.querySelector('[name="city"]'),
+        startDate: container.querySelector('[name="startDate"]'),
+        endDate: container.querySelector('[name="endDate"]'),
+        description: container.querySelector('[name="description"]'),
+      };
+
+      // Valider chaque champ du diplôme
+      Object.entries(fields).forEach(([fieldName, field]) => {
+        if (field && !field.value?.trim()) {
+          window.validationSystem.showFieldError(
+            field.id || `${fieldName}-${index}`,
+            `${this.getFieldLabel(fieldName)} est obligatoire pour le diplôme ${
+              index + 1
+            }`
+          );
+          isValid = false;
+        }
+      });
+
+      // Validation des dates
+      if (fields.startDate?.value && fields.endDate?.value) {
+        const startDate = new Date(fields.startDate.value);
+        const endDate = new Date(fields.endDate.value);
+
+        if (startDate > endDate) {
+          window.validationSystem.showFieldError(
+            fields.endDate.id || `endDate-${index}`,
+            "La date de fin doit être postérieure à la date de début"
+          );
+          isValid = false;
+        }
+      }
+    });
+
+    if (!isValid) {
+      const errorMessages = [];
+      document.querySelectorAll(".error-message").forEach((errorEl) => {
+        const message = errorEl.textContent.trim();
+        if (message) errorMessages.push(message);
+      });
+
+      if (errorMessages.length > 0) {
+        window.validationSystem.showValidationSummary(errorMessages, "step-3");
+      }
+    }
+
+    return isValid;
   }
 
   validateCertificates() {
-    // Sauvegarder les certificats avant validation
-    if (window.formManager && window.formManager.saveCertificates) {
-      window.formManager.saveCertificates();
+    if (!window.validationSystem) {
+      return true; // Fallback permissif
     }
-    return true; // Permettre de passer même sans certificat
+
+    // Les certificats sont optionnels, mais s'ils existent, ils doivent être valides
+    const certContainers = document.querySelectorAll('[id^="certificate-"]');
+    let isValid = true;
+
+    certContainers.forEach((container, index) => {
+      const fields = {
+        name: container.querySelector('[name="name"]'),
+        organism: container.querySelector('[name="organism"]'),
+        startDate: container.querySelector('[name="startDate"]'),
+        endDate: container.querySelector('[name="endDate"]'),
+      };
+
+      // Valider les champs obligatoires
+      Object.entries(fields).forEach(([fieldName, field]) => {
+        if (field && field.value?.trim() && fieldName !== "endDate") {
+          // endDate peut être vide pour les certificats permanents
+          // Field validation logic here
+        } else if (field && !field.value?.trim() && fieldName !== "endDate") {
+          window.validationSystem.showFieldError(
+            field.id || `${fieldName}-${index}`,
+            `${this.getFieldLabel(
+              fieldName
+            )} est obligatoire pour le certificat ${index + 1}`
+          );
+          isValid = false;
+        }
+      });
+    });
+
+    return isValid;
   }
 
   validateSkills() {
-    // Les compétences sont déjà sauvegardées en temps réel
-    return true; // Permettre de passer même sans compétence
+    if (!window.validationSystem) {
+      return true; // Fallback permissif
+    }
+
+    let isValid = true;
+    const errors = [];
+
+    // Vérifier les compétences techniques
+    const hardSkillsContainer = document.querySelector("#hardSkillsContainer");
+    const hardSkills = hardSkillsContainer
+      ? hardSkillsContainer.querySelectorAll(".skill-item")
+      : [];
+
+    if (hardSkills.length === 0) {
+      errors.push("Au moins une compétence technique est requise");
+      isValid = false;
+    }
+
+    // Vérifier les compétences interpersonnelles
+    const softSkillsContainer = document.querySelector("#softSkillsContainer");
+    const softSkills = softSkillsContainer
+      ? softSkillsContainer.querySelectorAll(".skill-item")
+      : [];
+
+    if (softSkills.length === 0) {
+      errors.push("Au moins une compétence interpersonnelle est requise");
+      isValid = false;
+    }
+
+    if (!isValid) {
+      window.validationSystem.showValidationSummary(errors, "step-5");
+    }
+
+    return isValid;
   }
 
   validateLanguages() {
-    // Les langues sont déjà sauvegardées en temps réel
-    return true; // Permettre de passer même sans langue
+    if (!window.validationSystem) {
+      return true; // Fallback permissif
+    }
+
+    // Vérifier qu'il y a au moins une langue
+    const languageContainers = document.querySelectorAll('[id^="language-"]');
+    if (languageContainers.length === 0) {
+      const errors = ["Au moins une langue est requise"];
+      window.validationSystem.showValidationSummary(errors, "step-6");
+      return false;
+    }
+
+    let isValid = true;
+
+    // Valider chaque langue
+    languageContainers.forEach((container, index) => {
+      const langField = container.querySelector('[name="langue"]');
+      const levelField = container.querySelector('[name="niveau"]');
+
+      if (langField && !langField.value?.trim()) {
+        window.validationSystem.showFieldError(
+          langField.id || `langue-${index}`,
+          `La langue est obligatoire pour l'entrée ${index + 1}`
+        );
+        isValid = false;
+      }
+
+      if (levelField && !levelField.value?.trim()) {
+        window.validationSystem.showFieldError(
+          levelField.id || `niveau-${index}`,
+          `Le niveau est obligatoire pour l'entrée ${index + 1}`
+        );
+        isValid = false;
+      }
+    });
+
+    if (!isValid) {
+      const errorMessages = [];
+      document.querySelectorAll(".error-message").forEach((errorEl) => {
+        const message = errorEl.textContent.trim();
+        if (message) errorMessages.push(message);
+      });
+
+      if (errorMessages.length > 0) {
+        window.validationSystem.showValidationSummary(errorMessages, "step-6");
+      }
+    }
+
+    return isValid;
+  }
+
+  getFieldLabel(fieldName) {
+    const labels = {
+      mission: "Le poste/mission",
+      company: "L'entreprise",
+      sector: "Le secteur",
+      location: "Le lieu",
+      startDate: "La date de début",
+      endDate: "La date de fin",
+      description: "La description",
+      name: "Le nom",
+      specialty: "La spécialité",
+      university: "L'établissement",
+      city: "La ville",
+      organism: "L'organisme",
+      langue: "La langue",
+      niveau: "Le niveau",
+    };
+    return labels[fieldName] || fieldName;
   }
 
   isValidEmail(email) {

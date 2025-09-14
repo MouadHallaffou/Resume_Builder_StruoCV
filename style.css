@@ -694,3 +694,245 @@ main p {
     max-width: 2.5rem;
   }
 }
+
+/* ===========================================
+   VALIDATION SYSTEM - Error Display
+   =========================================== */
+
+/* Container pour les erreurs sous les champs */
+.form-field {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+/* Messages d'erreur sous les champs */
+.error-message {
+  display: block;
+  color: #ef4444;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background-color: rgba(239, 68, 68, 0.1);
+  border-left: 3px solid #ef4444;
+  border-radius: 0 0.25rem 0.25rem 0;
+  animation: slideInError 0.3s ease-out;
+  transition: all 0.3s ease;
+}
+
+/* Animation d'apparition des erreurs */
+@keyframes slideInError {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 50px;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+}
+
+/* États des champs avec erreurs */
+.input-error {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.input-error:focus {
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+}
+
+/* États des champs valides */
+.input-valid {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+}
+
+.input-valid:focus {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2) !important;
+}
+
+/* Message de succès */
+.success-message {
+  display: block;
+  color: #10b981;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background-color: rgba(16, 185, 129, 0.1);
+  border-left: 3px solid #10b981;
+  border-radius: 0 0.25rem 0.25rem 0;
+  animation: slideInSuccess 0.3s ease-out;
+}
+
+@keyframes slideInSuccess {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 50px;
+  }
+}
+
+/* Indicateurs visuels */
+.field-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.field-icon.error {
+  color: #ef4444;
+}
+
+.field-icon.valid {
+  color: #10b981;
+}
+
+/* Tooltip d'aide */
+.field-help {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+  padding-left: 0.5rem;
+}
+
+/* Style spécial pour les erreurs de validation globales */
+.validation-summary {
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.1),
+    rgba(239, 68, 68, 0.05)
+  );
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  animation: shake 0.5s ease-in-out;
+}
+
+.validation-summary h4 {
+  color: #ef4444;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.validation-summary ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.validation-summary li {
+  color: #dc2626;
+  padding: 0.25rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.validation-summary li::before {
+  content: "•";
+  position: absolute;
+  left: 0.5rem;
+  color: #ef4444;
+  font-weight: bold;
+}
+
+/* Animation de secousse pour attirer l'attention */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+/* Styles pour les champs obligatoires */
+.required-field::after {
+  content: "*";
+  color: #ef4444;
+  margin-left: 0.25rem;
+  font-weight: bold;
+}
+
+/* Loading state pour validation */
+.validating {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.validating::after {
+  content: "";
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #e5e7eb;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+/* Responsive pour validation */
+@media (max-width: 768px) {
+  .error-message,
+  .success-message {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .validation-summary {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .field-icon {
+    right: 0.5rem;
+    font-size: 0.875rem;
+  }
+}

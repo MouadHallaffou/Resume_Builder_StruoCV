@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="./src/output.css" />
     <link rel="stylesheet" href="./src/input.css" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="hero-effects.css" />
+    <link rel="stylesheet" href="hero-effects.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -26,10 +28,14 @@
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="hero-animations.js" defer></script>
   </head>
 
   <body>
-    <section id="heroSection" style="width: 100%; height: 100vh">
+    <section
+      id="heroSection"
+      class="relative w-full min-h-screen overflow-hidden animated-bg"
+    >
       <!-----Start Background Animation Body------->
       <div class="area">
         <ul class="circles">
@@ -47,81 +53,227 @@
       </div>
       <!------End Background Animation Body-------->
 
-      <!----------start Page pricipale-------------->
-      <div class="flex px-10 py-4 justify-between items-center flex-wrap">
-        <div class="flex items-center">
-          <a href="#"><img src="images/logo.svg" class="w-20 h-12" /></a>
-          <a href="#" class="font-bold text-3xl text-blue-900"> CV Builder</a>
-        </div>
-        <div class="relative flex items-center md:inline-flex">
-          <marquee behavior="title" direction="left">
-            <blockquote class="text-3xl text-blue-900 font-bold">
-              Bienvenue Dans Mon Espace
-            </blockquote>
-          </marquee>
-        </div>
-        <div class="flex items-center gap-4">
-          <button
-            class="border px-2 py-2 rounded-md border-white bg-blue-800 text-white font-semibold hover:bg-purple-800"
-          >
-            S'inscrire
-          </button>
-          <button
-            class="border px-2 py-2 rounded-md border-white bg-blue-800 text-white font-semibold hover:bg-purple-800"
-          >
-            Connexion
-          </button>
-        </div>
-      </div>
-
-      <div
-        class="items-start w-10/12 grid-cols-2 mx-auto overflow-y-hidden overflow-x-hidden lg:grid md:py-14 lg:py-24 xl:py-14 lg:mt-3 xl:mt-0"
-        style="max-height: 85vh"
-        data-aos="fade-right"
-        data-aos-duration="800"
-      >
-        <div class="pr-2 md:mb-14 py-14 md:py-0">
-          <h1 class="font-bold text-blue-900 text-3xl leading-relaxed">
-            <span class="block w-full">Créez un CV professionnel pour</span>
-            booster votre carrière !
-          </h1>
-          <p
-            class="py-4 text-1xl text-white leading-loose 2xl:py-8 md:py-6 2xl:pr-5"
-          >
-            Concevez facilement un CV moderne et personnalisé grâce à notre
-            outil intuitif. Suivez des étapes simples pour ajouter vos
-            informations, choisissez parmi plusieurs modèles élégants, et
-            sauvegardez votre CV en ligne. Idéal pour mettre en avant vos
-            compétences et votre expérience professionnelle, prêt pour
-            l'impression ou le téléchargement...
-          </p>
-          <div class="mt-4">
+      <!----------start Header Navigation-------------->
+      <header class="relative z-10 w-full">
+        <nav
+          class="flex flex-col sm:flex-row px-4 sm:px-6 lg:px-10 py-4 justify-between items-center"
+        >
+          <div class="flex items-center gap-2 mb-4 sm:mb-0">
+            <a href="#" id="logoLink"
+              ><img
+                src="./images/logo.svg"
+                class="w-12 h-8 sm:w-16 sm:h-10 lg:w-20 lg:h-12"
+            /></a>
             <a
-              id="startedBtn"
               href="#"
-              class="p-4 text-1xl tracking-widest font-bold text-white bg-blue-800 rounded-lg md:px-4 hover:bg-blue-700 group"
-              ><span>Commencer</span>
-            </a>
+              id="brandLink"
+              class="font-bold text-xl sm:text-2xl lg:text-3xl text-blue-900"
+              >CV Builder</a
+            >
+          </div>
+          <div class="flex-1 flex justify-center items-center mb-4 sm:mb-0">
+            <h2
+              class="text-base sm:text-xl lg:text-2xl xl:text-3xl text-blue-900 font-bold text-center"
+            >
+              Bienvenue Dans Mon Espace
+            </h2>
+          </div>
+          <div class="flex items-center gap-2 sm:gap-4">
+            <button
+              class="px-3 py-2 sm:px-4 sm:py-2 rounded-md bg-blue-800 text-white font-semibold hover:bg-blue-700 transition-colors duration-300 text-xs sm:text-sm lg:text-base"
+            >
+              S'inscrire
+            </button>
+            <button
+              class="px-3 py-2 sm:px-4 sm:py-2 rounded-md bg-blue-800 text-white font-semibold hover:bg-blue-700 transition-colors duration-300 text-xs sm:text-sm lg:text-base"
+            >
+              Connexion
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      <!----------start Main Content-------------->
+      <main
+        class="relative z-10 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-10"
+      >
+        <div class="container mx-auto max-w-7xl">
+          <div
+            class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[60vh]"
+          >
+            <!-- Left Content -->
+            <div
+              class="flex flex-col justify-center text-center lg:text-left order-2 lg:order-1 scroll-reveal"
+            >
+              <h1
+                class="font-bold text-blue-900 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl leading-tight mb-6 text-glow gradient-text"
+              >
+                <span class="block">Créez un CV professionnel</span>
+                <span class="block text-blue-700"
+                  >pour booster votre carrière !</span
+                >
+              </h1>
+              <p
+                class="text-blue-800 text-base sm:text-lg lg:text-xl leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0"
+              >
+                Concevez facilement un CV moderne et personnalisé grâce à notre
+                outil intuitif. Suivez des étapes simples pour ajouter vos
+                informations, choisissez parmi plusieurs modèles élégants, et
+                sauvegardez votre CV en ligne.
+              </p>
+              <div class="flex justify-center lg:justify-start mb-8">
+                <a
+                  id="startedBtn"
+                  href="#"
+                  class="btn-shine inline-flex items-center px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-bold text-white rounded-lg transform transition-all duration-300 shadow-lg"
+                >
+                  <span>Commencer</span>
+                  <svg
+                    class="ml-2 w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+
+              <!-- Feature Highlights -->
+              <div
+                class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm scroll-reveal"
+              >
+                <div
+                  class="feature-item feature-enhanced flex items-center text-white/90"
+                >
+                  <svg
+                    class="w-5 h-5 mr-2 text-green-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span>Interface intuitive</span>
+                </div>
+                <div
+                  class="feature-item feature-enhanced flex items-center text-white/90"
+                >
+                  <svg
+                    class="w-5 h-5 mr-2 text-green-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span>Modèles professionnels</span>
+                </div>
+                <div
+                  class="feature-item feature-enhanced flex items-center text-white/90"
+                >
+                  <svg
+                    class="w-5 h-5 mr-2 text-green-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span>Export PDF gratuit</span>
+                </div>
+                <div
+                  class="feature-item feature-enhanced flex items-center text-white/90"
+                >
+                  <svg
+                    class="w-5 h-5 mr-2 text-green-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span>Sauvegarde en ligne</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Content - Image -->
+            <div
+              class="hero-image-container flex justify-center items-center order-1 lg:order-2 scroll-reveal"
+            >
+              <div class="relative w-full max-w-md lg:max-w-lg xl:max-w-xl">
+                <img
+                  id="heroImg1"
+                  class="hero-float w-full h-auto transform transition-all duration-500 ease-in-out"
+                  src="./images/homePage.svg"
+                  alt="Awesome hero page image"
+                />
+                <!-- Decorative Elements -->
+                <div
+                  class="absolute -top-6 -right-6 w-12 h-12 bg-gradient-to-r from-pink-400 to-red-400 rounded-full opacity-70 animate-pulse"
+                ></div>
+                <div
+                  class="absolute -bottom-4 -left-4 w-8 h-8 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-60 animate-bounce"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Stats Section -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16 scroll-reveal"
+          >
+            <div class="hero-stats glass-card text-center">
+              <h3 class="text-2xl sm:text-3xl font-bold">500+</h3>
+              <p>CVs créés</p>
+            </div>
+            <div class="hero-stats glass-card text-center">
+              <h3 class="text-2xl sm:text-3xl font-bold">10+</h3>
+              <p>Modèles disponibles</p>
+            </div>
+            <div class="hero-stats glass-card text-center">
+              <h3 class="text-2xl sm:text-3xl font-bold">98%</h3>
+              <p>Satisfaction client</p>
+            </div>
           </div>
         </div>
+      </main>
 
-        <div
-          class="pb-10 overflow-hidden md:p-10 lg:p-0 sm:pb-0"
-          style="
-            height: 70%;
-            display: flex;
-            align-items: center;
-            margin-left: 100px;
-            width: 700px;
-          "
-        >
-          <img
-            id="heroImg1"
-            class="transition-all duration-300 ease-in-out hover:scale-105 lg:w-full sm:mx-auto sm:w-4/6 sm:pb-12 lg:pb-0"
-            src="images/homePage.svg"
-            style="height: 750px"
-            alt="Awesome hero page image"
-          />
+      <!-- Scroll Down Indicator -->
+      <div class="scroll-indicator">
+        <div class="flex flex-col items-center">
+          <span class="text-sm mb-2">Défiler vers le bas</span>
+          <svg
+            class="w-6 h-6 animate-bounce"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            ></path>
+          </svg>
         </div>
       </div>
     </section>
@@ -130,15 +282,17 @@
     <!-- le formulaire -->
     <div
       id="formulaire"
-      class="bg-gray-100 min-h-screen flex items-center justify-center"
+      class="bg-gray-100 min-h-screen flex items-center justify-center px-2"
       style="display: none"
     >
       <div class="container mx-auto p-4">
         <div
           id="menuPrincipale"
-          class="bg-white rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto"
+          class="bg-white rounded-lg shadow-lg p-4 sm:p-6 md:p-10 w-full max-w-4xl mx-auto"
         >
-          <h1 class="text-4xl font-bold text-center text-gray-800 mb-10">
+          <h1
+            class="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-gray-800 mb-8 lg:mb-10"
+          >
             Générez votre CV
           </h1>
           <!-- Barre de progression -->
@@ -235,8 +389,7 @@
             <!-- Step 1: Information Personnel -->
             <div
               id="step-1"
-              class="bg-gray-200 p-4 rounded-lg shadow-lg"
-              style="width: 600px"
+              class="bg-gray-200 p-4 rounded-lg shadow-lg w-full"
             >
               <!-- Nom complet et Profil Professionnel -->
               <div class="flex space-x-4 mb-6">
@@ -475,11 +628,7 @@
 
           <!------------------------ Step: 2 ---------------------------->
           <!------------------- Section des Expériences ----------------->
-          <div
-            id="step-2"
-            class="bg-gray-200 p-4 rounded-lg shadow-lg"
-            style="width: 600px"
-          >
+          <div id="step-2" class="bg-gray-200 p-4 rounded-lg shadow-lg w-full">
             <div class="text-center mb-6">
               <h2 class="text-2xl font-semibold text-gray-800">
                 Ajouter une expérience professionnelle
@@ -537,11 +686,7 @@
 
           <!-------------------------------------------------------------->
           <!----------------------- Step 3: Diplome ---------------------->
-          <div
-            id="step-3"
-            class="bg-gray-200 p-6 rounded-lg shadow-lg"
-            style="width: 600px"
-          >
+          <div id="step-3" class="bg-gray-200 p-6 rounded-lg shadow-lg w-full">
             <!-- Titre principal pour le formulaire -->
             <div class="text-center mb-6">
               <h2 class="text-2xl font-semibold text-gray-800">Diplômes</h2>
@@ -602,11 +747,7 @@
 
           <!------------------------------------------------------------->
           <!---------------------- Step 4: Certificat ------------------->
-          <div
-            id="step-4"
-            class="bg-gray-200 p-4 rounded-lg shadow-lg"
-            style="width: 600px"
-          >
+          <div id="step-4" class="bg-gray-200 p-4 rounded-lg shadow-lg w-full">
             <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">
               Certificats
             </h2>
@@ -665,11 +806,7 @@
 
           <!------------------------ Competances ------------------------>
           <!------------------------------------------------------------->
-          <div
-            id="step-5"
-            class="bg-gray-200 p-4 rounded-lg shadow-lg"
-            style="width: 600px"
-          >
+          <div id="step-5" class="bg-gray-200 p-4 rounded-lg shadow-lg w-full">
             <div class="space-y-6">
               <!-- Compétences -->
               <div class="w-full p-4 bg-white rounded-lg shadow-lg">
@@ -790,11 +927,7 @@
 
           <!---------------------------------------------------------------->
           <!-------------------- Step 5: Langues et Loisirs ---------------->
-          <div
-            id="step-6"
-            class="bg-gray-200 p-4 rounded-lg shadow-lg"
-            style="width: 600px"
-          >
+          <div id="step-6" class="bg-gray-200 p-4 rounded-lg shadow-lg w-full">
             <div class="space-y-6">
               <!-- Langues et Niveau -->
               <div class="w-full p-4 bg-white rounded-lg shadow-lg">
@@ -924,7 +1057,8 @@
           <!---------------------------------------------------------------->
           <!---------------------------------------------------------------->
           <div
-            class="type-selection-section hidden mt-6 w-full p-8 bg-white rounded-lg shadow-lg flex flex-col items-center space-y-6"
+            class="type-selection-section mt-6 w-full p-8 bg-white rounded-lg shadow-lg flex flex-col items-center space-y-6"
+            style="display: none"
           >
             <!-- Titre principal -->
             <h2 class="text-3xl font-bold text-gray-800">
